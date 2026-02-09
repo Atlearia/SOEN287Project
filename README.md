@@ -1,36 +1,36 @@
 ## Git Commands
-### Initialize git on your local folder
+### Initialize Git in local folder
 ```
 git init
 ```
 
-### Add remote url
+### Add remote repository
 ```
 git remote add [remote-name] [url]
 ```
 
-### Pulling public repo to local
+### Pull from remote repository
 ```
 git pull [remote-name] [branch (default main/master)]
 ```
 
-### Pushing changes to repo
-- Add changes of all files
+### Push changes to repository
+- Add all changes:
 ```
 git add .
 ```
 
-- Add changes of a specific file
+- Add a specific file:
 ```
 git add [filename.ext]
 ```
 
-- Commit changes
+- Commit changes:
 ```
-git commit -m '[Commit Message]'
+git commit -m "Descriptive commit message"
 ```
 
-- Push changes to repo
+- Push to remote:
 ```
 git push [remote-name] [branch-name]
 ```
