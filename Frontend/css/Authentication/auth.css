@@ -1,23 +1,25 @@
+/* the body{} makes it so that you can move the .box freely. without the display:flex, 
+items inside the boy are stuck.*/
 body{
     display:flex;
     align-items: center;
-    height:75vh;
+    height:75vh; /*height based on size of window (relative to viewport)*/
 }
 
 .box{   
 	width: 300px;
     height: 200px;
-    border: 0px solid black;
+    border: 0px solid black;/*didnt use border cause i didn't like it*/
     padding: 50px;
-    margin: auto;
+    margin: auto; /*centers box horizontally on page*/
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+    display: flex; /*allows the items inside to change position*/
+    flex-direction: column; /*aligns element vertically*/
     
     
 }
-
-.logintext{
+/*the .Centered method is just so that every text element is align with eachother and centered.*/
+.Centered{
  	
 	position: relative;
     
@@ -25,7 +27,8 @@ body{
     
 }
 
-.big-btn{
+/*This is just so that every button/text are the same size and aligned.*/
+.Entry{
     height:20%;
     width: 70%;
     
