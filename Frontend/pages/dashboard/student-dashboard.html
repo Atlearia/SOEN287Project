@@ -12,23 +12,54 @@
 </head>
 <body>
     <!--TODO: Nav bar-->
-    <div>
-        <nav class="navbar navbar-expand-md mb-2 px-3">
-            <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <h3>Dashboard</h3>
+            <!--Collapse button when the screen is less than medium size-->
+            <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="">
-                <h4>Dashboard</h4>
+            <div class="offcanvas offcanvas-end" id="navbarScroll">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <!--Nav item: it will collapse when the screen is less than medium-->
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">HOME</li>
+                        <li class="nav-item">Test1</li>
+                        <li class="nav-item">Test2</li>
+                    </ul>
+                </div>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
     
 
     <!--course cards-->
     <section">
         <h3>Courses:</h3>
-        <div>
-            
+        <div class="row p-2">
+            <div class="col-sm-3 mb-2">
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 mb-2">
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
         </div>
     </section>
 
