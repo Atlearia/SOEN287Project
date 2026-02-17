@@ -3,55 +3,51 @@
     <head>
         
         <link rel="stylesheet" href="login.css">
+       
     </head>
     <body>
         <div class="box">
             <div class="Centered">
-                <!--Create account title --> 
                 <h1>Create an Account</h1>
             </div>
-            <!-- Form with every entry.--> 
-            <form>
+            <form action="Login.html">
                 <div class="Centered">
-                    <!-- First Name --> 
                     <label for="firstname"></label>
-                    <input class="Entry" type="text" id="firstname" placeholder="First Name">
+                    <input class="Entry" type="text" id="firstname" placeholder="First Name" required/>
                 </div>
                 </br>
                 <div class="Centered">
-                    <!-- Last Name --> 
                     <label for="lastname"></label>
-                    <input class="Entry" type="text" id="lastname" placeholder="Last Name">
+                    <input class="Entry" type="text" id="lastname" placeholder="Last Name" required/>
                     
                 </div>
                 </br>   
                 <div class="Centered">
-                    <!-- Email --> 
                     <label for="Email"></label>
-                    <input class="Entry" type="Email" id="Email" placeholder="Email">
+                    <input class="Entry" type="Email" id="Email" placeholder="Email" required/>
                 </div>
                 </br>
                 <div class="Centered">
-                    <!-- Password --> 
                     <label for="password_"></label>
-                    <input class="Entry"type="password" id="password_" placeholder="Password">
+                   <input class="Entry"type="password" id="password_" placeholder="Password"  required/>
+                  
                 </div>
                 </br>
                 <div class="Centered">
-                    <!-- Confirm Password (currently doesnt need to be the same cause no js)--> 
+                    
                     <label for="ConfPassword"></label>
-                    <input class="Entry" type="password" id="ConfPassword" placeholder="Confirm password">
+                    <input class="Entry" type="password" id="ConfPassword" placeholder="Confirm password" required/>
                 </div>
             </br>
                 <div class="Centered">
-                <!-- Create Account (would normally bring you back to the sign in page 
-                 where you can log in again but no js)--> 
-                <a href="Login.html">
-                <input type="button" value="Create my Account">
-                </a>
+                
+                
+                <input type="submit" value="Create my Account"/>
+                
                 </div>
             </form>
 
         </div>
+         <script src="Auth.js"></script> 
     </body>
 </html>
