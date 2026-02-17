@@ -1,3 +1,27 @@
+
+/* light mode color scheme */
+:root {
+    --background-color: #F2F4F7;
+    --primary-color: #c9c9c9;
+    --secondary-color: #dddbff;
+    --text-color: #0c0c12;
+    --accent-color: #3E4B63;
+    --item-background: white;
+    --nav-item-color: #F2F4F7;
+}
+
+/* Dark mode color scheme */
+/* :root {
+    --background-color: #000000;
+    --primary-color: #3b3b3b;
+    --secondary-color: #636363;
+    --text-color: #F4F4F9;
+    --accent-color: #222222;
+    --item-background: #141414;
+    --nav-item-color: whitesmoke;
+} */
+
+
 /* @media (prefers-color-scheme: dark) {
     :root {
         --background-color: #020104;
@@ -8,33 +32,18 @@
     }
 } */
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
     :root {
-        --background-color: #fcfbfe;
+        --background-color: #F2F4F7;
         --primary-color: #2f27ce;
         --secondary-color: #dddbff;
         --text-color: #0c0c12;
-        --accent-color: #5c53f8;
+        --accent-color: #3E4B63;
         font-family: Inter, sans-serif, monospace;
         font-feature-settings: 'liga' 1, 'calt' 1;
     }
-}
+} */
 
-.light-mode {
-    --background-color: #fcfbfe;
-    --primary-color: #2f27ce;
-    --secondary-color: #dddbff;
-    --text-color: #0c0c12;
-    --accent-color: #5c53f8;
-}
-
-.dark-mode {
-    --background-color: #020104;
-    --primary-color: #3a31d8;
-    --secondary-color: #020024;
-    --text-color: #F4F4F9;
-    --accent-color: #5c53f8;
-}
 
 body {
     margin: 0px;
@@ -43,9 +52,80 @@ body {
     font-family: Inter, monospace;
 }
 
+.logo {
+    color: var(--nav-item-color);
+}
+
 .navbar {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--accent-color);
+    color: var(--background-color);
     border-bottom: 1px;
     border-style: none none solid none;
+}
+
+.navbar li {
+    color: var(--nav-item-color);
+    padding: 20px;
+}
+
+.offcanvas {
+    background-color: var(--accent-color);
+}
+
+.offcanvas-title {
+    color: var(--nav-item-color);
+}
+
+/* Styling for the course card items */
+.course-card-title {
+    text-decoration: underline;
+}
+
+.course-item {
+    background-color: var(--item-background);
+    border-radius: 6px;
+    max-width: 425px;
+    width: 95%;
+    margin: 10px 10px 10px 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+}
+
+
+
+
+/* Assessment section styls */
+.assessment-table {
+    width: 95%;
+    background-color: var(--item-background);
+    margin: 10px 10px 10px 10px;
+}
+
+.assessment-table th, tr, td {
+    padding: 10px;
+}
+
+.assessment-table thead {
+    background-color: var(--secondary-color);
+}
+
+.assessment-title {
+    margin: 10px;
+    text-decoration: underline;
+}
+
+
+
+/* resposive area */
+/* when the screen is larger than 375px for responsiveness*/
+@media (min-width: 376px) {
+    .course-item {
+        width: 30%;
+        margin: 10px 10px 10px 10px;
+    }
+
+    .assessment-table {
+        width: 98%;
+        margin: 10px 10px 10px 10px;
+    }
 }
