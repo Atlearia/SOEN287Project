@@ -83,6 +83,7 @@ body {
 
 .course-item {
     background-color: var(--item-background);
+    color: var(--text-color);
     border-radius: 6px;
     max-width: 425px;
     width: 95%;
@@ -91,7 +92,9 @@ body {
     box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
 }
 
-
+#courses a {
+    text-decoration: none;
+}
 
 
 /* Assessment section styls */

@@ -42,12 +42,13 @@ const assessmentDashboard = document.getElementById('assessments');
 
 
 for (let course of courses) {
-    let container = document.createElement('div')
+    let container = document.createElement('a')
     container.classList.add('course-item', 'col', 'text-center');
+    container.setAttribute('href', (`../${course.title}.html`).replace(' ', ''))
     container.innerHTML = `
-                        <h3>${course['title']}</h3>
-                        <p>${course['description']}</p>
-                        <span class="average">${course['average']}</span>
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <span class="average">${course.average}</span>
                         `;
     coursesDashboard.appendChild(container);
 }
