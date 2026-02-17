@@ -40,40 +40,13 @@
     <!--course cards-->
     <section class="course-card container"> <!--Grid layout from bootstrap-->
         <h3 class="course-card-title">Courses:</h3>
-        <div class="course-block row row-cols-auto"> 
-            <div class="course-item col text-center">
-                <h3>Title</h3>
-                <p>Brief Description</p>
-                <span class="average">Average: {num}%</span> <!--inline styling-->
-            </div>
-            <div class="course-item col text-center">
-                <h3>Title</h3>
-                <p>Brief Description</p>
-                <span class="average">Average: {num}%</span> 
-            </div>
-            <div class="course-item col text-center">
+        <!--Add course card to this block-->
+        <div class="course-block row row-cols-auto" id="courses"> 
+            <!-- <div class="course-item col text-center">
                 <h3>Title</h3>
                 <p>Brief Description</p>
                 <span class="average">Average: {num}%</span>
-            </div>
-
-            <div class="course-item col text-center">
-                <h3>Title</h3>
-                <p>Brief Description</p>
-                <span class="average">Average: {num}%</span>
-            </div>
-
-            <div class="course-item col text-center">
-                <h3>Title</h3>
-                <p>Brief Description</p>
-                <span class="average">Average: {num}%</span>
-            </div>
-
-            <div class="course-item col text-center">
-                <h3>Title</h3>
-                <p>Brief Description</p>
-                <span class="average">Average: {num}%</span>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -90,33 +63,21 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="assessments">
 
                 <!--Each row is 1 course-->
-                <tr>
+                <!-- <tr>
                     <td>Course Name</td>
                     <td>Assessment</td>
                     <td>Due Date</td>
                     <td>Status</td>
-                </tr>
+                </tr> -->
 
-                <tr>
-                    <td>Course Name</td>
-                    <td>Assessment</td>
-                    <td>Due Date</td>
-                    <td>Status</td>
-                </tr>
-
-                <tr>
-                    <td>Course Name</td>
-                    <td>Assessment</td>
-                    <td>Due Date</td>
-                    <td>Status</td>
-                </tr>
             </tbody>
         </table>
     </section>
 
+    <script src="../../scripts/student-dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
