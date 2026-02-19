@@ -78,6 +78,7 @@ body {
 
 /* Styling for the course card items */
 .course-card-title {
+    margin: 20px 5px;
     text-decoration: underline;
 }
 
@@ -96,10 +97,15 @@ body {
     text-decoration: none;
 }
 
+#courses a:hover {
+    background-color: rgba(var(--item-background), 0.01);
+}
+
 
 /* Assessment section styls */
 .assessment-table {
-    width: 95%;
+    max-width: 475px;
+    width: 30px;
     background-color: var(--item-background);
     margin: 10px 10px 10px 10px;
 }
@@ -113,22 +119,35 @@ body {
 }
 
 .assessment-title {
-    margin: 10px;
+    margin: 20px 5px;
     text-decoration: underline;
 }
 
+.assessment-status {
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.pending {
+    background-color: pink;
+}
+
+.complete {
+    background-color: lightgreen;
+}
 
 
 /* resposive area */
 /* when the screen is larger than 375px for responsiveness*/
-@media (min-width: 376px) {
+@media (min-width: 476px) {
     .course-item {
         width: 30%;
         margin: 10px 10px 10px 10px;
     }
 
     .assessment-table {
+        max-width: 100%;
         width: 98%;
-        margin: 10px 10px 10px 10px;
     }
 }

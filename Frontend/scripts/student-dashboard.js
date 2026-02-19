@@ -33,7 +33,7 @@ let assessments = [
         course: "SOEN 228",
         assessment: "Midterm",
         dueDate: "25-02-2026",
-        status: "Pending"
+        status: "Completed"
     }
 ]
 
@@ -48,7 +48,7 @@ for (let course of courses) {
     container.innerHTML = `
                         <h3>${course.title}</h3>
                         <p>${course.description}</p>
-                        <span class="average">${course.average}</span>
+                        <span class="average">Average: ${course.average}</span>
                         `;
     coursesDashboard.appendChild(container);
 }
@@ -59,7 +59,7 @@ for (let assessment of assessments) {
                     <td>${assessment.course}</td>
                     <td>${assessment.assessment}</td>
                     <td>${assessment.dueDate}</td>
-                    <td>${assessment.status}</td>
+                    <td><span class="assessment-status ${assessment.status == "Pending" ? "pending" : "complete"}" id="assessment-status">${assessment.status}</span></td>
     `;
     assessmentDashboard.appendChild(container);
 }
