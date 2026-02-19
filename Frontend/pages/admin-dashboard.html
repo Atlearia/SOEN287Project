@@ -7,7 +7,6 @@
     <title>Admin Dashboard</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="C:\Users\ronan\Desktop\SOEN 287\Frontend\css\admin-dashboard.css">
-
 </head>
 
 <body>
@@ -18,19 +17,20 @@
             <img class="adjust" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\concordia2.png"
                 alt="Concordia Logo">
 
-            <p class="adjust" style="font-weight:600; background: #FFFFFF;border-radius: 4px;">Log Out</p>
+            <p class="adjust" style="font-weight:600; background: #FFFFFF;border-radius: 4px; margin-left: auto;">Log
+                Out</p>
         </header>
 
 
         <div id="body-container">
             <!-- Dashboard-->
-            <h2 style="font-weight:900;">Admin/Instructor Dashboard</h2>
+            <h2 style="font-weight:800;">Admin Dashboard</h2>
             <hr>
             <div class="section" style="margin-top:20px; height: 100px;">
                 <div class="dashboard-items clickable-box">
                     <img src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\clipboard.png" alt="create course img">
                     <div class="subdashboard-items">
-                        <p class="title3">Create Course</p>
+                        <p class="custom-title">Create Course</p>
                         <p>Add a new course</p>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <img class="image" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\checklist.png"
                         alt="assessment manage">
                     <div class="subdashboard-items">
-                        <p class="title3">Manage Courses</p>
+                        <p class="custom-title">Manage Courses</p>
                         <p>Edit course assessments</p>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <img style="height: 90%; margin:auto auto;" class="image"
                         src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\folder.png" alt="coruse template stuff">
                     <div class="subdashboard-items">
-                        <p class="title3">Course Templates</p>
+                        <p class="custom-title">Course Templates</p>
                         <p>Manage reusable templates</p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <img class="image" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\toggle.png.png"
                         alt="course enabler">
                     <div class="subdashboard-items">
-                        <p class="title3">Toggle Courses</p>
+                        <p class="custom-title">Toggle Courses</p>
                         <p>Course availability</p>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
             <br>
             <!--Usage Summary -->
             <div id="usage-title">
-                <h3 style="padding-right:15px;">Usage Summary -</h3>
+                <h3 style="padding-right:15px;" class="custom-title">Usage Summary -</h3>
                 <select id="selection">
                     <option>SOEN 287</option>
                     <option>SOEN 287</option>
@@ -72,25 +72,44 @@
                 </select>
             </div>
             <hr>
-            <div class="section" style="width:1000px">
+            <div class="section"
+                style="width:1400px; height: 500px; border:2px solid purple; display:flex; justify-content:center;">
                 <div class="usage-section">
-                    <h3>Completed Assessments</h3>
-                    <hr style="width:20px">
-                    <p><span style="font-size:50px;">99</span>50% finished</p>
+
+                    <div class="usage-section2"
+                        style="border:2px solid green; margin: 5px 5px;height:fit-content; display:flex; align-items:center;">
+                        <img class="image small-icon" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\pen.png"
+                            alt="pen">
+                        <span class="custom-title" style="margin-top:0; margin-left:5px;">Completed Assessments</span>
+                    </div>
+
+
+
+
+
                 </div>
                 <div class="usage-section">
-                    <h3>Pending Assessments</h3>
-                    <hr>
-                    <p><span style="font-size:50px;">99</span>50% remaining</p>
+
+                    <img class="image small-icon"
+                        src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\hourglass-computer-icons-time-clip-art-hourglass-thumbnail.jpg"
+                        alt="hourglass">
+
+                    <h3 class="custom-title">Pending Assessments</h3>
+
                 </div>
+                <hr class="usage-hr">
                 <div class="usage-section">
-                    <h3>Course Completion Rate</h3>
-                    <hr>
-                    <p><span style="font-size:50px;">99</span>50% Overall Completion Rate</p>
+
+                    <img class="image small-icon" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\stats.png"
+                        alt="stats">
+
+                    <h3 class="custom-title">Course Completion Rate</h3>
+                    <hr class="usage-hr">
+
                 </div>
             </div>
 
-            <!---->
+
         </div>
     </form>
 </body>
