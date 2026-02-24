@@ -4,137 +4,7 @@
 <head>
     <title>Admin Dashboard</title>
     <meta charset="utf-8">
-    <style>
-        html {
-            border: 2px solid black;
-            background: #F2F4F7;
-            font-family: sans-serif;
-            max-width: 100%;
-            max-height: 100%;
-            color: #3E4B63;
-        }
-
-        header {
-            background: #3E4B63;
-            padding: 20px;
-            height: 40px;
-            width: auto;
-            display: flex;
-            align-items: center;
-        }
-
-        body {
-            margin: 0 0;
-        }
-
-        .adjust {
-            max-height: 100%;
-            max-width: 100%;
-        }
-
-        p {
-            color: #3E4B63;
-            margin-right: 20px;
-            padding: 5px 15px;
-            font-size: 14px;
-            max-height: 100%;
-            max-width: 100%;
-        }
-
-        .section {
-            display: flex;
-            justify-content: flex-start;
-        }
-
-        .dashboard-items {
-            flex: 1;
-            display: flex;
-            justify-content: flex-start;
-            background: #FFFFFF;
-            border-radius: 4px;
-            margin: 0 7px;
-            height: 100%;
-            box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .clickable-box:active {
-            box-shadow: 3px 12px 10px rgba(0, 0, 0, 0.08);
-            transform: translateY(3px) translateX(3px);
-        }
-
-        .image {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        #body-container {
-            padding: 0 70px;
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .subdashboard-items {
-            margin: 0 auto;
-            height: 100%;
-            padding: 0 0;
-        }
-
-        /* default characteristics of h3 */
-        .custom-title {
-            font-size: 1.17em;
-            font-weight: 800;
-            margin: 10px 0;
-        }
-
-        .usage-section {
-            height: 170px;
-            background: #FFFFFF;
-            align-content: start;
-            border-radius: 4px;
-            margin: 0 20px;
-            margin-left: 0;
-            font-size: 14px;
-            color: #3E4B63;
-            flex: 1;
-            width: 150px;
-            border: 2px solid black;
-            padding: 5px 10px;
-        }
-
-        #selection {
-            background: #FFFFFF;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #3E4B63;
-            padding: 3px 5px;
-            margin: 0 0;
-        }
-
-        #usage-title {
-            display: inline-flex;
-            align-items: center;
-            margin: 0 auto;
-            padding: 0 0;
-        }
-
-        hr {
-            background: #cfced3;
-            border: none;
-            height: 2px;
-            margin-top: 0;
-        }
-
-        .usage-hr {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        .small-icon {
-            display: block;
-            width: 60px;
-            height: 60px;
-        }
-    </style>
+    <link rel="stylesheet" href="C:\Users\ronan\Desktop\SOEN 287\Frontend\css\admin-dashboard.css">
 </head>
 
 <body>
@@ -194,84 +64,106 @@
                     <option>SOEN 287</option>
                 </select>
             </div>
-            <hr>
-            <div class="section"
-                style="width:1390px; height: fit-content; border:2px solid purple; display:flex; justify-content:center;margin-left:2px;">
+            <hr> <!--usage stuff more-->
 
-                <div class="usage-section">
-                    <div class="usage-section2"
-                        style="margin: 5px 5px; width: fit-content; height:fit-content; display:flex; align-items:center;">
-                        <img class="image small-icon" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\pen.png"
-                            alt="pen">
-                        <span class="custom-title" style="margin-top:0; margin-left:5px;">Completed Assessments</span>
+
+            <div id="us-wrapper">
+
+                <!-- Card 1: Assessment Breakdown -->
+                <div class="us-card">
+                    <div class="us-card-header">
+                        <span class="us-card-icon">✏️</span>
+                        <span class="us-card-title">Assessment Breakdown</span>
                     </div>
                     <hr class="usage-hr">
-                    <div style="border:2px solid white; margin-top:15px; margin-left:5px;">
-                        <div style="margin: 0 0;  display:flex; align-items:center;">
-                            <span style="font-size:50px; margin-right:10px;">95%</span><span
-                                style="margin-top:auto; margin-bottom:7px;">Completed</span>
-                            <div
-                                style="border:2px solid rgb(7, 106, 30); width:200px;height:30px; margin-left:20px;border-radius:30px;">
-                                <div style="background:rgb(21, 214, 21); width: 95%; height:100%; border-radius:30px;">
+                    <div style="display:flex; align-items:flex-start; margin-top:10px;">
+                        <div style="margin-right:20px;">
+                            <div class="us-big-pct">95%</div>
+                            <div class="us-completed-label">Completed</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Assignments</span>
+                                <div class="us-bar-track">
+                                    <div class="us-bar-fill-green" style="width:80%;"></div>
                                 </div>
+                                <span class="us-bar-pct">80%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Quizzes</span>
+                                <div class="us-bar-track">
+                                    <div class="us-bar-fill-green" style="width:90%;"></div>
+                                </div>
+                                <span class="us-bar-pct">90%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Midterms</span>
+                                <div class="us-bar-track">
+                                    <div class="us-bar-fill-yellow" style="width:50%;"></div>
+                                </div>
+                                <span class="us-bar-pct">50%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Finals</span>
+                                <div class="us-bar-track">
+                                    <div class="us-bar-fill-green" style="width:75%;"></div>
+                                </div>
+                                <span class="us-bar-pct">75%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="usage-section">
-                    <div class="usage-section2"
-                        style="margin: 5px 5px; width: fit-content; height:fit-content; display:flex; align-items:center;">
-                        <img class="image small-icon" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\pen.png"
-                            alt="pen">
-                        <span class="custom-title" style="margin-top:0; margin-left:5px;">Pending/At Risk</span>
+                <!-- Card 2: Pending / At Risk -->
+                <div class="us-card">
+                    <div class="us-card-header">
+                        <span class="us-card-icon">⚠️</span>
+                        <span class="us-card-title">Pending / At Risk</span>
                     </div>
                     <hr class="usage-hr">
-                    <div style="border:2px solid white; margin-top:15px; margin-left:5px;">
-                        <div style="margin: 0 0; display:flex; align-items:center;">
-                            <span style="font-size:50px; margin-right:10px;">95%</span><span
-                                style="margin-top:auto; margin-bottom:7px;">Completed</span>
-                            <div
-                                style="border:2px solid rgb(7, 106, 30); width:200px;height:30px; margin-left:20px;border-radius:30px;">
-                                <div style="background:rgb(21, 214, 21); width: 95%; height:100%; border-radius:30px;">
-                                </div>
-                            </div>
+                    <div style="margin-top:12px;">
+                        <div class="us-warn-item">
+                            <span class="us-warn-icon">⚠</span>
+                            3 assessments overdue
+                        </div>
+                        <div class="us-warn-item">
+                            <span class="us-warn-icon">⚠</span>
+                            2 courses below 70% completion
+                        </div>
+                        <div class="us-warn-item">
+                            <span class="us-warn-icon">⚠</span>
+                            14 students inactive &gt; 7 days
                         </div>
                     </div>
                 </div>
 
-                <div class="usage-section">
-                    <div class="usage-section2"
-                        style="margin: 5px 5px; width: fit-content; height:fit-content; display:flex; align-items:center;">
-                        <img class="image small-icon" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\pen.png"
-                            alt="pen">
-                        <span class="custom-title" style="margin-top:0; margin-left:5px;">Upcoming Deadlines</span>
+                <!-- Card 3: Upcoming Deadlines -->
+                <div class="us-card">
+                    <div class="us-card-header">
+                        <span class="us-card-icon">📅</span>
+                        <span class="us-card-title">Upcoming Deadlines</span>
+                        <span class="us-side-label">Last 7 Days</span>
                     </div>
                     <hr class="usage-hr">
-                    <div>March2</div>
-                    <hr class="usage-hr">
-
-
-
-
-
-                    <hr class="usage-hr">
-                    <div style="border:2px solid white; margin-top:15px; margin-left:5px;">
-                        <div style="margin: 0 0; display:flex; align-items:center;">
-                            <span style="font-size:50px; margin-right:10px;">95%</span><span
-                                style="margin-top:auto; margin-bottom:7px;">Completed</span>
-                            <div
-                                style="border:2px solid rgb(7, 106, 30); width:200px;height:30px; margin-left:20px;border-radius:30px;">
-                                <div style="background:rgb(21, 214, 21); width: 95%; height:100%; border-radius:30px;">
-                                </div>
-                            </div>
-                        </div>
+                    <div style="margin-top:10px;">
+                        <div class="us-deadline-item">Mar 5 - Quiz 2 (SOEN 287)</div>
+                        <div class="us-deadline-item">Mar 8 - Assignment 3 (COMP 248)</div>
+                        <div class="us-deadline-item">Mar 9 - Midterm (ENGR 213)</div>
+                    </div>
+                    <div class="us-chart-area">
+                        <svg width="200" height="60" style="flex:1;">
+                            <polygon
+                                points="0,55 20,50 40,48 60,44 80,40 100,35 120,30 140,20 160,15 180,10 200,5 200,60 0,60"
+                                fill="rgba(21,214,21,0.15)" />
+                            <polyline points="0,55 20,50 40,48 60,44 80,40 100,35 120,30 140,20 160,15 180,10 200,5"
+                                fill="none" stroke="rgb(21,214,21)" stroke-width="2.5" />
+                        </svg>
+                        <span class="us-plus-badge">+12%</span>
                     </div>
                 </div>
 
             </div>
 
-            <div></div>
         </div>
     </form>
 </body>
