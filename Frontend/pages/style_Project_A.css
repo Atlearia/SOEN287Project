@@ -1,0 +1,107 @@
+p{
+    color: black;
+}
+body{
+    background-color: lightgray;
+    margin-left:0px; /*needed so that the blue banner covers the screen properly*/
+    margin-right:8px; /*needed so that the blue banner covers the screen properly*/
+    margin-top: 0px; /*needed so that the blue banner covers the screen properly*/
+    
+}
+#CourseHeader{
+    color: white;
+    background-color: rgb(62,75,99);
+    text-align:center;
+    line-height: 100px;
+    border-style: solid; 
+    border-color: rgb(62,75,99); 
+    border-width: 4px;
+    height:100px;
+    width: 100%;
+    
+}
+#CourseHeader h1{
+    margin:0px;
+    
+}
+#legendPB{
+    margin-left: 8px; /*needed so that the blue banner covers the screen properly*/
+    display:flex;
+}
+#PGained{
+    background-color: lightgreen;
+    width:10px;
+    margin-left: 4px; /* margin used for better spacing on the web page*/
+    margin-right: 8px;
+    border-style: solid;
+    border-width: 2px;
+}
+#PLost{
+    background-color: lightcoral;
+    width:10px;
+    margin-left: 4px; /* margin used for better spacing on the web page*/
+    margin-right: 8px;
+    border-style: solid;
+    border-width: 2px;
+}
+#PRemain{
+    background-color: rgb(255, 210, 0);
+    width:10px;
+    margin-left: 4px; /*only need left side margin*/
+    border-style: solid;
+    border-width: 2px;
+}
+
+#ClassInfo{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+    
+}
+.CourseInfo{
+    display:flex;
+    gap:4px;
+    margin-top: 0px;
+    margin-bottom:0px;
+}
+.InfoTitle{
+    margin-top: 8px;
+    margin-bottom:8px;
+    font-weight: bold;
+    color: brown;
+}
+.Info{
+     margin-top: 8px;
+    margin-bottom:8px;
+}
+#Assesment{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+}
+#GPA{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+}
+#GradesOFAssesment{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+}
+
+#outputAssesment{
+    border-style:solid;
+    
+}
+.AsOut{
+    border-style:solid;
+    text-align: center;
+    background-color: rgb(255,210,0);
+    
+    
+}
+#Late{
+    background-color: lightcoral;
+}
+#Complete{
+    background-color: lightgreen;
+}
+#gradesChart{
+    margin-left: 8px;
+}
+#History{
+    margin-left: 8px;
+}

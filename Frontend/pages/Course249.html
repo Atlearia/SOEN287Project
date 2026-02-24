@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMP 249</title>
+    <link rel="stylesheet" type="text/css" href="style_Project_A.css">
+    <script src="Script_project_student_page.js" defer></script>
+</head>
+<body>
+    <div id="CourseHeader">
+        <h1>Course: COMP 249</h1>
+
+    </div>
+    <div id="outlineProgressbar" style="display:flex; width: 100%; height:20px; background-color: rgb(255, 210, 0); border-style: solid; border-color: black; border-width: 4px; margin-bottom:10px;">
+        <div id="Progressbar" style="Width: 0%; height:20px; background-color: lightgreen; margin-bottom:10px;"></div>
+        <div id="Failbar" style="Width: 10%; height:20px; background-color: lightcoral; margin-bottom:10px;"> </div>
+    </div> 
+    <div id="legendPB">
+        <h6>Percentage Gained:</h6>
+        <h6 id="PGained"></h6>
+        <h6>Percentage Lost:</h6>
+        <h6 id="PLost"></h6>
+        <h6>Percentage Remaining:</h6>
+        <h6 id="PRemain"></h6>
+    </div>
+    <!--add a Total weight for weighted stuff if not 100% base????????-->
+    <div id="ClassInfo">
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Code: </p>
+            <p class="Info">COMP 249</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Name: </p>
+            <p class="Info">Object Oriented Programming II</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Instructor: </p>
+            <p class="Info">John Smith</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Term: </p>
+            <p class="Info">Winter 2026</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Description: </p>
+            <p class="Info">In this class we will gain further understanding on how object oriented programs work.</p>
+        </div>
+    </div>
+
+    <div id="Assesment">
+        <h2>Upcoming Assesment</h2>
+        <label>Show Completed Assignments:</label>
+            <input type="checkbox" id="showCompleted" name="Yes" value="showCompleted">
+            <label for="showCompleted"></label>
+        <p></p>
+        <label>Arrange based on weight:</label>
+            <input type="checkbox" id="WeightArrangement" name="Yes" value="WeightArrangement">
+            <label for="WeightArrangement"></label>
+        <div id="legendPB">
+            <h6>Completed Assesment:</h6>
+            <h6 id="PGained"></h6>
+            <h6>Late Assesment:</h6>
+            <h6 id="PLost"></h6>
+            <h6>Upcomming Assesment:</h6>
+            <h6 id="PRemain"></h6>
+        </div>
+        <p id="outputAssesment"></p>
+    </div> 
+
+    <div id="GPA">
+        <h2>Your Current Grades</h2>
+        <p>Weighted Average of Completed Assesments:</p>
+        <p id="WeightedAverage"></p>
+        <p>Total Percentage:</p>
+        <p id="TP"></p>
+
+    </div>
+
+    <div id="GradesOFAssesment">
+        <h2>Enter Grade Received for Completed Assesment</h2>
+        <p id="GradeInputs"></p>
+    </div>
+    <div id="History">
+        <h2>History of Performance on Assesments</h2>
+    </div>
+    <canvas id="gradesChart"  height="260"></canvas>
+    
+
+
+</body>
+</html>
