@@ -91,7 +91,6 @@ hr {
 
 .card-link {
     flex: 1 1 260px;
-    display: flex;
     border: 2px solid rgb(244, 243, 243);
     text-decoration: none;
 }
@@ -175,9 +174,6 @@ hr {
     line-height: 1.2;
 }
 
-#selection:focus {
-    border-color: #6e7d97;
-}
 
 #usage-container-stuff {
     margin-top: 10px;
@@ -403,3 +399,6 @@ hr {
     color: #f5a623 !important;
     font-size: 16px;
 }
+
+.button{}
+.mainbuttons{}
