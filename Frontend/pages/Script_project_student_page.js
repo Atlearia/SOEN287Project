@@ -1,5 +1,7 @@
 
 
+
+
 const originalAssesments = [];
 if(document.title==="COMP 249"){ //Assesments for COMP 249
     const As1 ={Name: "Assignment 1", DueDate: "January 1st 2026", DueDateComp: new Date('2026-01-1'), weight: 10, completed: false, grade: 0}
@@ -127,18 +129,18 @@ function renderGrades(){
 
     Assesments.forEach(a=>{
         if(a.completed==true){
-            gradeWA+=a.weight*a.grade/100;
+            gradeTP+=a.weight*a.grade/100;
             TotalWeight+= a.weight;
         }
     })
-    gradeWA =gradeWA/TotalWeight*100;
+    gradeWA = (TotalWeight > 0 ? (gradeTP / TotalWeight) * 100 : 0);//so that if no completed assignment it shows 0?
     outputWeightedAverage.innerHTML +=""+gradeWA.toFixed(2)+"%";
-    
-    Assesments.forEach(a=>{
-    if(a.completed==true)
-        gradeTP+=a.weight*a.grade/100;
-    })
     outputTotalPercentage.innerHTML +=""+gradeTP.toFixed(2)+"% with "+TotalWeight.toFixed(2)+"% of the class completed.";
+
+    const course = courses.find(c => c.title === document.title); //for the dashboard averages
+    if (course) {
+        course.average = gradeWA;
+    }
     
     const Pbar = document.getElementById("Progressbar")
     Pbar.style.width = gradeTP+"%";
@@ -206,7 +208,7 @@ const AstobeDrawn=[]; //Assesments that need to be drawn
 DrawGraph();
 function DrawGraph(){
     
-    Canvas.width=window.innerWidth*0.9; //make width of graph and vcanvas dynamic with the users device
+    Canvas.width=window.innerWidth*0.9; //make width of graph and canvas dynamic with the users device
     let Cwidth=Canvas.width;
     let Cheight=Canvas.height;
     GradestobeDrawn.length=0; //clear the array

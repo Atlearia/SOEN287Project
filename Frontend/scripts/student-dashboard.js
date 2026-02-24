@@ -1,3 +1,4 @@
+
 let courses = [    
     {
         title: "SOEN 287",
