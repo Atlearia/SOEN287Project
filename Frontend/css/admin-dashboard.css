@@ -1,0 +1,257 @@
+html {
+    border: 2px solid black;
+    background: #F2F4F7;
+    font-family: sans-serif;
+    max-width: 100%;
+    max-height: 100%;
+    color: #3E4B63;
+}
+
+header {
+    background: #3E4B63;
+    padding: 20px;
+    height: 40px;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+body {
+    margin: 0 0;
+}
+
+.adjust {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+p {
+    color: #3E4B63;
+    margin-right: 20px;
+    padding: 5px 15px;
+    font-size: 14px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.section {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dashboard-items {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    background: #FFFFFF;
+    border-radius: 4px;
+    margin: 0 7px;
+    height: 100%;
+    box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.08);
+}
+
+.clickable-box:active {
+    box-shadow: 3px 12px 10px rgba(0, 0, 0, 0.08);
+    transform: translateY(3px) translateX(3px);
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#body-container {
+    padding: 0 70px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.subdashboard-items {
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 0;
+}
+
+/* default characteristics of h3 */
+.custom-title {
+    font-size: 1.17em;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+.usage-section {
+    height: 170px;
+    background: #FFFFFF;
+    align-content: start;
+    border-radius: 4px;
+    margin: 0 20px;
+    margin-left: 0;
+    font-size: 14px;
+    color: #3E4B63;
+    flex: 1;
+    width: 150px;
+    border: 2px solid black;
+    padding: 5px 10px;
+}
+
+#selection {
+    background: #FFFFFF;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #3E4B63;
+    padding: 3px 5px;
+    margin: 0 0;
+}
+
+#usage-title {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 0;
+}
+
+hr {
+    background: #cfced3;
+    border: none;
+    height: 2px;
+    margin-top: 0;
+}
+
+.usage-hr {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.small-icon {
+    display: block;
+    width: 80px;
+    height: 80px;
+}
+
+/*changing with new added ones for second part because the one i wrote for first part i dont even know how i did it its so messy*/
+#us-wrapper {
+    margin-top: 12px;
+    display: flex;
+    gap: 16px;
+}
+
+.us-card {
+    background: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.08);
+    padding: 14px 16px;
+    flex: 1;
+}
+
+.us-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.us-card-icon {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.us-card-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #3E4B63;
+}
+
+.us-side-label {
+    font-size: 11px;
+    color: #8892a4;
+    margin-left: auto;
+}
+
+.us-big-pct {
+    font-size: 48px;
+    font-weight: 800;
+    color: #3E4B63;
+    line-height: 1;
+}
+
+.us-completed-label {
+    font-size: 12px;
+    color: #3E4B63;
+    margin-bottom: 10px;
+}
+
+.us-bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 13px;
+    width: 100%;
+}
+
+.us-bar-name {
+    width: 80px;
+    flex-shrink: 0;
+    color: #3E4B63;
+}
+
+.us-bar-track {
+    flex: 1;
+    min-width: 60px;
+    height: 12px;
+    background: #E8EAF0;
+    border-radius: 30px;
+    margin-right: 8px;
+    display: block;
+}
+
+.us-bar-fill-green {
+    height: 100%;
+    border-radius: 30px;
+    background: rgb(21, 214, 21);
+}
+
+.us-bar-fill-yellow {
+    height: 100%;
+    border-radius: 30px;
+    background: #f5c518;
+}
+
+.us-bar-pct {
+    width: 36px;
+    text-align: right;
+    font-size: 12px;
+    color: #3E4B63;
+}
+
+.us-warn-item {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #3E4B63;
+    margin-bottom: 10px;
+}
+
+.us-warn-icon {
+    font-size: 16px;
+    margin-right: 8px;
+    color: #f5a623;
+}
+
+.us-deadline-item {
+    font-size: 13px;
+    color: #3E4B63;
+    margin-bottom: 6px;
+}
+
+.us-chart-area {
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.us-plus-badge {
+    font-size: 20px;
+    font-weight: 800;
+    color: rgb(21, 214, 21);
+    margin-left: 10px;
+    margin-bottom: 4px;
+}
