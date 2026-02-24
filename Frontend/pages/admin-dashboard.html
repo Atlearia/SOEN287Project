@@ -8,162 +8,182 @@
 </head>
 
 <body>
-    <form action="" method="">
+    <form action="" method="" class="dashboard-form">
         <header>
             <img class="adjust" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\concordia2.png"
                 alt="Concordia Logo">
-            <p class="adjust" style="font-weight:600; background: #FFFFFF;border-radius: 4px; margin-left: auto;">Log
-                Out</p>
+            <p class="adjust clickable-box" id ="logout-button">Log Out</p>
         </header>
         <div id="body-container">
-            <!-- Dashboard -->
-            <h2 style="font-weight:800;">Admin Dashboard</h2>
+            <h2 class="page-title">Admin Dashboard</h2>
             <hr>
-            <div class="section" style="margin-top:20px; height: 100px;">
-                <div class="dashboard-items clickable-box">
-                    <img src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\clipboard.png" alt="create course img">
-                    <div class="subdashboard-items">
-                        <p class="custom-title">Create Course</p>
-                        <p>Add a new course</p>
+
+            <div class="section dashboard-actions">
+
+
+                <a class="card-link" href="admin-course-creation.html">
+                    <div class="dashboard-items clickable-box" id="create-course">
+                        <img src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\clipboard.png"
+                            alt="create course img">
+                        <div class="subdashboard-items">
+                            <p class="custom-title">Create Course</p>
+                            <p style="font-size: 15px; font-weight: 400;">Add a new course</p>
+                        </div>
                     </div>
-                </div>
+                </a>
+
+
+
+                <a class="card-link" href="admin-manage-courses.html">
                 <div class="dashboard-items clickable-box">
                     <img class="image" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\checklist.png"
                         alt="assessment manage">
                     <div class="subdashboard-items">
                         <p class="custom-title">Manage Courses</p>
-                        <p>Edit course assessments</p>
+                        <p style="font-size: 15px; font-weight: 400;">Edit course assessments</p>
                     </div>
                 </div>
+                </a>
+
+
+                <a class="card-link" href="admin-course-templates.html">
                 <div class="dashboard-items clickable-box">
-                    <img style="height: 90%; margin:auto auto;" class="image"
-                        src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\folder.png" alt="coruse template stuff">
+                    <img class="image folder-icon" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\folder.png"
+                        alt="coruse template stuff">
                     <div class="subdashboard-items">
                         <p class="custom-title">Course Templates</p>
-                        <p>Manage reusable templates</p>
+                        <p style="font-size: 15px; font-weight: 400;">Manage reusable templates</p>
                     </div>
                 </div>
+                </a>
+
+
+                <a class="card-link" href="admin-toggle-courses.html">
                 <div class="dashboard-items clickable-box">
                     <img class="image" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\toggle.png.png"
                         alt="course enabler">
                     <div class="subdashboard-items">
                         <p class="custom-title">Toggle Courses</p>
-                        <p>Course availability</p>
+                        <p style="font-size: 15px; font-weight: 400;">Course availability</p>
                     </div>
                 </div>
+                </a>
+
+
             </div>
-            <br>
-            <!-- usage stuff -->
+
             <div id="usage-title">
-                <h3 style="padding-right:15px;" class="custom-title">Usage Summary -</h3>
+                <h3 class="custom-title usage-title2">Usage Summary -</h3>
                 <select id="selection">
                     <option>SOEN 287</option>
-                    <option>SOEN 287</option>
-                    <option>SOEN 287</option>
-                    <option>SOEN 287</option>
-                    <option>SOEN 287</option>
+                    <option>COMP 248</option>
+                    <option>ENGR 213</option>
                 </select>
             </div>
-            <hr> <!--usage stuff more-->
+            <hr>
 
-
-            <div id="us-wrapper">
-
-                <!-- assessment -->
-                <div class="us-card">
+            <div id="usage-container-stuff">
+                <div class="us-card us-card-assessment">
                     <div class="us-card-header">
                         <span class="us-card-icon">✏️</span>
                         <span class="us-card-title">Assessment Breakdown</span>
                     </div>
                     <hr class="usage-hr">
-                    <div style="display:flex; align-items:flex-start; margin-top:10px;">
-                        <div style="margin-right:20px;">
-                            <div class="us-big-pct">95%</div>
+                    <div class="us-card-content us-assessment-body">
+                        <div class="us-completion-block">
+                            <div id="big-aah-number">95%</div>
                             <div class="us-completed-label">Completed</div>
                         </div>
-                        <div style="flex:1;">
+                        <div class="us-bars-block">
                             <div class="us-bar-row">
                                 <span class="us-bar-name">Assignments</span>
                                 <div class="us-bar-track">
                                     <div class="us-bar-fill-green" style="width:80%;"></div>
                                 </div>
-                                <span class="us-bar-pct">80%</span>
+                                <span class="stats-letter">80%</span>
                             </div>
                             <div class="us-bar-row">
                                 <span class="us-bar-name">Quizzes</span>
                                 <div class="us-bar-track">
                                     <div class="us-bar-fill-green" style="width:90%;"></div>
                                 </div>
-                                <span class="us-bar-pct">90%</span>
+                                <span class="stats-letter">90%</span>
                             </div>
                             <div class="us-bar-row">
                                 <span class="us-bar-name">Midterms</span>
                                 <div class="us-bar-track">
                                     <div class="us-bar-fill-yellow" style="width:50%;"></div>
                                 </div>
-                                <span class="us-bar-pct">50%</span>
+                                <span class="stats-letter">50%</span>
                             </div>
-                            <div class="us-bar-row">
+                            <div class="us-bar-row" style="margin-bottom: 0;">
                                 <span class="us-bar-name">Finals</span>
                                 <div class="us-bar-track">
                                     <div class="us-bar-fill-green" style="width:75%;"></div>
                                 </div>
-                                <span class="us-bar-pct">75%</span>
+                                <span class="stats-letter">75%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- rsiky -->
                 <div class="us-card">
                     <div class="us-card-header">
-                        <span class="us-card-icon">⚠️</span>
+                        <span class="us-card-icon">&#9888;&#65039;</span>
                         <span class="us-card-title">Pending / At Risk</span>
                     </div>
                     <hr class="usage-hr">
-                    <div style="margin-top:12px;">
+                    <div class="us-card-content us-list us-warn-list">
                         <div class="us-warn-item">
-                            <span class="us-warn-icon">⚠</span>
-                            3 assessments overdue
+                            <span class="DANGER-icon">&#9888;</span>
+                            32 assessments overdue
+                        </div>
+
+
+
+
+
+                        <div class="us-warn-item">
+                            <span class="DANGER-icon">&#9888;</span>
+                            2 assignments below 70% average
                         </div>
                         <div class="us-warn-item">
-                            <span class="us-warn-icon">⚠</span>
-                            2 courses below 70% completion
+                            <span class="DANGER-icon">&#9888;</span>
+                            Midterm below 60% 
                         </div>
-                        <div class="us-warn-item">
-                            <span class="us-warn-icon">⚠</span>
-                            14 students inactive &gt; 7 days
+                        <div class="us-warn-item" style="">
+                            <span class="DANGER-icon">&#9888;</span>
+                            3 students inactive > 7 days
                         </div>
                     </div>
                 </div>
 
-                <!--deadlines incoming -->
+
+
+
+
+
+
+
                 <div class="us-card">
                     <div class="us-card-header">
-                        <span class="us-card-icon">📅</span>
+                        <span class="us-card-icon">&#128197;</span>
                         <span class="us-card-title">Upcoming Deadlines</span>
                         <span class="us-side-label">Last 7 Days</span>
                     </div>
+
+
+
+
+
+
+
                     <hr class="usage-hr">
-                    <div style="margin-top:10px;">
-                        <div class="us-deadline-item">Mar 5 - Quiz 2 (SOEN 287)</div>
-                        <div class="us-deadline-item">Mar 8 - Assignment 3 (COMP 248)</div>
-                        <div class="us-deadline-item">Mar 9 - Midterm (ENGR 213)</div>
-                    </div>
-                    <div class="us-chart-area">
-                        <svg width="200" height="60" style="flex:1;">
-                            <polygon
-                                points="0,55 20,50 40,48 60,44 80,40 100,35 120,30 140,20 160,15 180,10 200,5 200,60 0,60"
-                                fill="rgba(21,214,21,0.15)" />
-                            <polyline points="0,55 20,50 40,48 60,44 80,40 100,35 120,30 140,20 160,15 180,10 200,5"
-                                fill="none" stroke="rgb(21,214,21)" stroke-width="2.5" />
-                        </svg>
-                        <span class="us-plus-badge">+12%</span>
+                    <div class="us-card-content us-list us-deadline-list">
+                        <div class="us-deadline-BOX" style="">&#x1F5D3;   Mar 9 - Assignment 5</div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </form>
 </body>
