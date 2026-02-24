@@ -103,14 +103,12 @@ body {
 
 
 /* Assessment section styls */
-.assessment-table {
-    max-width: 475px;
-    width: 30px;
+.assessment-table {    
     background-color: var(--item-background);
     margin: 10px 10px 10px 10px;
 }
 
-.assessment-table th, tr, td {
+.assessment-table > th, tr, td {
     padding: 10px;
 }
 
