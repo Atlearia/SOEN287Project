@@ -3,6 +3,7 @@
 
 
 const originalAssesments = [];
+let Coursedata;
 if(document.title==="COMP 249"){ //Assesments for COMP 249
     const As1 ={Name: "Assignment 1", DueDate: "January 1st 2026", DueDateComp: new Date('2026-01-1'), weight: 10, completed: false, grade: 0}
     const As2 ={Name: "Assignment 2", DueDate: "January 11th 2026", DueDateComp: new Date('2026-01-11'), weight: 5, completed: true, grade: 100}
@@ -12,6 +13,11 @@ if(document.title==="COMP 249"){ //Assesments for COMP 249
     const As6 ={Name: "Final", DueDate: "June 24th 2026", DueDateComp: new Date('2026-06-24'), weight: 40, completed: true, grade: 10} 
     
     originalAssesments.push(As1,As2,As3,As4,As5,As6); //store assesments in the Assesments array
+
+    //class info
+    Coursedata={code:"COMP 249", name:"Object Oriented Programming II", instructor: "John Smith", Term:"Winter 2026",
+        description:"In this class we will gain further understanding on how object oriented programs work."
+    };
 }
 
 if(document.title==="SOEN 287"){ //Assesments for SOEN 287
@@ -23,6 +29,11 @@ if(document.title==="SOEN 287"){ //Assesments for SOEN 287
     const As6 ={Name: "Final", DueDate: "May 24th 2026", DueDateComp: new Date('2026-05-24'), weight: 30, completed: true, grade: 27} 
     const As7 ={Name: "Project", DueDate: "April 15th 2026", DueDateComp: new Date('2026-04-15'), weight: 20, completed: true, grade: 63} 
     originalAssesments.push(As1,As2,As3,As4,As5,As6,As7); //store assesments in the Assesments array
+
+    //class info
+    Coursedata={code:"SOEN 287", name:"Web Programming", instructor: "Jason Evans", Term:"Winter 2026",
+        description:"In this class we will learn the basics of Web programming."
+    };
 }
 
 if(document.title==="SOEN 228"){ //Assesments for SOEN 228
@@ -34,6 +45,11 @@ if(document.title==="SOEN 228"){ //Assesments for SOEN 228
     const As6 ={Name: "Final", DueDate: "May 2nd 2026", DueDateComp: new Date('2026-05-2'), weight: 30, completed: true, grade: 95} 
     const As7 ={Name: "Project", DueDate: "April 25th 2026", DueDateComp: new Date('2026-04-25'), weight: 18, completed: true, grade: 32} 
     originalAssesments.push(As1,As2,As3,As4,As5,As6,As7); //store assesments in the Assesments array
+
+    //class info
+    Coursedata={code:"SOEN 228", name:"System Hardware", instructor: "Elizabeth Brown", Term:"Winter 2026",
+        description:"In this class we will understand how the hardware found inside of computers work."
+    };
 }
 
 originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //order the assesments based on date
@@ -41,8 +57,34 @@ originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //order the asses
 let Assesments = structuredClone(originalAssesments); //used so that when changing order of which assesment is written first, it doesn't affect the orignal array
 
 
+function renderCourseInfo(){
+    const classInfo = document.getElementById("ClassInfo");
 
-
+    classInfo.innerHTML="";//clear it if it ever needs to be called again
+    classInfo.innerHTML=`
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Code: </p>
+            <p class="Info">${Coursedata.code}</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Name: </p>
+            <p class="Info">${Coursedata.name}</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Instructor: </p>
+            <p class="Info">${Coursedata.instructor}</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Term: </p>
+            <p class="Info">${Coursedata.Term}</p>
+        </div>
+        <div class="CourseInfo">
+            <p class="InfoTitle">Course Description: </p>
+            <p class="Info">${Coursedata.description}</p>
+        </div>
+    `
+}
+renderCourseInfo()//render the first time when page is loaded
 
 
 const checkboxCompleted = document.getElementById("showCompleted");
@@ -137,10 +179,7 @@ function renderGrades(){
     outputWeightedAverage.innerHTML +=""+gradeWA.toFixed(2)+"%";
     outputTotalPercentage.innerHTML +=""+gradeTP.toFixed(2)+"% with "+TotalWeight.toFixed(2)+"% of the class completed.";
 
-    const course = courses.find(c => c.title === document.title); //for the dashboard averages
-    if (course) {
-        course.average = gradeWA;
-    }
+    
     
     const Pbar = document.getElementById("Progressbar")
     Pbar.style.width = gradeTP+"%";
