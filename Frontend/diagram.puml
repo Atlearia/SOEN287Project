@@ -1,0 +1,152 @@
+@startuml
+skinparam classAttributeIconSize 0
+title 'soen stuff'
+
+enum TermOption {
+  Winter_2026
+  Summer_2026
+  Fall_2027
+  Winter_2027
+  Summer_2028
+  Fall_2028
+}
+
+class Assessment {
+  - final: Final
+  - midterm: Midterm
+  - quiz: Quiz[]
+  - assignment: Assignment[]
+  + getFinal()
+  + getMidterm()
+  + getQuizArray()
+  + getAssignmentArray()
+  + getYear()
+  + getMonth()
+  + getDay()
+  + getWeight()
+  + getResults()
+  + getCompleted()
+  + setCompleted(value)
+}
+
+class Final {
+  - year: int
+  - month: int
+  - day: int
+  - weight: double
+  - results: Object[]
+  - completed: boolean[]
+}
+
+class Midterm {
+  - year: int
+  - month: int
+  - day: int
+  - weight: double
+  - results: Object[]
+  - completed: boolean[]
+}
+
+class Quiz {
+  - year: int
+  - month: int
+  - day: int
+  - weight: double
+  - results: Object[]
+  - completed: boolean[]
+}
+
+class Assignment {
+  - year: int
+  - month: int
+  - day: int
+  - weight: double
+  - results: Object[]
+  - completed: boolean[]
+}
+
+class Student {
+  - name: String
+}
+
+class Course {
+  - students: Student[]
+  - prof: String
+  - name: String
+  - courseCode: String
+  - description: String
+  - term: String
+  - assessment: Assessment
+  - enabled: boolean
+  + getStudentCount()
+  + getProf()
+  + getName()
+  + getCourseCode()
+  + getDescription()
+  + getTerm()
+  + getEnabled()
+  + getAssessment()
+  + getQuizLength()
+  + getAssignmentLength()
+  + getItemYear(assessmentItem)
+  + getItemMonth(assessmentItem)
+  + getItemDay(assessmentItem)
+  + getItemWeight(assessmentItem)
+  + getItemResults(assessmentItem)
+  + setGradeFinal(resultValue)
+  + setGradeMidterm(resultValue)
+  + setGradeQuiz(quizIndex, resultValue)
+  + setGradeAssignment(assignmentIndex, resultValue)
+  + getCompletedFinal()
+  + setCompletedFinal(value)
+  + getCompletedMidterm()
+  + setCompletedMidterm(value)
+  + getCompletedQuiz(quizIndex)
+  + setCompletedQuiz(quizIndex, value)
+  + getCompletedAssignment(assignmentIndex)
+  + setCompletedAssignment(assignmentIndex, value)
+}
+
+class Concordia <<object>> {
+  - termOptions: TermOption[]
+  - courses: Course[]
+  - courseTemplates: Object[]
+}
+
+class GlobalLists <<object>> {
+  - accessmentList: Assessment[5]
+  - studentList: Student[][5]
+}
+
+Assessment <|-- Final
+Assessment <|-- Midterm
+Assessment <|-- Quiz
+Assessment <|-- Assignment
+
+Course "1" o-- "1" Assessment : assessment
+Course "1" o-- "20" Student : students
+Assessment "1" o-- "1" Final : final
+Assessment "1" o-- "1" Midterm : midterm
+Assessment "1" o-- "0..*" Quiz : quiz
+Assessment "1" o-- "0..*" Assignment : assignment
+
+Concordia "1" o-- "5" Course : courses
+Concordia ..> TermOption : uses
+GlobalLists ..> Assessment : accessmentList
+GlobalLists ..> Student : studentList
+
+note right of Course
+Polymorphism usage:
+getItemYear(item), getItemMonth(item),
+getItemDay(item), getItemWeight(item),
+getItemResults(item)
+Works with Final / Midterm / Quiz / Assignment.
+end note
+
+note bottom of GlobalLists
+Current seeded groups:
+- accessmentList = [a1, a2, a3, a4, a5]
+- studentList = [s1, s2, s3, s4, s5]
+end note
+
+@enduml
