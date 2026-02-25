@@ -1,20 +1,24 @@
-let courses = [    
-    {
-        title: "SOEN 287",
-        description: "Web Programming",
-        average: 100
-    },
-    {
-        title: "COMP 249",
-        description: "Introduction to OOP II",
-        average: 100
-    },
-    {
-        title: "SOEN 228",
-        description: "System Hardware",
-        average: 100
-    }
-]
+import { courses, courses } from "./data";
+
+// let courses = [    
+//     {
+//         title: "SOEN 287",
+//         description: "Web Programming",
+//         average: 100
+//     },
+//     {
+//         title: "COMP 249",
+//         description: "Introduction to OOP II",
+//         average: 100
+//     },
+//     {
+//         title: "SOEN 228",
+//         description: "System Hardware",
+//         average: 100
+//     }
+// ]
+
+// let courses = courses;
 
 let assessments = [
     {
@@ -53,14 +57,19 @@ for (let course of courses) {
     coursesDashboard.appendChild(container);
 }
 
-for (let assessment of assessments) {
-    let container = document.createElement('tr');
-    container.innerHTML = `
-                    <td>${assessment.course}</td>
-                    <td>${assessment.assessment}</td>
-                    <td>${assessment.dueDate}</td>
-                    <td><span class="assessment-status ${assessment.status == "Pending" ? "pending" : "complete"}" id="assessment-status">${assessment.status}</span></td>
-    `;
-    assessmentDashboard.appendChild(container);
-}
+// for (let assessment of assessments) {
+//     let container = document.createElement('tr');
+//     container.innerHTML = `
+//                     <td>${assessment.course}</td>
+//                     <td>${assessment.assessment}</td>
+//                     <td>${assessment.dueDate}</td>
+//                     <td><span class="assessment-status ${assessment.status == "Pending" ? "pending" : "complete"}" id="assessment-status">${assessment.status}</span></td>
+//                     `;
+//     assessmentDashboard.appendChild(container);
+// }
+
+const assesmentRow = document.getElementsByClassName("assessment-row");
+document.addEventListener("click", (e) => {
+    document.location('href=`SOEN228.html`')
+})
 

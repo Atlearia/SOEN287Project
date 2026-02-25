@@ -108,7 +108,7 @@ body {
     margin: 10px 10px 10px 10px;
 }
 
-.assessment-table > th, tr, td {
+.assessment-table th, tr, td {
     padding: 10px;
 }
 

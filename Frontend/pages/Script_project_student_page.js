@@ -270,3 +270,22 @@ function DrawGraph(){
     }
 }
 
+// TODO: Hero part
+// const assessmentDashboard = document.getElementById("assessments");
+
+// for(assessment of originalAssesments) {
+//     let container = document.createElement('tr');
+//     container.innerHTML = `
+//                     <td>${assessment.Name}</td>
+//                     <td>${assessment.Name}</td>
+//                     <td>${assessment.DueDate}</td>
+//                     <td><span class="assessment-status ${assessment.completed == false ? "pending" : "completed"}" id="assessment-status">${assessment.completed}</span></td>
+//     `;
+//     assessmentDashboard.appendChild(container);
+// }
+// console.log(assessmentDashboard);
+
+function getAssessments() {
+    return originalAssesments;
+}
+export {getAssessments};
