@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin - Create Course</title>
+    <link rel="stylesheet" href="../css/admin-card-forms.css">
+</head>
+
+<body>
+    <main class="pagewrappings1">
+        <section class="cardbox1">
+            <h1 class="title1">Create Course</h1>
+            <hr class="line">
+
+            <form class="form1">
+                <div class="formrow1">
+                    <label for="courseCode">Course Code</label>
+                    <input id="courseCode" type="text" placeholder="Ex: SOEN 287">
+                </div>
+
+                <div class="formrow1">
+                    <label for="courseName">Course Name</label>
+                    <input id="courseName" type="text" placeholder="">
+                </div>
+
+                <div class="formrow1">
+                    <label for="term">Term</label>
+                    <select id="term">
+                        <option>Winter 2026</option>
+                        <option>Summer 2026</option>
+                        <option>Fall 2027</option>
+                        <option>Winter 2027</option>
+                        <option>Summer 2028</option>
+                        <option>Fall 2028</option>
+                    </select>
+                </div>
+
+                <div class="formrowwide1">
+                    <label for="desc">Description</label>
+                    <textarea id="desc" placeholder="Course description..."></textarea>
+                </div>
+
+                <div class="buttonrow1">
+                    <a href="admin-dashboard.html" class="backlink clickable-box">Cancel</a>
+                    <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id ="created">Create Course</a>
+                </div>
+                <script> 
+                    var created = document.getElementById("created");
+                    function message() {
+                        alert("Course Created.");
+                    }
+                    created.onclick = message;
+                </script>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

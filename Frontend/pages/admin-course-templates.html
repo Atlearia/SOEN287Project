@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin - Course Templates</title>
+    <link rel="stylesheet" href="../css/admin-card-forms.css">
+</head>
+
+<body>
+    <main class="pagewrappings1">
+        <section class="cardbox1">
+            <h1 class="title1">Course Templates</h1>
+            <hr class="line">
+
+            <form class="form1">
+                <div class="formrow1" style="margin-right: 500px;">
+                    <label for="templateName">Template Name</label>
+                    <input id="templateName" type="text" placeholder="Standard Template">
+                </div>
+
+
+                <div class="formrowwide1">
+                    <label>Default Assessment Weights (%)</label>
+                    <div class="simplelist1">
+                        <div class="listrow1">
+                            <span class="listrowtext1" style="">Assignments</span>
+                            <input class="weightinput1" type="number" min="0" max="100" value="">
+                        </div>
+                        <div class="listrow1">
+                            <span class="listrowtext1">Quizzes</span>
+                            <input class="weightinput1" type="number" min="0" max="100" value="">
+                        </div>
+                        <div class="listrow1">
+                            <span class="listrowtext1">Midterm</span>
+                            <input class="weightinput1" type="number" min="0" max="100" value="">
+                        </div>
+                        <div class="listrow1 listrowlast1">
+                            <span class="listrowtext1">Final</span>
+                            <input class="weightinput1" type="number" min="0" max="100" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formrowwide1">
+                    <label for="templateNotes">Notes</label>
+                    <textarea id="templateNotes" placeholder="Template notes..."></textarea>
+                </div>
+
+                <div class="buttonrow1">
+                        <input class="button clickable-box" type="reset" value="Reset" style="margin-left:700px;">
+
+                    <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id="saved" style="min-width:14.5%; padding-right:0;">Save Template</a>
+                </div>
+            </form>
+        </section>
+                <script>
+            var saved = document.getElementById("saved")
+            function message() {
+                alert("Template Saved");
+            }
+            saved.onclick = message;
+        </script>
+    </main>
+</body>
+
+</html>

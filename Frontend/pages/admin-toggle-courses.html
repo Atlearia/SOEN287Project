@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin - Toggle Courses</title>
+    <link rel="stylesheet" href="../css/admin-card-forms.css">
+</head>
+
+<body>
+    <main class="pagewrappings1">
+        <section class="cardbox1">
+            <h1 class="title1">Toggle Courses</h1>
+            <hr class="line">
+
+            <form class="form1">
+                <div class="formrowwide1">
+                    <label>Course Status</label>
+                    <div class="simplelist1">
+                        <div class="listrow1">
+                            <span class="listrowtext1">SOEN 287 - Web Programming</span>
+                            <select class="statusselect1">
+                                <option>Enabled</option>
+                                <option>Disabled</option>
+                            </select>
+                        </div>
+                        <div class="listrow1">
+                            <span class="listrowtext1">COMP 248 - Object Oriented Programming</span>
+                            <select class="statusselect1">
+                                <option>Enabled</option>
+                                <option>Disabled</option>
+                            </select>
+                        </div>
+                        <div class="listrow1 listrowlast1">
+                            <span class="listrowtext1">ENGR 213 - Applied ODE</span>
+                            <select class="statusselect1">
+                                <option>Disabled</option>
+                                <option>Enabled</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttonrow1">
+                    <a href="admin-dashboard.html" class="backlink clickable-box">Cancel</a>
+                    <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id="toggle">Save</a>
+                </div>
+            </form>
+        </section>
+        <script>
+            var toggle = document.getElementById("toggle")
+            function message() {
+                alert("Settings Saved");
+            }
+            toggle.onclick = message;
+        </script>
+    </main>
+</body>
+
+</html>

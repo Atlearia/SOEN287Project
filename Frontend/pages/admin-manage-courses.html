@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin - Manage Courses</title>
+    <link rel="stylesheet" href="../css/admin-card-forms.css">
+</head>
+
+<body>
+    <main class="pagewrappings1">
+        <section class="cardbox1">
+            <h1 class="title1">Manage Course</h1>
+            <hr class="line">
+
+            <form class="form1" id="manageCourseForm">
+                <div class="formrowwide1">
+                    <label for="selectedCourse">Course</label>
+                    <select id="selectedCourse" class="bigcourseselect1">
+                        <option>SOEN 287 - Web Programming</option>
+                        <option>COMP 248 - Object Oriented Programming</option>
+                        <option>ENGR 213 - Applied ODE</option>
+                    </select>
+                </div>
+
+                <div class="formrowwide1">
+                    <div id="assessmentRows"> <!--assessemtn section to be repeated with content-->
+                        <div class="assessmentrow1">
+
+                            <!--single assessment section content-->
+                            <div class="assessmentnamecol1">
+                                <label for="assessmentName1">Assessment Name</label>
+                                <input id="assessmentName1" name="assessmentName[]" type="text" placeholder="">
+                            </div>
+                            <div class="assessmentweightcol1">
+                                <label for="assessmentPercent1">Weight (%)</label>
+                                <input id="assessmentPercent1" name="assessmentPercent[]" type="number" min="0"
+                                    max="100" value="">
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttonrow1">
+                    <button type="button" class="button clickable-box" id="addAssessmentButton">Add Assessment</button>
+                    <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id="edited">Save</a>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <script>
+        var addAssessmentButton = document.getElementById("addAssessmentButton");
+        var assessmentRows = document.getElementById("assessmentRows");
+        var edited = document.getElementById("edited");
+
+        function message() {
+            alert("Course Edited.");
+        }
+        edited.onclick = message;
+
+        addAssessmentButton.onclick = () => {
+
+            var newRow = document.createElement("div");
+            newRow.className = "assessmentrow1";
+
+            newRow.innerHTML = `
+            
+                                        <div class="assessmentnamecol1">
+                                <label for="assessmentName1">Assessment Name</label>
+                                <input id="assessmentName1" name="assessmentName[]" type="text" placeholder="...">
+                            </div>
+                            <div class="assessmentweightcol1">
+                                <label for="assessmentPercent1">Weight (%)</label>
+                                <input id="assessmentPercent1" name="assessmentPercent[]" type="number" min="0"
+                                    max="100" value="10">
+                            </div>
+            `
+
+
+            assessmentRows.appendChild(newRow);
+
+
+        };
+    </script>
+</body>
+
+</html>
