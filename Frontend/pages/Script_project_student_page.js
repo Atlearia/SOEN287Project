@@ -56,7 +56,7 @@ originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //order the asses
 
 let Assesments = structuredClone(originalAssesments); //used so that when changing order of which assesment is written first, it doesn't affect the orignal array
 
-
+//render course info
 function renderCourseInfo(){
     const classInfo = document.getElementById("ClassInfo");
 
