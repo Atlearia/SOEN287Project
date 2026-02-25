@@ -1,75 +1,56 @@
-import { courses, courses } from "./data";
-
-// let courses = [    
-//     {
-//         title: "SOEN 287",
-//         description: "Web Programming",
-//         average: 100
-//     },
-//     {
-//         title: "COMP 249",
-//         description: "Introduction to OOP II",
-//         average: 100
-//     },
-//     {
-//         title: "SOEN 228",
-//         description: "System Hardware",
-//         average: 100
-//     }
-// ]
-
-// let courses = courses;
-
-let assessments = [
-    {
-        course: "COMP 249",
-        assessment: "Assignment 1",
-        dueDate: "21-02-2026",
-        status: "Pending"
-    },
-    {
-        course: "SOEN 287",
-        assessment: "Project",
-        dueDate: "27-02-2026",
-        status: "Pending"
-    },
-    {
-        course: "SOEN 228",
-        assessment: "Midterm",
-        dueDate: "25-02-2026",
-        status: "Completed"
-    }
-]
+import { courses, assessments } from "./data.js";    // import data from data file
 
 const coursesDashboard = document.getElementById('courses');
 const assessmentDashboard = document.getElementById('assessments');
 
-
-for (let course of courses) {
-    let container = document.createElement('a')
-    container.classList.add('course-item', 'col', 'text-center');
-    container.setAttribute('href', (`../${course.title}.html`).replace(' ', ''))
-    container.innerHTML = `
-                        <h3>${course.title}</h3>
-                        <p>${course.description}</p>
-                        <span class="average">Average: ${course.average}</span>
-                        `;
-    coursesDashboard.appendChild(container);
+function renderCourse() {
+    for (const course of courses) {
+        if (course.enabled === true) {
+            const container = document.createElement('a')
+            container.classList.add('course-item', 'col', 'text-center');
+            container.setAttribute('href', (`../${course.code.replace(' ', '')}.html`))
+            container.innerHTML = `
+                                <h3>${course.code}</h3>
+                                <p>${course.name}</p>
+                                <span class="average">Average: ${course.students[0].average}</span>
+                                `;
+            coursesDashboard.appendChild(container);
+        }
+    }
 }
 
-// for (let assessment of assessments) {
-//     let container = document.createElement('tr');
-//     container.innerHTML = `
-//                     <td>${assessment.course}</td>
-//                     <td>${assessment.assessment}</td>
-//                     <td>${assessment.dueDate}</td>
-//                     <td><span class="assessment-status ${assessment.status == "Pending" ? "pending" : "complete"}" id="assessment-status">${assessment.status}</span></td>
-//                     `;
-//     assessmentDashboard.appendChild(container);
-// }
+function renderAssesments() {
+    if (assessments.length > 0){
+        for (let assessment of assessments) {
+            let container = document.createElement('tr');
+            container.innerHTML = `
+            <td>${assessment.course}</td>
+            <td>${assessment.Name}</td>
+            <td>${assessment.DueDate}</td>
+            <td><span class="assessment-status ${assessment.completed == false ? "pending" : "complete"}" id="assessment-status">${assessment.completed == false? "Pending" : "Completed"}</span></td>
+            `;
+            
+            // TODO: create a link to assessment
+            container.addEventListener('click', () => {
+                window.location.href = `../${assessment.course.replace(' ', '')}.html`;
+            })
 
-const assesmentRow = document.getElementsByClassName("assessment-row");
-document.addEventListener("click", (e) => {
-    document.location('href=`SOEN228.html`')
-})
+            assessmentDashboard.appendChild(container);
+
+        }
+    }else{
+        let container = document.createElement('tr');
+        container.innerHTML = `
+                            <td colspan="4" class="text-center">No assessments currently available!</td>
+                            `;
+        assessmentDashboard.appendChild(container);
+    }
+}
+
+function render() {
+    renderCourse();
+    renderAssesments()
+}
+
+render();
 
