@@ -256,7 +256,7 @@ function DrawGraph(){
     originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //make sure the graph is always in chronological order
     originalAssesments.forEach(a=>{
         if(a.completed==true){
-            GradestobeDrawn.push(a.grade);
+            GradestobeDrawn.push(a.grade.toFixed(2));
             AstobeDrawn.push(a.Name);
         }
     })
