@@ -3,17 +3,17 @@ let courses = [
     {
         title: "SOEN 287",
         description: "Web Programming",
-        average: 100
+        average: 53.28
     },
     {
         title: "COMP 249",
         description: "Introduction to OOP II",
-        average: 100
+        average: 30.91
     },
     {
         title: "SOEN 228",
         description: "System Hardware",
-        average: 100
+        average: 74.59
     }
 ]
 
@@ -34,8 +34,14 @@ let assessments = [
         course: "SOEN 228",
         assessment: "Midterm",
         dueDate: "25-02-2026",
-        status: "Completed"
-    }
+        status: "Pending"
+    },
+    {
+        course: "SOEN 228",
+        assessment: "Final",
+        dueDate: "25-04-2026",
+        status: "Pending"
+    },
 ]
 
 const coursesDashboard = document.getElementById('courses');

@@ -2,7 +2,7 @@ p{
     color: black;
 }
 body{
-    background-color: lightgray;
+    background-color: #f2f4f7;
     margin-left:0px; /*needed so that the blue banner covers the screen properly*/
     margin-right:8px; /*needed so that the blue banner covers the screen properly*/
     margin-top: 0px; /*needed so that the blue banner covers the screen properly*/
@@ -33,12 +33,16 @@ body{
 
     padding: 6px 12px;
     
-    background-color: lightgray;
+    background-color: white;
     color: rgb(62,75,99);
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
 }
+.headerButton:hover {
+    background-color: #dfe2e3;
+}
+
 #legendPB{
     margin-left: 8px; /*needed so that the blue banner covers the screen properly*/
     display:flex;
@@ -69,6 +73,8 @@ body{
 
 #ClassInfo{
     margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+    background-color: white;
+    padding-left: 8px;/*so text isn't against the wall*/
     
 }
 .CourseInfo{
