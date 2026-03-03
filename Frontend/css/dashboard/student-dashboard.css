@@ -116,6 +116,19 @@ body {
     background-color: var(--secondary-color);
 }
 
+.assessment-table tbody {/*add scroll to the table body*/
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.assessment-table thead, /*keep header in place*/
+.assessment-table tbody > tr { /* fix spacing of body content so that it alligns properly*/
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
 .assessment-title {
     margin: 20px 5px;
     text-decoration: underline;
@@ -128,11 +141,14 @@ body {
 }
 
 .pending {
-    background-color: pink;
+    background-color: rgb(255, 210, 0);;
 }
 
 .complete {
     background-color: lightgreen;
+}
+.late{
+    background-color: lightcoral;
 }
 
 
