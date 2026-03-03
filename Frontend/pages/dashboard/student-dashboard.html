@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="../../css/dashboard/student-dashboard.css">
     
+    
     <title>Student Dashboard</title>
 </head>
 <body>
@@ -27,8 +28,8 @@
                 <div class="offcanvas-body">
                     <!--Nav item: it will collapse when the screen is less than medium-->
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-                        <li class="nav-item navbtn btn btn-secondary">Add Course</li>
-                        <li class="nav-item navbtn btn btn-secondary">Remove Course</li>
+                        <li class="nav-item navbtn btn btn-secondary" id="add-course">Add Course</li>
+                        <li class="nav-item navbtn btn btn-secondary" id="remove-course">Remove Course</li>
                         <li class="nav-item navbtn btn btn-secondary" id="logout-btn">Log Out</li>
                     </ul>
                 </div>
@@ -36,17 +37,59 @@
         </div>
     </nav>
     
+    <!-- add and remove course section -->
+    <!-- add course -->
+    <div class="modal-overlay" id="addCourseOverlay">
+        <div class="popup-card">
+            <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Add a Course</h5>
+                <button type="button" class="btn-close" id="closeAddPopup"></button>
+            </div>
+
+            <form id="addCourseForm">
+                <div class="p-4">
+                    <label class="form-label fw-semibold">Course Code <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="addCourseCode" placeholder="e.g. SOEN 287" required>
+                </div>
+
+                <div class="p-4 pt-0 d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-outline-secondary" id="cancelAddPopup">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- remove course -->
+    <div class="modal-overlay" id="removeCourse">
+        <div class="popup-card">
+            <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Remove a Course</h5>
+                <button type="button" class="btn-close" id="closeRemovePopup"></button>
+            </div>
+
+            <form id="removeCourseForm">
+                <div class="p-4">
+                    <label class="form-label fw-semibold">Course Code <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="removeCourseCode" placeholder="e.g. SOEN 287" required>
+                </div>
+
+                <div class="p-4 pt-0 d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-outline-secondary" id="cancelRemovePopup">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Remove Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 
     <!--course cards-->
     <section class="course-card container"> <!--Grid layout from bootstrap-->
         <h3 class="course-card-title">Courses:</h3>
         <!--Add course card to this block-->
         <div class="course-block row row-cols-auto" id="courses"> 
-            <!-- <a href="../SOEN287.html" class="course-item col text-center">
-                <h3>Title</h3>
-                <p>Brief Description</p>
-                <span class="average">Average: {num}%</span>
-            </a> -->
+
         </div>
     </section>
 
@@ -65,18 +108,11 @@
             </thead>
             <tbody id="assessments">
 
-                <!--Each row is 1 course-->
-                <!-- <tr class="assessment-row">
-                    <td>Course Name</td>
-                    <td>Assessment</td>
-                    <td>Due Date</td>
-                    <td>Status</td>
-                </tr> -->
             </tbody>
         </table>
     </section>
-    
-    <script type="module" src="../../scripts/student-dashboard.js"></script>
+
+    <script src="../../scripts/student-dashboard.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

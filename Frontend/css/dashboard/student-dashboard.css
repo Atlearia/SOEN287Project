@@ -104,6 +104,42 @@ body {
     box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
 }
 
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 25, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;        
+    transition: opacity 0.25s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;                  
+    pointer-events: all;         
+}
+
+.popup-card {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 440px;
+    margin: 1rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.25s ease;
+    opacity: 0;
+}
+
+.modal-overlay.active .popup-card {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 #courses a {
     text-decoration: none;
 }
@@ -127,6 +163,19 @@ body {
     background-color: var(--secondary-color);
 }
 
+.assessment-table tbody {/*add scroll to the table body*/
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.assessment-table thead, /*keep header in place*/
+.assessment-table tbody > tr { /* fix spacing of body content so that it alligns properly*/
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
 .assessment-title {
     margin: 20px 5px;
     text-decoration: underline;
@@ -139,11 +188,14 @@ body {
 }
 
 .pending {
-    background-color: pink;
+    background-color: rgb(255, 210, 0);;
 }
 
 .complete {
     background-color: lightgreen;
+}
+.late{
+    background-color: lightcoral;
 }
 
 
@@ -167,5 +219,9 @@ body {
         width: 95%;
         height: 50px;
         padding: 0px;
+    }
+
+    .assessment-table {
+        font-size: 12px;
     }
 }
