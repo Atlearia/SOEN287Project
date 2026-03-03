@@ -65,7 +65,18 @@ body {
 
 .navbar li {
     color: var(--nav-item-color);
-    padding: 20px;
+    padding: 10px;
+}
+
+.navbtn {
+    margin: 0px 0px 0px 10px;
+    width: 180px;
+    height: 40px;
+    padding: 0px;
+    background-color: var(--accent-color);
+    font-weight: bold;
+    border: 1px solid;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
 }
 
 .offcanvas {
@@ -147,5 +158,14 @@ body {
     .assessment-table {
         max-width: 100%;
         width: 98%;
+    }
+}
+
+@media (max-width: 475px) {
+    .navbtn {
+        margin: 10px 10px 10px 10px;
+        width: 95%;
+        height: 50px;
+        padding: 0px;
     }
 }
