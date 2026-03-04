@@ -1,0 +1,232 @@
+
+/* light mode color scheme */
+:root {
+    --background-color: #F2F4F7;
+    --primary-color: #c9c9c9;
+    --secondary-color: #dddbff;
+    --text-color: #0c0c12;
+    --accent-color: #3E4B63;
+    --item-background: white;
+    --nav-item-color: #F2F4F7;
+}
+
+/* Dark mode color scheme */
+/* :root {
+    --background-color: #000000;
+    --primary-color: #3b3b3b;
+    --secondary-color: #636363;
+    --text-color: #F4F4F9;
+    --accent-color: #222222;
+    --item-background: #141414;
+    --nav-item-color: whitesmoke;
+} */
+
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #020104;
+        --primary-color: #3a31d8;
+        --secondary-color: #020024;
+        --text-color: #F4F4F9;
+        --accent-color: #5c53f8;
+    }
+} */
+
+/* @media (prefers-color-scheme: light) {
+    :root {
+        --background-color: #F2F4F7;
+        --primary-color: #2f27ce;
+        --secondary-color: #dddbff;
+        --text-color: #0c0c12;
+        --accent-color: #3E4B63;
+        font-family: Inter, sans-serif, monospace;
+        font-feature-settings: 'liga' 1, 'calt' 1;
+    }
+} */
+
+
+body {
+    margin: 0px;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-family: Inter, monospace;
+}
+
+.logo {
+    color: var(--nav-item-color);
+}
+
+#dashboard-logo {
+    width: 200px;
+    max-height: 100%;
+}
+
+.navbar {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    border-bottom: 1px;
+    border-style: none none solid none;
+}
+
+.navbar li {
+    color: var(--nav-item-color);
+    padding: 10px;
+}
+
+.navbtn {
+    margin: 0px 0px 0px 10px;
+    width: 180px;
+    height: 40px;
+    padding: 0px;
+    background-color: var(--accent-color);
+    font-weight: bold;
+    border: 1px solid;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+}
+
+.offcanvas {
+    background-color: var(--accent-color);
+}
+
+.offcanvas-title {
+    color: var(--nav-item-color);
+}
+
+/* Styling for the course card items */
+.course-card-title {
+    margin: 20px 5px;
+    text-decoration: underline;
+}
+
+.course-item {
+    background-color: var(--item-background);
+    color: var(--text-color);
+    border-radius: 6px;
+    max-width: 425px;
+    width: 95%;
+    margin: 10px 10px 10px 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 25, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;        
+    transition: opacity 0.25s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;                  
+    pointer-events: all;         
+}
+
+.popup-card {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 440px;
+    margin: 1rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.25s ease;
+    opacity: 0;
+}
+
+.modal-overlay.active .popup-card {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#courses a {
+    text-decoration: none;
+}
+
+#courses a:hover {
+    background-color: rgba(var(--item-background), 0.01);
+}
+
+
+/* Assessment section styls */
+.assessment-table {    
+    background-color: var(--item-background);
+    margin: 10px 10px 10px 10px;
+}
+
+.assessment-table th, tr, td {
+    padding: 10px;
+}
+
+.assessment-table thead {
+    background-color: var(--secondary-color);
+}
+
+.assessment-table tbody {/*add scroll to the table body*/
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.assessment-table thead, /*keep header in place*/
+.assessment-table tbody > tr { /* fix spacing of body content so that it alligns properly*/
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+.assessment-title {
+    margin: 20px 5px;
+    text-decoration: underline;
+}
+
+.assessment-status {
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.pending {
+    background-color: rgb(255, 210, 0);;
+}
+
+.complete {
+    background-color: lightgreen;
+}
+.late{
+    background-color: lightcoral;
+}
+
+
+/* resposive area */
+/* when the screen is larger than 375px for responsiveness*/
+@media (min-width: 476px) {
+    .course-item {
+        width: 30%;
+        margin: 10px 10px 10px 10px;
+    }
+
+    .assessment-table {
+        max-width: 100%;
+        width: 98%;
+    }
+}
+
+@media (max-width: 475px) {
+    .navbtn {
+        margin: 10px 10px 10px 10px;
+        width: 95%;
+        height: 50px;
+        padding: 0px;
+    }
+
+    .assessment-table {
+        font-size: 12px;
+    }
+}

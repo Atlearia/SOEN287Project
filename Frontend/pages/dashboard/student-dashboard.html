@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="../../css/dashboard/student-dashboard.css">
+    
+    
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <!--TODO: Nav bar-->
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <!-- <h3 class="logo">Dashboard</h3> -->
+            <img src="../../assets/concordia2.png" alt="Concordia Logo" id="dashboard-logo">
+            <!--Collapse button when the screen is less than medium size-->
+            <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" id="navbarScroll">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Dashboard</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <!--Nav item: it will collapse when the screen is less than medium-->
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item navbtn btn btn-secondary" id="add-course">Add Course</li>
+                        <li class="nav-item navbtn btn btn-secondary" id="remove-course">Remove Course</li>
+                        <li class="nav-item navbtn btn btn-secondary" id="logout-btn">Log Out</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- add and remove course section -->
+    <!-- add course -->
+    <div class="modal-overlay" id="addCourseOverlay">
+        <div class="popup-card">
+            <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Add a Course</h5>
+                <button type="button" class="btn-close" id="closeAddPopup"></button>
+            </div>
+
+            <form id="addCourseForm">
+                <div class="p-4">
+                    <label class="form-label fw-semibold">Course Code <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="addCourseCode" placeholder="e.g. SOEN 287" required>
+                </div>
+
+                <div class="p-4 pt-0 d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-outline-secondary" id="cancelAddPopup">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Add Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- remove course -->
+    <div class="modal-overlay" id="removeCourse">
+        <div class="popup-card">
+            <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Remove a Course</h5>
+                <button type="button" class="btn-close" id="closeRemovePopup"></button>
+            </div>
+
+            <form id="removeCourseForm">
+                <div class="p-4">
+                    <label class="form-label fw-semibold">Course Code <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="removeCourseCode" placeholder="e.g. SOEN 287" required>
+                </div>
+
+                <div class="p-4 pt-0 d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-outline-secondary" id="cancelRemovePopup">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Remove Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!--course cards-->
+    <section class="course-card container"> <!--Grid layout from bootstrap-->
+        <h3 class="course-card-title">Courses:</h3>
+        <!--Add course card to this block-->
+        <div class="course-block row row-cols-auto" id="courses"> 
+
+        </div>
+    </section>
+
+    <!--Upcoming Assessment-->
+    <section class="upcoming-assessment container">
+        <h3 class="assessment-title">Assessments</h3>
+        <table class="assessment-table">
+            <thead>
+                <!--Table Title for all the colums-->
+                <tr>
+                    <th>Course</th>
+                    <th>Assessment</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="assessments">
+
+            </tbody>
+        </table>
+    </section>
+
+    <script src="../../scripts/student-dashboard.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+p{
+    color: black;
+}
+body{
+    background-color: #f2f4f7;
+    margin-left:0px; /*needed so that the blue banner covers the screen properly*/
+    margin-right:8px; /*needed so that the blue banner covers the screen properly*/
+    margin-top: 0px; /*needed so that the blue banner covers the screen properly*/
+    
+}
+#CourseHeader{
+    position: relative;
+    color: white;
+    background-color: rgb(62,75,99);
+
+    border: 4px solid rgb(62,75,99);
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;   
+    align-items: center;       
+    
+}
+#CourseHeader h1{
+    margin: 0px;
+    
+}
+.headerButton {
+    position: absolute;
+    top: 3px;      
+    left: 7px;
+
+    padding: 6px 12px;
+    
+    background-color: white;
+    color: rgb(62,75,99);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.headerButton:hover {
+    background-color: #dfe2e3;
+}
+
+#legendPB{
+    margin-left: 8px; /*needed so that the blue banner covers the screen properly*/
+    display:flex;
+}
+#PGained{
+    background-color: lightgreen;
+    width:10px;
+    margin-left: 4px; /* margin used for better spacing on the web page*/
+    margin-right: 8px;
+    border-style: solid;
+    border-width: 2px;
+}
+#PLost{
+    background-color: lightcoral;
+    width:10px;
+    margin-left: 4px; /* margin used for better spacing on the web page*/
+    margin-right: 8px;
+    border-style: solid;
+    border-width: 2px;
+}
+#PRemain{
+    background-color: rgb(255, 210, 0);
+    width:10px;
+    margin-left: 4px; /*only need left side margin*/
+    border-style: solid;
+    border-width: 2px;
+}
+
+#ClassInfo{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+    background-color: white;
+    padding-left: 8px;/*so text isn't against the wall*/
+    
+}
+.CourseInfo{
+    display:flex;
+    gap:4px;
+    margin-top: 0px;
+    margin-bottom:0px;
+}
+.InfoTitle{
+    margin-top: 8px;
+    margin-bottom:8px;
+    font-weight: bold;
+    color: brown;
+}
+.Info{
+     margin-top: 8px;
+    margin-bottom:8px;
+}
+#Assesment{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+}
+#GPA{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+}
+#GradesOFAssesment{
+    margin-left:8px; /*needed so that the blue banner covers the screen properly*/
+}
+
+#outputAssesment{
+    border-style:solid;
+    
+}
+.AsOut{
+    border-style:solid;
+    text-align: center;
+    background-color: rgb(255,210,0);
+    
+    
+}
+#Late{
+    background-color: lightcoral;
+}
+#Complete{
+    background-color: lightgreen;
+}
+#gradesChart{
+    margin-left: 8px;
+}
+#History{
+    margin-left: 8px;
+}
