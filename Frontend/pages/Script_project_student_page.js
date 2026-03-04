@@ -59,7 +59,6 @@ let Assesments = structuredClone(originalAssesments); //used so that when changi
 //render course info
 function renderCourseInfo(){
     const classInfo = document.getElementById("ClassInfo");
-
     classInfo.innerHTML="";//clear it if it ever needs to be called again
     classInfo.innerHTML=`
         <div class="CourseInfo">
@@ -86,14 +85,12 @@ function renderCourseInfo(){
 }
 renderCourseInfo()//render the first time when page is loaded
 
-
 const checkboxCompleted = document.getElementById("showCompleted");
 const checkboxWeight = document.getElementById("WeightArrangement");
 const outputAssesment = document.getElementById("outputAssesment");
 
 checkboxCompleted.addEventListener("change",renderAssesments); //check if the checkbox has been selected and then rerender the Assesment portion
 checkboxWeight.addEventListener("change",renderAssesments);
-
 
 function renderAssesments(){
     outputAssesment.innerHTML =""; //clear the Assesments so that it can be rewritten
@@ -132,7 +129,6 @@ function renderAssesments(){
         }
     }); 
 
-
     //add listener to the checkboxes for completed assesmnts
     const completedAssesmentCheckBoxes = document.querySelectorAll(".completed");
     completedAssesmentCheckBoxes.forEach(c=>{
@@ -146,15 +142,8 @@ function renderAssesments(){
             DrawGraph();
         })
     })
-    
-    
-    
-    
-    
-    
 }
 renderAssesments(); //render the assesments the first time the page is loaded
-
 
 const outputTotalPercentage = document.getElementById("TP");
 const outputWeightedAverage = document.getElementById("WeightedAverage");
@@ -163,8 +152,6 @@ function renderGrades(){
     outputWeightedAverage.innerHTML="";//clear previously written grades
     outputTotalPercentage.innerHTML="";
 
-    
-    
     let gradeTP=0;
     let gradeWA=0;
     let TotalWeight=0;
@@ -177,9 +164,7 @@ function renderGrades(){
     })
     gradeWA = (TotalWeight > 0 ? (gradeTP / TotalWeight) * 100 : 0);//so that if no completed assignment it shows 0?
     outputWeightedAverage.innerHTML +=""+gradeWA.toFixed(2)+"%";
-    outputTotalPercentage.innerHTML +=""+gradeTP.toFixed(2)+"% with "+TotalWeight.toFixed(2)+"% of the class completed.";
-
-    
+    outputTotalPercentage.innerHTML +=""+gradeTP.toFixed(2)+"% with "+TotalWeight.toFixed(2)+"% of the class completed.";    
     
     const Pbar = document.getElementById("Progressbar")
     Pbar.style.width = gradeTP+"%";
@@ -194,7 +179,6 @@ function renderGrades(){
     Fbar.style.width = FbarPer+"%";
 }
 renderGrades(); //render the grades the first time the page is loaded
-
 
 const GradeInputs = document.getElementById("GradeInputs");
 
@@ -212,8 +196,6 @@ function renderGradeChangerPrompt(){
     
 }
 renderGradeChangerPrompt()
-
-
 
 function renderGradeChanger(){
     //add listener to the checkboxes for completed assesmnts

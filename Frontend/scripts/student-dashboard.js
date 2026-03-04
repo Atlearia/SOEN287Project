@@ -95,6 +95,8 @@ function addCourse() {
         }
         if(checkCourseExist(code)) {
             enrollStudent(student.id, code);
+        }else{
+            alert("Course doesn't exist!");
         }
         renderCourse();
         closeForm();
@@ -130,6 +132,8 @@ function removeCourse() {
         }
         if(checkCourseExist(code)) {
             unenrollStudent(student.id, code);
+        }else{
+            alert("Course doesn't exist!");
         }
         renderCourse();
         closeForm();

@@ -56,6 +56,11 @@ body {
     color: var(--nav-item-color);
 }
 
+#dashboard-logo {
+    width: 200px;
+    max-height: 100%;
+}
+
 .navbar {
     background-color: var(--accent-color);
     color: var(--background-color);
