@@ -142,10 +142,10 @@ const studentLoginArray= [student_default];
 const form = document.getElementById("createstudentform");
 form.addEventListener('submit', function(event){
     event.preventDefault();
-    const firstname = document.getElementById("Adminfirstname").value;
-    const lastname = document.getElementById("Adminlastname").value;
-    const Email = document.getElementById("AdminEmail").value;
-    const password_ = document.getElementById("Adminpassword_").value;
+    const firstname = document.getElementById("firstname").value;
+    const lastname = document.getElementById("lastname").value;
+    const Email = document.getElementById("Email").value;
+    const password_ = document.getElementById("password_").value;
 
     const newStudent = new student_login(firstname,lastname, Email,password_);
     studentLoginArray.push(newStudent);
@@ -159,10 +159,10 @@ form.addEventListener('submit', function(event){
 const form_admin = document.getElementById("createadminform");
 form_admin.addEventListener('submit',function(event){
     event.preventDefault();
-    const Adminfirstname = document.getElementById("firstname").value;
-    const Adminlastname = document.getElementById("lastname").value;
-    const AdminEmail = document.getElementById("Email").value;
-    const Adminpassword_ = document.getElementById("password_").value;
+    const Adminfirstname = document.getElementById("Adminfirstname").value;
+    const Adminlastname = document.getElementById("Adminlastname").value;
+    const AdminEmail = document.getElementById("AdminEmail").value;
+    const Adminpassword_ = document.getElementById("Adminpassword_").value;
 
     const newAdmin = new Admin_login(Adminfirstname,Adminlastname, AdminEmail,Adminpassword_);
     adminLoginArray.push(newAdmin);
@@ -200,7 +200,7 @@ form_student_login.addEventListener("submit",function(event){
 
 //same thing but for admin
 const form_admin_login = document.getElementById("adminloginform");
-form_student_login.addEventListener("submit",function(event){
+form_admin_login.addEventListener("submit",function(event){
     
     const admin_email = document.getElementById("EmailAddressAdmin").value;
     const admin_password = document.getElementById("passwordAdmin").value;
