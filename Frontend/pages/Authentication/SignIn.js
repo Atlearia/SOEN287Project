@@ -130,8 +130,8 @@ class Admin_login{
 }
 //student and admin array
 //theres already a student in the login array so you can directly login with it
-const student_test = new student_login('Zac', 'Dem', 'Zac@gmail.com', 'password');
-const adminLoginArray = ['', ''];
+const student_test = new student_login('StudentFirstName', 'StudentLastName', 'student@gmail.com', 'student123');
+const adminLoginArray = ['AdminFirstName', 'AdminLastName','admin@gmail.com','admin123'];
 const studentLoginArray= [student_test];
 
 
