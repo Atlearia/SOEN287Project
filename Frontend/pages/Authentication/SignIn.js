@@ -8,7 +8,7 @@ const createadmin=document.getElementById('createadmin');
 //since everything is on the same page, these are the functions for the radio buttons
 // so that when you submit a form/click on a button, it changes the display mode so
 // that you can only see certain parts. might not be the best optimal but it makes
-// it so that we can create an account and login with it without refresing the page
+// it so that we can create an account and login with it without refreshing the page
 // (without back end)
 
 loginbutton.addEventListener('click', function(){
@@ -82,7 +82,7 @@ function confirm(){ //function to confirm password
     else{
         confpass.setCustomValidity(''); // if the password is correct it won't to anything
     }
-}// setCustomValidity makes it so that if the ('') is not empty, the input is invalid
+}// setCustomValidity with '' just resets the validity
 
 
 // when you enter the passwords in the account creation menu, it runs the confirm function
@@ -129,7 +129,7 @@ class Admin_login{
     
 }
 //student and admin array
-//theres already a student in the login array so you can directly login with it
+//theres a default student login and default admin login for easier access when testing 
 const student_default = new student_login('StudentFirstName', 'StudentLastName', 'student@gmail.com', 'student123');
 const admin_default = new Admin_login('AdminFirstName', 'AdminLastName','admin@gmail.com','admin123');
 const adminLoginArray = [admin_default];
@@ -173,6 +173,11 @@ form_admin.addEventListener('submit',function(event){
 
 })
 
+//There was an issue where if you entered the wrong logins and then tried logging in 
+// with the right ones, it didnt work. These lines of code makes it so that
+// on input, it resets the custom validity so that it can be checked later in the 
+// student login and admin login
+
 document.getElementById("EmailAddress").addEventListener("input", function(){
     this.setCustomValidity("");
 })
@@ -193,12 +198,13 @@ document.getElementById("passwordAdmin").addEventListener("input", function(){
 // it works and you can enter the website. if not, it asks you to try again
 const form_student_login = document.getElementById("studentloginform");
 form_student_login.addEventListener("submit",function(event){
-    event.preventDefault();
+    event.preventDefault(); // prevents the form from submitting
     const student_email = document.getElementById("EmailAddress").value;
     const student_email_input = document.getElementById("EmailAddress");
     const student_password = document.getElementById("password").value;
     
-    let validity = false;
+    let validity = false; // validity is false so that it resets the validity.
+    // this way there wont be any issue where you can enter with the wrong password/email
     for (let i=0;i<studentLoginArray.length;i++){
             if ((studentLoginArray[i].Email_ ==student_email) && (studentLoginArray[i].password_==student_password)){
                 validity = true;
