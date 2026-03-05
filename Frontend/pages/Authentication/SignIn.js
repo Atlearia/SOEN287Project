@@ -173,14 +173,31 @@ form_admin.addEventListener('submit',function(event){
 
 })
 
+document.getElementById("EmailAddress").addEventListener("input", function(){
+    this.setCustomValidity("");
+})
+document.getElementById("password").addEventListener("input", function(){
+    this.setCustomValidity("");
+})
+
+document.getElementById("EmailAddressAdmin").addEventListener("input", function(){
+    this.setCustomValidity("");
+})
+document.getElementById("passwordAdmin").addEventListener("input", function(){
+    this.setCustomValidity("");
+})
+
+
+
 //when trying to login, it checks if the password and email exists and match. if yes, then
 // it works and you can enter the website. if not, it asks you to try again
-
 const form_student_login = document.getElementById("studentloginform");
 form_student_login.addEventListener("submit",function(event){
-    
+    event.preventDefault();
     const student_email = document.getElementById("EmailAddress").value;
+    const student_email_input = document.getElementById("EmailAddress");
     const student_password = document.getElementById("password").value;
+    
     let validity = false;
     for (let i=0;i<studentLoginArray.length;i++){
             if ((studentLoginArray[i].Email_ ==student_email) && (studentLoginArray[i].password_==student_password)){
@@ -188,9 +205,11 @@ form_student_login.addEventListener("submit",function(event){
                 break;
             }
         }
-
+     if (validity==true){
+        window.location.href="main.html"
+    }
     if (validity == false){
-        event.preventDefault();
+        
         document.getElementById('EmailAddress').setCustomValidity('Email or password is incorrect');
         document.getElementById('EmailAddress').reportValidity();
         return;
@@ -201,9 +220,11 @@ form_student_login.addEventListener("submit",function(event){
 //same thing but for admin
 const form_admin_login = document.getElementById("adminloginform");
 form_admin_login.addEventListener("submit",function(event){
-    
+    event.preventDefault();
     const admin_email = document.getElementById("EmailAddressAdmin").value;
+    const admin_email_input = document.getElementById("EmailAddressAdmin");
     const admin_password = document.getElementById("passwordAdmin").value;
+    admin_email_input.setCustomValidity("");
     let validity = false;
     for (let i=0;i<adminLoginArray.length;i++){
             if ((adminLoginArray[i].Email_ ==admin_email) && (adminLoginArray[i].password_==admin_password)){
@@ -211,9 +232,10 @@ form_admin_login.addEventListener("submit",function(event){
                 break;
             }
         }
-
+    if (validity){
+        window.location.href="admin-dashboard.html"
+    }
     if (validity == false){
-        event.preventDefault();
         document.getElementById('EmailAddressAdmin').setCustomValidity('Email or password is incorrect');
         document.getElementById('EmailAddressAdmin').reportValidity();
         return;
