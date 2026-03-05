@@ -9,8 +9,8 @@ if(document.title==="COMP 249"){ //Assesments for COMP 249
     const As2 ={Name: "Assignment 2", DueDate: "January 11th 2026", DueDateComp: new Date('2026-01-11'), weight: 5, completed: true, grade: 100}
     const As3 ={Name: "Test 2", DueDate: "Febuary 22nd 2026", DueDateComp: new Date('2026-02-22'), weight: 20, completed: false, grade: 0}
     const As4 ={Name: "Test 1", DueDate: "Febuary 2nd 2026", DueDateComp: new Date('2026-02-2'), weight: 10, completed: true, grade: 80}
-    const As5 ={Name: "Test 3", DueDate: "March 22nd 2026", DueDateComp: new Date('2026-03-22'), weight: 15, completed: false, grade: 100}
-    const As6 ={Name: "Final", DueDate: "June 24th 2026", DueDateComp: new Date('2026-06-24'), weight: 40, completed: true, grade: 10} 
+    const As5 ={Name: "Test 3", DueDate: "March 4th 2026", DueDateComp: new Date('2026-03-4'), weight: 15, completed: true, grade: 100}
+    const As6 ={Name: "Final", DueDate: "June 24th 2026", DueDateComp: new Date('2026-06-24'), weight: 40, completed: false, grade: 10} 
     
     originalAssesments.push(As1,As2,As3,As4,As5,As6); //store assesments in the Assesments array
 
@@ -25,9 +25,9 @@ if(document.title==="SOEN 287"){ //Assesments for SOEN 287
     const As2 ={Name: "Quiz 1", DueDate: "January 29th 2026", DueDateComp: new Date('2026-01-29'), weight: 7, completed: true, grade: 100}
     const As3 ={Name: "Test 2", DueDate: "Febuary 13th 2026", DueDateComp: new Date('2026-02-13'), weight: 8, completed: false, grade: 7}
     const As4 ={Name: "Test 1", DueDate: "Febuary 3rd 2026", DueDateComp: new Date('2026-02-3'), weight: 10, completed: true, grade: 80}
-    const As5 ={Name: "Test 3", DueDate: "March 27th 2026", DueDateComp: new Date('2026-03-27'), weight: 12, completed: false, grade: 60}
-    const As6 ={Name: "Final", DueDate: "May 24th 2026", DueDateComp: new Date('2026-05-24'), weight: 30, completed: true, grade: 27} 
-    const As7 ={Name: "Project", DueDate: "April 15th 2026", DueDateComp: new Date('2026-04-15'), weight: 20, completed: true, grade: 63} 
+    const As5 ={Name: "Test 3", DueDate: "March 3rd 2026", DueDateComp: new Date('2026-03-3'), weight: 12, completed: false, grade: 60}
+    const As6 ={Name: "Final", DueDate: "May 24th 2026", DueDateComp: new Date('2026-05-24'), weight: 30, completed: false, grade: 27} 
+    const As7 ={Name: "Project", DueDate: "May 12th 2026", DueDateComp: new Date('2026-05-12'), weight: 20, completed: false, grade: 63} 
     originalAssesments.push(As1,As2,As3,As4,As5,As6,As7); //store assesments in the Assesments array
 
     //class info
@@ -39,11 +39,11 @@ if(document.title==="SOEN 287"){ //Assesments for SOEN 287
 if(document.title==="SOEN 228"){ //Assesments for SOEN 228
     const As1 ={Name: "Assignment 1", DueDate: "January 3rd 2026", DueDateComp: new Date('2026-01-3'), weight: 15, completed: false, grade: 40}
     const As2 ={Name: "Quiz 1", DueDate: "January 21st 2026", DueDateComp: new Date('2026-01-21'), weight: 5, completed: true, grade: 100}
-    const As3 ={Name: "Lab 1", DueDate: "Febuary 26th 2026", DueDateComp: new Date('2026-02-26'), weight: 10, completed: false, grade: 90}
+    const As3 ={Name: "Lab 1", DueDate: "Febuary 26th 2026", DueDateComp: new Date('2026-02-26'), weight: 10, completed: true, grade: 90}
     const As4 ={Name: "Test 1", DueDate: "Febuary 7th 2026", DueDateComp: new Date('2026-02-7'), weight: 8, completed: true, grade: 78}
-    const As5 ={Name: "Test 2", DueDate: "March 12th 2026", DueDateComp: new Date('2026-03-12'), weight: 14, completed: false, grade: 57}
-    const As6 ={Name: "Final", DueDate: "May 2nd 2026", DueDateComp: new Date('2026-05-2'), weight: 30, completed: true, grade: 95} 
-    const As7 ={Name: "Project", DueDate: "April 25th 2026", DueDateComp: new Date('2026-04-25'), weight: 18, completed: true, grade: 32} 
+    const As5 ={Name: "Test 2", DueDate: "March 2nd 2026", DueDateComp: new Date('2026-03-2'), weight: 14, completed: false, grade: 57}
+    const As6 ={Name: "Final", DueDate: "May 2nd 2026", DueDateComp: new Date('2026-05-2'), weight: 30, completed: false, grade: 95} 
+    const As7 ={Name: "Project", DueDate: "April 29th 2026", DueDateComp: new Date('2026-04-29'), weight: 18, completed: false, grade: 32} 
     originalAssesments.push(As1,As2,As3,As4,As5,As6,As7); //store assesments in the Assesments array
 
     //class info
@@ -59,6 +59,7 @@ let Assesments = structuredClone(originalAssesments); //used so that when changi
 //render course info
 function renderCourseInfo(){
     const classInfo = document.getElementById("ClassInfo");
+
     classInfo.innerHTML="";//clear it if it ever needs to be called again
     classInfo.innerHTML=`
         <div class="CourseInfo">
@@ -85,12 +86,14 @@ function renderCourseInfo(){
 }
 renderCourseInfo()//render the first time when page is loaded
 
+
 const checkboxCompleted = document.getElementById("showCompleted");
 const checkboxWeight = document.getElementById("WeightArrangement");
 const outputAssesment = document.getElementById("outputAssesment");
 
 checkboxCompleted.addEventListener("change",renderAssesments); //check if the checkbox has been selected and then rerender the Assesment portion
 checkboxWeight.addEventListener("change",renderAssesments);
+
 
 function renderAssesments(){
     outputAssesment.innerHTML =""; //clear the Assesments so that it can be rewritten
@@ -129,6 +132,7 @@ function renderAssesments(){
         }
     }); 
 
+
     //add listener to the checkboxes for completed assesmnts
     const completedAssesmentCheckBoxes = document.querySelectorAll(".completed");
     completedAssesmentCheckBoxes.forEach(c=>{
@@ -142,8 +146,15 @@ function renderAssesments(){
             DrawGraph();
         })
     })
+    
+    
+    
+    
+    
+    
 }
 renderAssesments(); //render the assesments the first time the page is loaded
+
 
 const outputTotalPercentage = document.getElementById("TP");
 const outputWeightedAverage = document.getElementById("WeightedAverage");
@@ -152,6 +163,8 @@ function renderGrades(){
     outputWeightedAverage.innerHTML="";//clear previously written grades
     outputTotalPercentage.innerHTML="";
 
+    
+    
     let gradeTP=0;
     let gradeWA=0;
     let TotalWeight=0;
@@ -164,7 +177,9 @@ function renderGrades(){
     })
     gradeWA = (TotalWeight > 0 ? (gradeTP / TotalWeight) * 100 : 0);//so that if no completed assignment it shows 0?
     outputWeightedAverage.innerHTML +=""+gradeWA.toFixed(2)+"%";
-    outputTotalPercentage.innerHTML +=""+gradeTP.toFixed(2)+"% with "+TotalWeight.toFixed(2)+"% of the class completed.";    
+    outputTotalPercentage.innerHTML +=""+gradeTP.toFixed(2)+"% with "+TotalWeight.toFixed(2)+"% of the class completed.";
+
+    
     
     const Pbar = document.getElementById("Progressbar")
     Pbar.style.width = gradeTP+"%";
@@ -179,6 +194,7 @@ function renderGrades(){
     Fbar.style.width = FbarPer+"%";
 }
 renderGrades(); //render the grades the first time the page is loaded
+
 
 const GradeInputs = document.getElementById("GradeInputs");
 
@@ -196,6 +212,8 @@ function renderGradeChangerPrompt(){
     
 }
 renderGradeChangerPrompt()
+
+
 
 function renderGradeChanger(){
     //add listener to the checkboxes for completed assesmnts
@@ -292,3 +310,4 @@ function DrawGraph(){
         Assesments=structuredClone(originalAssesments);
     }
 }
+
