@@ -359,6 +359,7 @@ hr {
     margin-right: 8px;
     border-radius: 30px;
     background: #e8eaf0;
+    overflow: hidden;
 }
 
 .us-bar-fill-green {
