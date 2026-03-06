@@ -37,6 +37,7 @@
                     <div class="container" id="signin" >
 
                         <div class="row justify-content-center" >
+                            <!-- login text -->
                             <div class="col text-center mb-4"><h1>Login</h1></div>
                            <div class="row">
 
@@ -50,18 +51,18 @@
                                 <label class="btn btn-outline-primary" for="student">Student</label>
                                 
                              
-                            
+                                
                                 <input class="btn-check" type="radio" id="admin" name="loginoption">
                                 <label class="btn btn-outline-primary" for="admin">Admin</label>
 
                             </div>
                                 <div>
-                                
+                                <!-- student login form.  (email and password)-->
                                 <div id="studenttext">
                                     <div class="container text-center" >
                                         
                                         <form id="studentloginform" class="form-row" >
-                                            <!-- Add student dashboard to html above -->
+                                            
                                             <div class="col mt-4">
                                                 <input type="email" class="form-control" id="EmailAddress" placeholder="Enter your email" required> 
                                                 
@@ -81,12 +82,12 @@
                                     </div>
                                 </div>
                                 </div>
-                                
+                               
                                 <div id="admintext" style="display:none;">
                                     <div class="container text-center" >
-
+                                         <!-- Admin login form (email and password) -->
                                         <form id="adminloginform" class="form-row" > 
-                                            <!-- add dashboard admin link to html up above. -->
+                                            
                                             <div class="col mt-4">
                                                 <input type="email" class="form-control" id="EmailAddressAdmin" placeholder="Enter your admin email" required> 
                                                 
@@ -105,6 +106,7 @@
 
                                     </div>
                                 </div>
+                                <!-- sign up button (radio button that shows the sign up page) -->
                                 <div class="col text-center mt-3"> <p>Don't have an account?</p></div>
                                 <div class="text-center mt-0"><input class="btn-check" type="radio" id="signup"></input>
                                     <label class="btn btn-outline-primary" for="signup">SignUp</label>
@@ -117,11 +119,14 @@
 
 
                     </div>
+                    <!-- sign up page -->
                     <div class="container" id="createAccount" style="display:none;">
                         <div class="row justify-content-center">
                         <div class="col text-center">
+                            <!-- create account text -->
                         <h1>Create an Account</h1>
                         </div>
+                        <!-- radio button with student and admin sign up.  -->
                         <div class="btn-group" role="group">
                                 <input class="btn-check" id="createstudent" name="signupoption"  type="radio" checked>
                                 <label class="btn btn-outline-primary" for="createstudent">Student</label>
@@ -132,6 +137,8 @@
                                 <label class="btn btn-outline-primary" for="createadmin">Admin</label>
 
                         </div>
+                        <!-- create student account form. asks for name, email and password
+                         also need to confirm password -->
                         <div id="createstudenttext">
                         <form  id="createstudentform" action="index.html" class="row justify-content-center">
                             <div class="col text-center mt-4">
@@ -164,6 +171,7 @@
                             </div>
                         </form>
                         </div>
+                        <!-- admin account creation. asks for the same things (name, email ,password) -->
                         <div id="createadmintext" style="display:none;">
                             <form  id="createadminform" action="index.html" class="row justify-content-center">
                            
@@ -198,6 +206,7 @@
                         </form>
                         </div>
                         </div>
+                        <!-- sign in button to go back to sign in page -->
                         <div class="d-flex justify-content-center mt-2">
                             <p>Already have an account?</p>
                         </div>
