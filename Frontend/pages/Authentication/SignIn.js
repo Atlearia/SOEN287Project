@@ -5,6 +5,7 @@ const admin=document.getElementById('admin');
 const createstudent=document.getElementById('createstudent');
 const createadmin=document.getElementById('createadmin');
 
+
 //since everything is on the same page, these are the functions for the radio buttons
 // so that when you submit a form/click on a button, it changes the display mode so
 // that you can only see certain parts. might not be the best optimal but it makes
@@ -13,10 +14,16 @@ const createadmin=document.getElementById('createadmin');
 
 loginbutton.addEventListener('click', function(){
     if(loginbutton.checked){
+
+        document.getElementById('createstudentform').reset();
+        document.getElementById('createadminform').reset();
         document.getElementById('signin').style.display = 'block';
         document.getElementById('createAccount').style.display = 'none';
+
     }
 })
+
+
 
 signup.addEventListener('click', function(){
     
@@ -45,6 +52,7 @@ admin.addEventListener("change", function(){
 });
 createstudent.addEventListener("change", function(){
     if (createstudent.checked) {
+        
         document.getElementById('createstudenttext').style.display = 'block';
         document.getElementById('createadmintext').style.display = 'none';
 
@@ -53,6 +61,7 @@ createstudent.addEventListener("change", function(){
 
 createadmin.addEventListener("change", function(){
     if (createadmin.checked) {
+       
         document.getElementById('createstudenttext').style.display = 'none';
         document.getElementById('createadmintext').style.display = 'block';
 
@@ -152,7 +161,7 @@ form.addEventListener('submit', function(event){
     
     document.getElementById('createAccount').style.display = "none";
     document.getElementById('signin').style.display = "block";
-
+    form.reset();
 
 })
 // same thing but for admin
@@ -169,6 +178,7 @@ form_admin.addEventListener('submit',function(event){
    
     document.getElementById('createAccount').style.display = "none";
     document.getElementById('signin').style.display = "block";
+    form_admin.reset();
 
 
 })
@@ -246,5 +256,6 @@ form_admin_login.addEventListener("submit",function(event){
         document.getElementById('EmailAddressAdmin').reportValidity();
         return;
     }
+
     
 })
