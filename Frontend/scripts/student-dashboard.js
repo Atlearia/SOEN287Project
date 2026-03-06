@@ -151,7 +151,7 @@ function renderAssesments() {
 function logout() {
     const logoutBtn = document.getElementById('logout-btn');
     logoutBtn.addEventListener('click', () => {
-        window.location.href = "../Authentication/index.html";
+        window.location.href = "../Authentication/SignIn.html";
     })
 }
 
