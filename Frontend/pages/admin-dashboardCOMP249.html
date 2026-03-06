@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="C:\Users\ronan\Desktop\SOEN 287\Frontend\css\admin-dashboard.css">
+</head>
+
+<body>
+    <form action="" method="" class="dashboard-form">
+        <header>
+            <img class="adjust" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\concordia2.png"
+                alt="Concordia Logo">
+            <p class="adjust clickable-box" id="logout-button">Log Out</p>
+        </header>
+        <div id="body-container">
+            <h2 class="page-title">Admin Dashboard</h2>
+            <hr>
+
+            <div class="section dashboard-actions">
+
+
+                <a class="card-link" href="admin-course-creation.html">
+                    <div class="dashboard-items clickable-box" id="create-course">
+                        <img src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\clipboard.png"
+                            alt="create course img">
+                        <div class="subdashboard-items">
+                            <p class="custom-title">Create Course</p>
+                            <p style="font-size: 15px; font-weight: 400;">Add a new course</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+                <a class="card-link" href="admin-manage-courses.html">
+                    <div class="dashboard-items clickable-box">
+                        <img class="image" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\checklist.png"
+                            alt="assessment manage">
+                        <div class="subdashboard-items">
+                            <p class="custom-title">Manage Courses</p>
+                            <p style="font-size: 15px; font-weight: 400;">Edit course assessments</p>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a class="card-link" href="admin-course-templates.html">
+                    <div class="dashboard-items clickable-box">
+                        <img class="image folder-icon" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\folder.png"
+                            alt="coruse template stuff">
+                        <div class="subdashboard-items">
+                            <p class="custom-title">Course Templates</p>
+                            <p style="font-size: 15px; font-weight: 400;">Manage reusable templates</p>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a class="card-link" href="admin-toggle-courses.html">
+                    <div class="dashboard-items clickable-box">
+                        <img class="image" src="C:\Users\ronan\Desktop\SOEN 287\Frontend\assets\toggle.png.png"
+                            alt="course enabler">
+                        <div class="subdashboard-items">
+                            <p class="custom-title">Toggle Courses</p>
+                            <p style="font-size: 15px; font-weight: 400;">Course availability</p>
+                        </div>
+                    </div>
+                </a>
+
+
+            </div>
+
+            <div id="usage-title">
+                <h3 class="custom-title usage-title2">Usage Summary -</h3>
+                <select id="selection">
+                    <option id="SOEN287">SOEN 287</option>
+                    <option id="SOEN228">SOEN 228</option>
+
+                    <option id="COMP249" selected>COMP 249</option>
+                </select>
+            </div>
+            <hr>
+
+            <div id="usage-container-stuff">
+                <div class="us-card us-card-assessment">
+                    <div class="us-card-header">
+                        <span class="us-card-icon">✏️</span>
+                        <span class="us-card-title">Assessment Breakdown</span>
+                    </div>
+                    <hr class="usage-hr">
+                    <div class="us-card-content us-assessment-body">
+                        <div class="us-completion-block">
+                            <div id="big-aah-number">30%</div>
+                            <div class="us-completed-label">Completed</div>
+                        </div>
+                        <div class="us-bars-block">
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Assignment 1</span>
+                                <div class="us-bar-container-of-colour">
+                                    <div class="us-bar-fill-yellow" style="width:0%; min-width:0;"></div>
+                                </div>
+                                <span class="stats-letter">0%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Assignment 2</span>
+                                <div class="us-bar-container-of-colour">
+                                    <div class="us-bar-fill-green" style="width:100%;"></div>
+                                </div>
+                                <span class="stats-letter">100%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Test 1</span>
+                                <div class="us-bar-container-of-colour">
+                                    <div class="us-bar-fill-green" style="width:80%;"></div>
+                                </div>
+                                <span class="stats-letter">80%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Test 2</span>
+                                <div class="us-bar-container-of-colour">
+                                    <div class="us-bar-fill-yellow" style="width:0%; min-width:0;"></div>
+                                </div>
+                                <span class="stats-letter">0%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Test 3</span>
+                                <div class="us-bar-container-of-colour">
+                                    <div class="us-bar-fill-green" style="width:100%;"></div>
+                                </div>
+                                <span class="stats-letter">100%</span>
+                            </div>
+                            <div class="us-bar-row" style="margin-bottom: 0;">
+                                <span class="us-bar-name">Final</span>
+                                <div class="us-bar-container-of-colour">
+                                    <div class="" style=""></div>
+                                </div>
+                                <span class="stats-letter"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="us-card">
+                    <div class="us-card-header">
+                        <span
+                            class="us-card-icon">&#9888;&#65039;<!--sometimes this doesnt render regardless, if can find emoji should use that--></span>
+                        <span class="us-card-title">Pending / At Risk</span>
+                    </div>
+                    <hr class="usage-hr">
+                    <div class="us-card-content us-list us-warn-list">
+                        <div class="us-warn-item">
+                            <span class="DANGER-icon">&#9888;</span>
+                            Student(s) with Assignment 1 overdue  
+                        </div>
+
+
+
+
+
+                        <div class="us-warn-item">
+                            <span class="DANGER-icon">&#9888;</span>
+                            Student(s) with Assignment 2 overdue  
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="us-card">
+                    <div class="us-card-header">
+                        <span class="us-card-icon">&#128197;</span>
+                        <span class="us-card-title">Upcoming Deadlines</span>
+                        <!--    <span class="us-side-label">Last 7 Days</span> -->
+                    </div>
+
+
+
+
+
+
+
+                    <hr class="usage-hr">
+                    <div class="us-card-content us-list us-deadline-list">
+                        <div class="us-deadline-BOX" style="">&#x1F5D3; Apr 29 - Project</div>
+                        <div class="us-deadline-BOX" style="">&#x1F5D3; May 2 - Final</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        var selection = document.getElementById("selection");
+        var SOEN287 = document.getElementById("SOEN287");
+        var SOEN228 = document.getElementById("SOEN228");
+        var COMP249 = document.getElementById("COMP249");
+
+        selection.onchange = () => {
+            if (SOEN287.selected) {
+                window.location.href = "admin-dashboard.html";
+            }
+
+            else if (SOEN228.selected) {
+                window.location.href = "admin-dashboardSOEN228.html";
+            }
+
+            else if (COMP249.selected) {
+                window.location.href = "admin-dashboardCOMP249.html";
+            }
+        }
+    </script>
+</body>
+
+</html>
