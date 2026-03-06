@@ -244,7 +244,7 @@ hr {
 }
 
 .us-card-assessment 
-.us-bar-track {
+.us-bar-container-of-colour {
     height: 14px;
     background: #e4e9f2;
 }
@@ -352,24 +352,27 @@ hr {
     flex-shrink: 0;
 }
 
-.us-bar-track {
+.us-bar-container-of-colour {
     flex: 1;
     min-width: 60px;
     height: 12px;
     margin-right: 8px;
-    border-radius: 30px;
+    border-radius: 20px;
+    overflow: hidden;
     background: #e8eaf0;
 }
 
 .us-bar-fill-green {
     height: 100%;
-    border-radius: 30px;
+    min-width: 12px;
+    border-radius: 20px;
     background: rgb(21, 214, 21);
 }
 
 .us-bar-fill-yellow {
     height: 100%;
-    border-radius: 30px;
+    min-width: 12px;
+    border-radius: 20px;
     background: #f5c518;
 }
 
