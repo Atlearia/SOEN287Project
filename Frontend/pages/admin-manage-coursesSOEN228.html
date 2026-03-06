@@ -25,10 +25,10 @@
 
                 <div class="formrowwide1">
                     <div id="assessmentRows"> <!--assessemtn section to be repeated with content-->
-                        <div class="assessmentrow1" style="display:block; margin-bottom:5px;">
+                        <div class="assessmentrow1" style="display:block; margin-bottom:5px;" id="assessmentList">
 
                             <!--single assessment section content-->
-                            <div>
+                            <!-- <div>
                                 <div class="assessmentrow1">
                                     <div class="assessmentnamecol1">
                                         <label for="assessmentName1">Assessment Name</label>
@@ -123,7 +123,7 @@
                                         <input name="assessmentPercent[]" type="number" min="0" max="100" value="18">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
 
@@ -135,6 +135,7 @@
 
                 <div class="buttonrow1">
                     <button type="button" class="button clickable-box" id="addAssessmentButton">Add Assessment</button>
+                    <button type="button" class="button clickable-box" id="removeAssessmentButton">Delete Assessment</button>
                     <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id="edited">Save</a>
                 </div>
 
@@ -147,6 +148,44 @@
         var assessmentRows = document.getElementById("assessmentRows");
         var edited = document.getElementById("edited");
 
+        const assessmentList = document.getElementById("assessmentList")
+        const removeAssessmentButton = document.getElementById("removeAssessmentButton");
+        const assessments = [
+            {name: "Assignment 1",weight: 15},
+            {name: "Quiz 1", weight: 5},
+            {name: "Lab 1", weight: 10},
+            {name: "Test 1", weight: 8},
+            {name: "Test 2", weight: 14},
+            {name: "Final", weight: 30},
+            {name: "Project",weight: 18},
+        ]
+
+        function renderAssesment() {
+            assessmentList.innerHTML = "";
+            for(const assessment of assessments) {
+                const container = document.createElement('div');
+                container.innerHTML = `
+                                    <div class="assessmentrow1">
+                                        <div class="assessmentnamecol1">
+                                            <label for="assessmentName6">Assessment Name</label>
+                                            <input name="assessmentName[]" type="text" placeholder="" value="${assessment.name}">
+                                        </div>
+                                        <div class="assessmentweightcol1">
+                                            <label for="assessmentPercent6">Weight (%)</label>
+                                            <input name="assessmentPercent[]" type="number" min="0" max="100" value="${assessment.weight}">
+                                        </div>
+                                    </div>
+                                    <br>`;
+                assessmentList.appendChild(container);
+            }
+            
+        }
+        
+        removeAssessmentButton.addEventListener('click', () => {
+            assessments.pop();
+            renderAssesment();
+        })
+
         function message() {
             alert("Course Edited.");
         }
@@ -154,26 +193,28 @@
 
         addAssessmentButton.onclick = () => {
 
-            var newRow = document.createElement("div");
-            newRow.className = "assessmentrow1";
+            // var newRow = document.createElement("div");
+            // newRow.className = "assessmentrow1";
 
-            newRow.innerHTML = `
+            // newRow.innerHTML = `
             
-                                        <div class="assessmentnamecol1">
-                                <label for="assessmentName1">Assessment Name</label>
-                                <input id="assessmentName1" name="assessmentName[]" type="text" placeholder="">
-                            </div>
-                            <div class="assessmentweightcol1">
-                                <label for="assessmentPercent1">Weight (%)</label>
-                                <input id="assessmentPercent1" name="assessmentPercent[]" type="number" min="0"
-                                    max="100" value="">
-                            </div>
-            `
+            //                             <div class="assessmentnamecol1">
+            //                     <label for="assessmentName1">Assessment Name</label>
+            //                     <input id="assessmentName1" name="assessmentName[]" type="text" placeholder="">
+            //                 </div>
+            //                 <div class="assessmentweightcol1">
+            //                     <label for="assessmentPercent1">Weight (%)</label>
+            //                     <input id="assessmentPercent1" name="assessmentPercent[]" type="number" min="0"
+            //                         max="100" value="">
+            //                 </div>
+            // `
 
 
-            assessmentRows.appendChild(newRow);
+            // assessmentRows.appendChild(newRow);
 
-
+            assessments.push({name: "Assessment", weight: 0})
+            console.log(assessments)
+            renderAssesment();
         };
 
         var selection = document.getElementById("selectedCourse");
@@ -194,6 +235,7 @@
                 window.location.href = "admin-manage-coursesCOMP249.html";
             }
         }
+        renderAssesment();
     </script>
 </body>
 
