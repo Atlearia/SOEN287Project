@@ -124,6 +124,7 @@ function renderCourse() {
 }
 
 function renderAssesments() {
+    assessmentDashboard.innerHTML = ''; // clean up
     for (let assessment of assessments) {
         let container = document.createElement('tr');
         let StatusClass;
@@ -146,6 +147,12 @@ function renderAssesments() {
         `;
         assessmentDashboard.appendChild(container);
     }
+}
+
+function removeAssessment(courseCode) {
+    assessments = assessments.filter(assessment => assessment.course != courseCode)
+    console.log(assessments)
+    renderAssesments();
 }
 
 function logout() {
@@ -230,6 +237,7 @@ function removeCourse() {
             alert("Course doesn't exist!");
         }
         renderCourse();
+        removeAssessment(code);
         closeForm();
     })
 
