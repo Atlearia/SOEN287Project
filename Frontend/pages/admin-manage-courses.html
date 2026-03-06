@@ -193,24 +193,27 @@
 
         addAssessmentButton.onclick = () => {
 
-            var newRow = document.createElement("div");
-            newRow.className = "assessmentrow1";
+            // var newRow = document.createElement("div");
+            // newRow.className = "assessmentrow1";
 
-            newRow.innerHTML = `
+            // newRow.innerHTML = `
             
-                                        <div class="assessmentnamecol1">
-                                <label for="assessmentName1">Assessment Name</label>
-                                <input id="assessmentName1" name="assessmentName[]" type="text" placeholder="">
-                            </div>
-                            <div class="assessmentweightcol1">
-                                <label for="assessmentPercent1">Weight (%)</label>
-                                <input id="assessmentPercent1" name="assessmentPercent[]" type="number" min="0"
-                                    max="100" value="">
-                            </div>
-            `
+            //                             <div class="assessmentnamecol1">
+            //                     <label for="assessmentName1">Assessment Name</label>
+            //                     <input id="assessmentName1" name="assessmentName[]" type="text" placeholder="">
+            //                 </div>
+            //                 <div class="assessmentweightcol1">
+            //                     <label for="assessmentPercent1">Weight (%)</label>
+            //                     <input id="assessmentPercent1" name="assessmentPercent[]" type="number" min="0"
+            //                         max="100" value="">
+            //                 </div>
+            // `
 
 
-            assessmentRows.appendChild(newRow);
+            // assessmentRows.appendChild(newRow);
+            assessments.push({name: "Assessment", weight: 0})
+            console.log(assessments)
+            renderAssesment();
         };
 
 
