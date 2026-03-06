@@ -5,9 +5,9 @@ let courses = [
         code: "SOEN 287",
         title: "Web Programming",
         students: {
-          12345: {
+            12345: {
             average: 88.24
-          }
+            }
         },
         assessments: []
     },
@@ -15,9 +15,9 @@ let courses = [
         code: "COMP 249",
         title: "Introduction to OOP II",
         students: {
-          12345: {
+            12345: {
             average: 93.33
-          }
+            }
         },
         assessments: []
     },
@@ -25,9 +25,9 @@ let courses = [
         code: "SOEN 228",
         title: "System Hardware",
         students: {
-          12345: {
+            12345: {
             average: 88.00
-          }
+            }
         },
         assessments: []
     },
@@ -64,34 +64,34 @@ let assessments = [
 ]
 
 function enrollStudent(studentId, courseCode) {
-  for (const course of courses) {
-    if (course.code === courseCode) {
-      if (!(studentId in course.students)) {
-        course.students[studentId] = {average: 0};
-        return;
-      }
+    for (const course of courses) {
+        if (course.code === courseCode) {
+            if (!(studentId in course.students)) {
+                course.students[studentId] = {average: 0};
+                return;
+            }
+        }
     }
-  }
 }
 
 function checkCourseExist(code) {
-  if (!code) return false;
-  for (const course of courses) {
-    if (course.code.toUpperCase().replace(' ', '').trim() === code.toUpperCase().replace(' ', '').trim()) {
-      return true;
+    if (!code) return false;
+    for (const course of courses) {
+        if (course.code.toUpperCase().replace(' ', '').trim() === code.toUpperCase().replace(' ', '').trim()) {
+            return true;
+        }
     }
-  }
-  return false;
+    return false;
 }
 
 function unenrollStudent(studentId, courseCode) {
-  for (const course of courses) {
-    if (course.code === courseCode) {
-      if (studentId in course.students) {
-        delete course.students[studentId]
-      }
+    for (const course of courses) {
+        if (course.code === courseCode) {
+            if (studentId in course.students) {
+                delete course.students[studentId]
+            }
+        }
     }
-  }
 }
 
 // add dummy student
@@ -151,7 +151,7 @@ function renderAssesments() {
 function logout() {
     const logoutBtn = document.getElementById('logout-btn');
     logoutBtn.addEventListener('click', () => {
-        window.location.href = "../Authentication/index.html";
+        window.location.href = "../Authentication/SignIn.html";
     })
 }
 
