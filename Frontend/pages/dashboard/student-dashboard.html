@@ -13,16 +13,18 @@
 </head>
 <body>
     <!--TODO: Nav bar-->
+    <!-- Bootstrap offcanvas styling for responsiveness -->
     <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
-            <!-- <h3 class="logo">Dashboard</h3> -->
             <img src="../../assets/concordia2.png" alt="Concordia Logo" id="dashboard-logo">
             <!--Collapse button when the screen is less than medium size-->
             <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="offcanvas offcanvas-end" id="navbarScroll">
                 <div class="offcanvas-header">
+                    <!-- off canvas title part for the side navbar -->
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Dashboard</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -90,7 +92,7 @@
         <h3 class="course-card-title">Courses:</h3>
         <!--Add course card to this block-->
         <div class="course-block row row-cols-auto" id="courses"> 
-
+            <!-- all course on dashboard go here -->
         </div>
     </section>
 
@@ -108,7 +110,7 @@
                 </tr>
             </thead>
             <tbody id="assessments">
-
+                <!-- all assessment on dashboard go here -->
             </tbody>
         </table>
     </section>

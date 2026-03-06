@@ -168,11 +168,13 @@ body {
     background-color: var(--secondary-color);
 }
 
-.assessment-table tbody {/*add scroll to the table body*/
+/*add scroll to the table body*/
+.assessment-table tbody {
     display: block;
-    max-height: 300px;
+    max-height: 720px;
     overflow-y: auto;
 }
+
 .assessment-table thead, /*keep header in place*/
 .assessment-table tbody > tr { /* fix spacing of body content so that it alligns properly*/
     display: table;
