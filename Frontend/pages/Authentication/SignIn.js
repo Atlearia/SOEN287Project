@@ -28,7 +28,8 @@ loginbutton.addEventListener('click', function(){
 signup.addEventListener('click', function(){
     
     if (signup.checked){
-        
+        document.getElementById('studentloginform').reset();
+        document.getElementById('adminloginform').reset();
         document.getElementById('signin').style.display = 'none';
         document.getElementById('createAccount').style.display = 'block';
     }
