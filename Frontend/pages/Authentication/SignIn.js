@@ -212,7 +212,7 @@ form_student_login.addEventListener("submit",function(event){
             }
         }
      if (validity==true){
-        window.location.href="main.html"
+        window.location.href="Student-dashboard.html"
     }
     if (validity == false){
         
