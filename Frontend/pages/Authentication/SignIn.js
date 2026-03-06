@@ -250,7 +250,7 @@ form_admin_login.addEventListener("submit",function(event){
             }
         }
     if (validity){
-        window.location.href="admin-dashboard.html"
+        window.location.href="../admin-dashboard.html"
     }
     if (validity == false){
         document.getElementById('EmailAddressAdmin').setCustomValidity('Email or password is incorrect');
