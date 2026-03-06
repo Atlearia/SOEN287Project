@@ -286,7 +286,7 @@ function renderCourse() {
             // create a new html tag archor
             const container = document.createElement('a')
             container.classList.add('course-item', 'col', 'text-center');   // bootstrap classes
-            container.setAttribute('href', (`../${course.code.replace(' ', '')}.html`)) // set href to each course page (Hardcoded initially)
+            container.setAttribute('href', (`../Courses/${course.code.replace(' ', '')}.html`)) // set href to each course page (Hardcoded initially)
             
             // create like a template for each course card
             container.innerHTML = `

@@ -171,7 +171,7 @@ body {
 /*add scroll to the table body*/
 .assessment-table tbody {
     display: block;
-    max-height: 720px;
+    max-height: 300px;
     overflow-y: auto;
 }
 

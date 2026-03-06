@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Admin - Manage Courses</title>
-    <link rel="stylesheet" href="../css/admin-card-forms.css">
+    <link rel="stylesheet" href="../../css/admin/admin-card-forms.css">
 </head>
 
 <body>
@@ -17,8 +17,8 @@
                 <div class="formrowwide1">
                     <label for="selectedCourse">Course</label>
                     <select id="selectedCourse" class="bigcourseselect1">
-                        <option id="SOEN287">SOEN 287 - Web Programming</option>
-                        <option id="SOEN228" selected>SOEN 228 - System Hardware</option>
+                        <option id="SOEN287" selected>SOEN 287 - Web Programming</option>
+                        <option id="SOEN228">SOEN 228 - System Hardware</option>
                         <option id="COMP249">COMP 249 - Object Oriented Programming II</option>
                     </select>
                 </div>
@@ -28,6 +28,7 @@
                         <div class="assessmentrow1" style="display:block; margin-bottom:5px;" id="assessmentList">
 
                             <!--single assessment section content-->
+
                             <!-- <div>
                                 <div class="assessmentrow1">
                                     <div class="assessmentnamecol1">
@@ -36,11 +37,11 @@
                                     </div>
                                     <div class="assessmentweightcol1">
                                         <label for="assessmentPercent1">Weight (%)</label>
-                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="15">
+                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="13">
                                     </div>
                                 </div>
+                                <br>
                             </div>
-                            <br>
 
                             <div>
                                 <div class="assessmentrow1">
@@ -50,7 +51,7 @@
                                     </div>
                                     <div class="assessmentweightcol1">
                                         <label for="assessmentPercent2">Weight (%)</label>
-                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="5">
+                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="7">
                                     </div>
                                 </div>
                             </div>
@@ -60,11 +61,11 @@
                                 <div class="assessmentrow1">
                                     <div class="assessmentnamecol1">
                                         <label for="assessmentName3">Assessment Name</label>
-                                        <input name="assessmentName[]" type="text" placeholder="" value="Lab 1">
+                                        <input name="assessmentName[]" type="text" placeholder="" value="Test 2">
                                     </div>
                                     <div class="assessmentweightcol1">
                                         <label for="assessmentPercent3">Weight (%)</label>
-                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="10">
+                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="8">
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +79,7 @@
                                     </div>
                                     <div class="assessmentweightcol1">
                                         <label for="assessmentPercent4">Weight (%)</label>
-                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="8">
+                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="10">
                                     </div>
                                 </div>
                             </div>
@@ -88,11 +89,11 @@
                                 <div class="assessmentrow1">
                                     <div class="assessmentnamecol1">
                                         <label for="assessmentName5">Assessment Name</label>
-                                        <input name="assessmentName[]" type="text" placeholder="" value="Test 2">
+                                        <input name="assessmentName[]" type="text" placeholder="" value="Test 3">
                                     </div>
                                     <div class="assessmentweightcol1">
                                         <label for="assessmentPercent5">Weight (%)</label>
-                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="14">
+                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="12">
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +121,7 @@
                                     </div>
                                     <div class="assessmentweightcol1">
                                         <label for="assessmentPercent7">Weight (%)</label>
-                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="18">
+                                        <input name="assessmentPercent[]" type="number" min="0" max="100" value="20">
                                     </div>
                                 </div>
                             </div> -->
@@ -147,17 +148,16 @@
         var addAssessmentButton = document.getElementById("addAssessmentButton");
         var assessmentRows = document.getElementById("assessmentRows");
         var edited = document.getElementById("edited");
-
         const assessmentList = document.getElementById("assessmentList")
         const removeAssessmentButton = document.getElementById("removeAssessmentButton");
         const assessments = [
-            {name: "Assignment 1",weight: 15},
-            {name: "Quiz 1", weight: 5},
-            {name: "Lab 1", weight: 10},
-            {name: "Test 1", weight: 8},
-            {name: "Test 2", weight: 14},
+            {name: "Assignment 1",weight: 13},
+            {name: "Quiz 1", weight: 7},
+            {name: "Test 1", weight: 10},
+            {name: "Test 2", weight: 8},
+            {name: "Test 3", weight: 12},
             {name: "Final", weight: 30},
-            {name: "Project",weight: 18},
+            {name: "Project",weight: 20},
         ]
 
         function renderAssesment() {
@@ -211,11 +211,12 @@
 
 
             // assessmentRows.appendChild(newRow);
-
             assessments.push({name: "Assessment", weight: 0})
             console.log(assessments)
             renderAssesment();
         };
+
+
 
         var selection = document.getElementById("selectedCourse");
         var SOEN287 = document.getElementById("SOEN287");
@@ -235,6 +236,7 @@
                 window.location.href = "admin-manage-coursesCOMP249.html";
             }
         }
+
         renderAssesment();
     </script>
 </body>

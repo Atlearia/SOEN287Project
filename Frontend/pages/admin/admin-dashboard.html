@@ -4,16 +4,15 @@
 <head>
     <title>Admin Dashboard</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../Frontend\css\admin-dashboard.css">
+    <link rel="stylesheet" href="../../css/admin/admin-dashboard.css">
 </head>
 
 <body>
     <form action="" method="" class="dashboard-form">
         <header>
-            <img class="adjust" src="../../Frontend\assets\concordia2.png"
-                alt="Concordia Logo">
-                <a href ="../../Frontend\pages\Authentication\SignIn.html" class="adjust" style ="margin-left:auto; text-decoration:none;">
-            <p class="adjust clickable-box" id="logout-button">Log Out</p>
+            <img class="adjust" src="../../assets/concordia2.png" alt="Concordia Logo">
+            <a href="../Authentication\SignIn.html" class="adjust" style ="margin-left:auto; text-decoration:none;">
+                <p class="adjust clickable-box" id="logout-button" style ="margin-left:auto;">Log Out</p>
             </a>
         </header>
         <div id="body-container">
@@ -25,8 +24,7 @@
 
                 <a class="card-link" href="admin-course-creation.html">
                     <div class="dashboard-items clickable-box" id="create-course">
-                        <img src="../../Frontend\assets\clipboard.png"
-                            alt="create course img">
+                        <img src="../../assets/clipboard.png" alt="create course img">
                         <div class="subdashboard-items">
                             <p class="custom-title">Create Course</p>
                             <p style="font-size: 15px; font-weight: 400;">Add a new course</p>
@@ -38,8 +36,7 @@
 
                 <a class="card-link" href="admin-manage-courses.html">
                     <div class="dashboard-items clickable-box">
-                        <img class="image" src="../../Frontend\assets\checklist.png"
-                            alt="assessment manage">
+                        <img class="image" src="../../assets/checklist.png" alt="assessment manage">
                         <div class="subdashboard-items">
                             <p class="custom-title">Manage Courses</p>
                             <p style="font-size: 15px; font-weight: 400;">Edit course assessments</p>
@@ -50,7 +47,7 @@
 
                 <a class="card-link" href="admin-course-templates.html">
                     <div class="dashboard-items clickable-box">
-                        <img class="image folder-icon" src="../../Frontend\assets\folder.png"
+                        <img class="image folder-icon" src="../../assets/folder.png"
                             alt="coruse template stuff">
                         <div class="subdashboard-items">
                             <p class="custom-title">Course Templates</p>
@@ -62,8 +59,7 @@
 
                 <a class="card-link" href="admin-toggle-courses.html">
                     <div class="dashboard-items clickable-box">
-                        <img class="image" src="../../Frontend\assets\toggle.png.png"
-                            alt="course enabler">
+                        <img class="image" src="../../assets/toggle.png.png" alt="course enabler">
                         <div class="subdashboard-items">
                             <p class="custom-title">Toggle Courses</p>
                             <p style="font-size: 15px; font-weight: 400;">Course availability</p>
@@ -77,9 +73,33 @@
             <div id="usage-title">
                 <h3 class="custom-title usage-title2">Usage Summary -</h3>
                 <select id="selection">
+
+
+
+
+
+
+
                     <option id="SOEN287">SOEN 287</option>
-                    <option id="SOEN228" selected>SOEN 228</option>
+                    <option id="SOEN228">SOEN 228</option>
                     <option id="COMP249">COMP 249</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </select>
             </div>
             <hr>
@@ -90,14 +110,16 @@
                         <span class="us-card-icon">✏️</span>
                         <span class="us-card-title">Assessment Breakdown</span>
                     </div>
+
+
+                    <!--grade-->
                     <hr class="usage-hr">
                     <div class="us-card-content us-assessment-body">
                         <div class="us-completion-block">
-                            <div id="big-aah-number">23%</div>
+                            <div id="big-aah-number">17%</div>
                             <div class="us-completed-label">Completed</div>
                         </div>
 
-                        <!--grade-->
                         <div class="us-bars-block">
                             <div class="us-bar-row">
                                 <span class="us-bar-name">Assignment 1</span>
@@ -116,19 +138,19 @@
                             <div class="us-bar-row">
                                 <span class="us-bar-name">Test 1</span>
                                 <div class="us-bar-container-of-colour">
-                                    <div class="us-bar-fill-green" style="width:78%;"></div>
+                                    <div class="us-bar-fill-green" style="width:80%;"></div>
                                 </div>
-                                <span class="stats-letter">78%</span>
-                            </div>
-                            <div class="us-bar-row">
-                                <span class="us-bar-name">Lab 1</span>
-                                <div class="us-bar-container-of-colour">
-                                    <div class="us-bar-fill-green" style="width:90%;"></div>
-                                </div>
-                                <span class="stats-letter">90%</span>
+                                <span class="stats-letter">80%</span>
                             </div>
                             <div class="us-bar-row">
                                 <span class="us-bar-name">Test 2</span>
+                                <div class="us-bar-container-of-colour">
+                                    <div class="" style=""></div>
+                                </div>
+                                <span class="stats-letter">0%</span>
+                            </div>
+                            <div class="us-bar-row">
+                                <span class="us-bar-name">Test 3</span>
                                 <div class="us-bar-container-of-colour">
                                     <div class="" style=""></div>
                                 </div>
@@ -162,17 +184,18 @@
                     <div class="us-card-content us-list us-warn-list">
                         <div class="us-warn-item">
                             <span class="DANGER-icon">&#9888;</span>
+                            Test 2 average below 60%
+                        </div>
+                        <div class="us-warn-item">
+                            <span class="DANGER-icon">&#9888;</span>
+                            Test 3 average below 60%
+                        </div>
+                        <div class="us-warn-item">
+                            <span class="DANGER-icon">&#9888;</span>
                             Student(s) with Assignment 1 overdue
                         </div>
 
 
-
-
-
-                        <div class="us-warn-item">
-                            <span class="DANGER-icon">&#9888;</span>
-                            Test 2 average below 60%
-                        </div>
 
                     </div>
                 </div>
@@ -198,10 +221,9 @@
 
 
                     <hr class="usage-hr">
-
                     <div class="us-card-content us-list us-deadline-list">
-                        <div class="us-deadline-BOX" style="">&#x1F5D3; Apr 29 - Project</div>
-                        <div class="us-deadline-BOX" style="">&#x1F5D3; Jun 24 - Final</div>
+                        <div class="us-deadline-BOX" style="">&#x1F5D3; May 12 - Project</div>
+                        <div class="us-deadline-BOX" style="">&#x1F5D3; May 24 - Final</div>
                     </div>
                 </div>
             </div>
