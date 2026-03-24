@@ -205,6 +205,12 @@ body {
     background-color: lightcoral;
 }
 
+#idCard {
+    width: 230px;
+    height: 230px;
+    border-radius: 16px;
+}
+
 
 /* resposive area */
 /* when the screen is larger than 375px for responsiveness*/

@@ -331,6 +331,12 @@ function renderAssesments() {
     }
 }
 
+// settings page js
+const settingBtn = document.getElementById("settings-btn");
+settingBtn.addEventListener("click", () => {
+    window.location = "./settings.html";
+});
+
 // render all on load
 function render() {
     logout();
