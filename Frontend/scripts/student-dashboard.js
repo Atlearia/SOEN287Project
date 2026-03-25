@@ -333,9 +333,12 @@ function renderAssesments() {
 
 // settings page js
 const settingBtn = document.getElementById("settings-btn");
-settingBtn.addEventListener("click", () => {
-    window.location = "./settings.html";
-});
+if (settingBtn != null) {
+    settingBtn.addEventListener("click", () => {
+        window.location.href = "./settings.html";
+    });
+}
+
 
 // render all on load
 function render() {

@@ -58,6 +58,7 @@ body {
 
 #dashboard-logo {
     width: 200px;
+    max-width: 250px;
     max-height: 100%;
 }
 
@@ -210,6 +211,17 @@ body {
     height: 230px;
     border-radius: 16px;
 }
+
+#setting-backbtn {
+    width: 50px;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+#form-section{
+    min-height: calc(100vh - 400px);
+}
+
 
 
 /* resposive area */
