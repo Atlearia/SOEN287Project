@@ -6,7 +6,16 @@
       "instructor": "Alice",
       "term": "Winter 2026",
       "description": "This is a course",
-      "assessments": []
+      "assessments": [
+        {
+          "name": "project",
+          "weight": 30
+        },
+        {
+          "name": "test",
+          "weight": 10
+        }
+      ]
     },
     {
       "courseCode": "Soen 349",

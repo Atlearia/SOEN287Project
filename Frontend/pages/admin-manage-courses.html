@@ -17,9 +17,7 @@
                 <div class="formrowwide1">
                     <label for="selectedCourse">Course</label>
                     <select id="selectedCourse" class="bigcourseselect1">
-                        <option id="SOEN287" selected>SOEN 287 - Web Programming</option>
-                        <option id="SOEN228">SOEN 228 - System Hardware</option>
-                        <option id="COMP249">COMP 249 - Object Oriented Programming II</option>
+                    
                     </select>
                 </div>
 
@@ -138,27 +136,114 @@
                     <button type="button" class="button clickable-box" id="addAssessmentButton">Add Assessment</button>
                     <button type="button" class="button clickable-box" id="removeAssessmentButton">Delete Assessment</button>
                     <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id="edited">Save</a>
+                    <button type="submit" class="backlink mainbutton clickable-box">Save</button>
                 </div>
+                
+                <script> 
+                    const form = document.getElementById("manageCourseForm");
 
+                    form.addEventListener("submit", function(event){
+                        event.preventDefault(); // prevent page reload
+
+                        // Get values from inputs
+                        const names = document.getElementsByName("assessmentName[]");
+                        const weights = document.getElementsByName("assessmentPercent[]");
+                        const assessments = [];
+                        //put the info of the frm into an array
+                        for (let i = 0; i < names.length; i++) {
+                            assessments.push({
+                                name: names[i].value,
+                                weight: parseFloat(weights[i].value)
+                            });
+                        }
+                        // get selected course
+                        const courseCode = document.getElementById("selectedCourse").value;
+
+                        //alert("Assesments Saved.");
+                        
+                        //save data to back end
+                        fetch("/update/course/assessments", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({courseCode:courseCode,assessments: assessments})
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("Assesment saved:", data);
+                            alert("Assesment Saved.");
+                            loadAssessmentsForCourse(courseCode);//reset the form
+                        })
+                        .catch(error => {
+                            console.error("Error saving Assesments:", error);
+                        });
+
+                        loadAssessmentsForCourse(courseCode); // reset the form
+                    });
+                    
+                </script>
             </form>
         </section>
     </main>
 
+    <script>
+        async function loadCourses() {
+        try {
+            const response = await fetch("/get/courses");
+            const data = await response.json();
+
+            const courses = data.courses;
+
+            const select = document.getElementById("selectedCourse");
+            select.innerHTML = ""; // clear existing options
+
+            courses.forEach(course => {
+                const option = document.createElement("option");
+
+                option.value = course.courseCode; //make a value the course code so that when sending to back end it knows which course to save to
+                option.textContent = `${course.courseCode} - ${course.courseName}`;
+
+                select.appendChild(option);
+            });
+
+        } catch (error) {
+            console.error("Error loading courses:", error);
+        }
+    }
+    loadCourses();
+    </script>
+    <script>
+        async function loadAssessmentsForCourse(courseCode) {
+        try {
+            const response = await fetch("/get/courses");
+            const data = await response.json();
+
+            const course = data.courses.find(c => c.courseCode === courseCode);
+
+            if (!course) return;
+
+            //clear the current assesments in the ui
+            assessments.length = 0;
+
+            // copy backend assessments into an array
+            course.assessments.forEach(a => assessments.push(a));
+
+            // update UI to reflect backend data
+            renderAssesment();
+
+        } catch (error) {
+            console.error("Error loading assessments:", error);
+        }
+    }
+    </script>
     <script>
         var addAssessmentButton = document.getElementById("addAssessmentButton");
         var assessmentRows = document.getElementById("assessmentRows");
         var edited = document.getElementById("edited");
         const assessmentList = document.getElementById("assessmentList")
         const removeAssessmentButton = document.getElementById("removeAssessmentButton");
-        const assessments = [
-            {name: "Assignment 1",weight: 13},
-            {name: "Quiz 1", weight: 7},
-            {name: "Test 1", weight: 10},
-            {name: "Test 2", weight: 8},
-            {name: "Test 3", weight: 12},
-            {name: "Final", weight: 30},
-            {name: "Project",weight: 20},
-        ]
+        const assessments = [];//store the assessments
 
         function renderAssesment() {
             assessmentList.innerHTML = "";
@@ -218,26 +303,23 @@
 
 
 
-        var selection = document.getElementById("selectedCourse");
-        var SOEN287 = document.getElementById("SOEN287");
-        var SOEN228 = document.getElementById("SOEN228");
-        var COMP249 = document.getElementById("COMP249");
+        const CSelector = document.getElementById("selectedCourse")
+        CSelector.addEventListener("change", function () {
+            const courseCode = this.value;
+            loadAssessmentsForCourse(courseCode);
+        });
 
-        selection.onchange = () => {
-            if (SOEN287.selected) {
-                window.location.href = "admin-manage-courses.html";
-            }
+        async function initialpage() {
+            await loadCourses();
 
-            else if (SOEN228.selected) {
-                window.location.href = "admin-manage-coursesSOEN228.html";
-            }
+            const select = document.getElementById("selectedCourse");
 
-            else if (COMP249.selected) {
-                window.location.href = "admin-manage-coursesCOMP249.html";
+            if (select.value) {
+                loadAssessmentsForCourse(select.value);
             }
         }
 
-        renderAssesment();
+        initialpage();
     </script>
 </body>
 

@@ -63,6 +63,40 @@ const server = http.createServer((req, res) => {
 
     return;
   }
+  if (req.method === "POST" && req.url === "/update/course/assessments") {
+    let body = "";
+
+    req.on("data", chunk => body += chunk);
+
+    req.on("end", () => {
+        try {
+            const { courseCode, assessments } = JSON.parse(body);
+
+            // find the course
+            const course = data.courses.find(c => c.courseCode === courseCode);
+
+            if (!course) {
+              res.statusCode = 404;
+              return res.end("Course not found");
+            }
+
+            // update assessments
+            course.assessments = assessments;
+
+            // save to file
+            fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify(course));
+
+        } catch (err) {
+            res.statusCode = 400;
+            res.end("Invalid JSON");
+        }
+    });
+
+    return;
+  }
   let filePath = req.url === "/"
     ? path.join(publicDir, "pages","Authentication","SignIn.html")
     : path.join(publicDir, req.url);
