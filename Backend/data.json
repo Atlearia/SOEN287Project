@@ -1,0 +1,55 @@
+{
+  "courses": [
+    {
+      "courseCode": "Soen287",
+      "courseName": "Web",
+      "instructor": "Alice",
+      "term": "Winter 2026",
+      "description": "This is a course",
+      "assessments": [
+        {
+          "name": "project",
+          "weight": 30
+        },
+        {
+          "name": "test",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "courseCode": "Soen 349",
+      "courseName": "Web2",
+      "instructor": "Bob",
+      "term": "Winter 2026",
+      "description": "This is another course",
+      "assessments": []
+    }
+  ],
+  "students": [
+    {
+      "First_Name_": "a",
+      "Last_Name_": "a",
+      "Email_": "s@1",
+      "password_": "1",
+      "id": "S0001",
+      "coursesEnrolled": []
+    }
+  ],
+  "admins": [
+    {
+      "First_Name_": "q",
+      "Last_Name_": "q",
+      "Email_": "a@3",
+      "password_": "2",
+      "id": "A0001"
+    },
+    {
+      "First_Name_": "r",
+      "Last_Name_": "r",
+      "Email_": "a@2",
+      "password_": "3",
+      "id": "A0002"
+    }
+  ]
+}
