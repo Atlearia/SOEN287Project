@@ -13,7 +13,7 @@
             <h1 class="title1">Create Course</h1>
             <hr class="line">
 
-            <form class="form1">
+            <form class="form1" id="createCourseForm">
                 <div class="formrow1">
                     <label for="courseCode">Course Code</label>
                     <input id="courseCode" type="text" placeholder="Ex: SOEN 287">
@@ -22,6 +22,11 @@
                 <div class="formrow1">
                     <label for="courseName">Course Name</label>
                     <input id="courseName" type="text" placeholder="">
+                </div>
+
+                <div class="formrow1">
+                    <label for="InstructorName">Instructor</label>
+                    <input id="InstructorName" type="text" placeholder="">
                 </div>
 
                 <div class="formrow1">
@@ -43,14 +48,51 @@
 
                 <div class="buttonrow1">
                     <a href="admin-dashboard.html" class="backlink clickable-box">Cancel</a>
-                    <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id ="created">Create Course</a>
+                    <button type="submit" class="backlink mainbutton clickable-box">Create Course</button>
                 </div>
                 <script> 
-                    var created = document.getElementById("created");
-                    function message() {
+                    const form = document.getElementById("createCourseForm");
+
+                    form.addEventListener("submit", function(event){
+                        event.preventDefault(); // prevent page reload
+
+                        // Get values from inputs
+                        const courseCode = document.getElementById("courseCode").value;
+                        const courseName = document.getElementById("courseName").value;
+                        const instructor = document.getElementById("InstructorName").value;
+                        const term = document.getElementById("term").value;
+                        const description = document.getElementById("desc").value;
+                        
                         alert("Course Created.");
-                    }
-                    created.onclick = message;
+                        const newCourse = {
+                            courseCode,
+                            courseName,
+                            instructor,
+                            term,
+                            description,
+                            assessments: [] // empty array for assessments will be added to later
+                        };
+                        //save data to back end
+                        fetch("/add/courses", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(newCourse)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("Course saved:", data);
+                            alert("Course Created.");
+                            form.reset();
+                        })
+                        .catch(error => {
+                            console.error("Error saving course:", error);
+                        });
+
+                        form.reset(); // clear the form
+                    });
+                    
                 </script>
             </form>
         </section>
