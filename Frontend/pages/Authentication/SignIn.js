@@ -297,6 +297,7 @@ form_student_login.addEventListener("submit", async function(event){
 
         if (validStudent) {
             // redirect if login is correct
+            //stores the id and the type of user
             const identification = validStudent.id;
             sessionStorage.setItem("id",identification);
             sessionStorage.setItem("role","student");
@@ -332,6 +333,10 @@ form_admin_login.addEventListener("submit", async function(event){
 
         if (validAdmin) {
             // redirect if login is correct
+            //stores the id and the type of user
+            const identificationAdmin = validAdmin.id;
+            sessionStorage.setItem("id",identificationAdmin);
+            sessionStorage.setItem("role","student");
             window.location.href = "/pages/admin-dashboard.html";
         } else {
             // show invalid login
