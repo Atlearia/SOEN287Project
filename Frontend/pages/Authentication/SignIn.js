@@ -297,6 +297,9 @@ form_student_login.addEventListener("submit", async function(event){
 
         if (validStudent) {
             // redirect if login is correct
+            const identification = data.students.id;
+            sessionStorage.setItem("id",identification);
+            sessionStorage.setItem("role","student");
             window.location.href = "/pages/dashboard/student-dashboard.html";
         } else {
             // show invalid login
