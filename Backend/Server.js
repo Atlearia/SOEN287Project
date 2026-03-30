@@ -109,9 +109,24 @@ const server = http.createServer((req, res) => {
       res.statusCode = 404;
       return res.end('Student not found!');
     }
+    
+    const enrollCourseCode = student.coursesEnrolled; // get all the enrollment courses
+    const relevantCourses = data.courses.filter(c => enrollCourseCode.includes(c.courseCode)).map(c => ({
+      code: c.courseCode,
+      title: c.courseName,
+      assessments: c.assessments
+    }));
+
+    const respone = {
+      id: student.id,
+      email: student.Email_,
+      courses: relevantCourses
+    };
     res.setHeader("Content-Type", "application/json");
-    return res.end(JSON.stringify(student));
+    return res.end(JSON.stringify(respone));
+
   }
+  //================================================================================
 
   let filePath = req.url === "/"
     ? path.join(publicDir, "pages","Authentication","SignIn.html")
