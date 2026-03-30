@@ -1,75 +1,96 @@
 // global dummy variables
-let courses = [    
-    {
-        code: "SOEN 287",
-        title: "Web Programming",
-        students: {
-            12345: {
-            average: 88.24
-            }
-        },
-        assessments: []
-    },
-    {
-        code: "COMP 249",
-        title: "Introduction to OOP II",
-        students: {
-            12345: {
-            average: 93.33
-            }
-        },
-        assessments: []
-    },
-    {
-        code: "SOEN 228",
-        title: "System Hardware",
-        students: {
-            12345: {
-            average: 88.00
-            }
-        },
-        assessments: []
-    },
-    {
-        code: "COMP 232",
-        title: "Mathematic for Computer Science",
-        students: {
-        },
-        assessments: []
-    }
-]
+// let courses = [    
+//     {
+//         code: "SOEN 287",
+//         title: "Web Programming",
+//         students: {
+//             12345: {
+//             average: 88.24
+//             }
+//         },
+//         assessments: []
+//     },
+//     {
+//         code: "COMP 249",
+//         title: "Introduction to OOP II",
+//         students: {
+//             12345: {
+//             average: 93.33
+//             }
+//         },
+//         assessments: []
+//     },
+//     {
+//         code: "SOEN 228",
+//         title: "System Hardware",
+//         students: {
+//             12345: {
+//             average: 88.00
+//             }
+//         },
+//         assessments: []
+//     },
+//     {
+//         code: "COMP 232",
+//         title: "Mathematic for Computer Science",
+//         students: {
+//         },
+//         assessments: []
+//     }
+// ]
 
-let assessments = [
-    {course: "COMP 249", Name: "Assignment 1", DueDate: "January 1st 2026", DueDateComp: new Date('2026-01-1'), weight: 10, completed: false, grade: 0},
-    {course: "COMP 249", Name: "Assignment 2", DueDate: "January 11th 2026", DueDateComp: new Date('2026-01-11'), weight: 5, completed: true, grade: 100},
-    {course: "COMP 249", Name: "Test 2", DueDate: "Febuary 22nd 2026", DueDateComp: new Date('2026-02-22'), weight: 20, completed: false, grade: 0},
-    {course: "COMP 249", Name: "Test 1", DueDate: "Febuary 2nd 2026", DueDateComp: new Date('2026-02-2'), weight: 10, completed: true, grade: 80},
-    {course: "COMP 249", Name: "Test 3", DueDate: "March 4th 2026", DueDateComp: new Date('2026-03-4'), weight: 15, completed: true, grade: 100},
-    {course: "COMP 249", Name: "Final", DueDate: "June 24th 2026", DueDateComp: new Date('2026-06-24'), weight: 40, completed: false, grade: 10} ,
-    {course: "SOEN 287", Name: "Assignment 1", DueDate: "January 2nd 2026", DueDateComp: new Date('2026-01-2'), weight: 13, completed: false, grade: 90},
-    {course: "SOEN 287", Name: "Quiz 1", DueDate: "January 29th 2026", DueDateComp: new Date('2026-01-29'), weight: 7, completed: true, grade: 100},
-    {course: "SOEN 287", Name: "Test 2", DueDate: "Febuary 13th 2026", DueDateComp: new Date('2026-02-13'), weight: 8, completed: false, grade: 7},
-    {course: "SOEN 287", Name: "Test 1", DueDate: "Febuary 3rd 2026", DueDateComp: new Date('2026-02-3'), weight: 10, completed: true, grade: 80},
-    {course: "SOEN 287", Name: "Test 3", DueDate: "March 3rd 2026", DueDateComp: new Date('2026-03-3'), weight: 12, completed: false, grade: 60},
-    {course: "SOEN 287", Name: "Final", DueDate: "May 24th 2026", DueDateComp: new Date('2026-05-24'), weight: 30, completed: false, grade: 27} ,
-    {course: "SOEN 287", Name: "Project", DueDate: "May 12th 2026", DueDateComp: new Date('2026-05-12'), weight: 20, completed: false, grade: 63}, 
-    {course: "SOEN 228", Name: "Assignment 1", DueDate: "January 3rd 2026", DueDateComp: new Date('2026-01-3'), weight: 15, completed: false, grade: 40},
-    {course: "SOEN 228", Name: "Quiz 1", DueDate: "January 21st 2026", DueDateComp: new Date('2026-01-21'), weight: 5, completed: true, grade: 100},
-    {course: "SOEN 228", Name: "Lab 1", DueDate: "Febuary 26th 2026", DueDateComp: new Date('2026-02-26'), weight: 10, completed: true, grade: 90},
-    {course: "SOEN 228", Name: "Test 1", DueDate: "Febuary 7th 2026", DueDateComp: new Date('2026-02-7'), weight: 8, completed: true, grade: 78},
-    {course: "SOEN 228", Name: "Test 2", DueDate: "March 2nd 2026", DueDateComp: new Date('2026-03-2'), weight: 14, completed: false, grade: 57},
-    {course: "SOEN 228", Name: "Final", DueDate: "May 2nd 2026", DueDateComp: new Date('2026-05-2'), weight: 30, completed: false, grade: 95} ,
-    {course: "SOEN 228", Name: "Project", DueDate: "April 29th 2026", DueDateComp: new Date('2026-04-29'), weight: 18, completed: false, grade: 32}, 
-]
+// let assessments = [
+//     {course: "COMP 249", Name: "Assignment 1", DueDate: "January 1st 2026", DueDateComp: new Date('2026-01-1'), weight: 10, completed: false, grade: 0},
+//     {course: "COMP 249", Name: "Assignment 2", DueDate: "January 11th 2026", DueDateComp: new Date('2026-01-11'), weight: 5, completed: true, grade: 100},
+//     {course: "COMP 249", Name: "Test 2", DueDate: "Febuary 22nd 2026", DueDateComp: new Date('2026-02-22'), weight: 20, completed: false, grade: 0},
+//     {course: "COMP 249", Name: "Test 1", DueDate: "Febuary 2nd 2026", DueDateComp: new Date('2026-02-2'), weight: 10, completed: true, grade: 80},
+//     {course: "COMP 249", Name: "Test 3", DueDate: "March 4th 2026", DueDateComp: new Date('2026-03-4'), weight: 15, completed: true, grade: 100},
+//     {course: "COMP 249", Name: "Final", DueDate: "June 24th 2026", DueDateComp: new Date('2026-06-24'), weight: 40, completed: false, grade: 10} ,
+//     {course: "SOEN 287", Name: "Assignment 1", DueDate: "January 2nd 2026", DueDateComp: new Date('2026-01-2'), weight: 13, completed: false, grade: 90},
+//     {course: "SOEN 287", Name: "Quiz 1", DueDate: "January 29th 2026", DueDateComp: new Date('2026-01-29'), weight: 7, completed: true, grade: 100},
+//     {course: "SOEN 287", Name: "Test 2", DueDate: "Febuary 13th 2026", DueDateComp: new Date('2026-02-13'), weight: 8, completed: false, grade: 7},
+//     {course: "SOEN 287", Name: "Test 1", DueDate: "Febuary 3rd 2026", DueDateComp: new Date('2026-02-3'), weight: 10, completed: true, grade: 80},
+//     {course: "SOEN 287", Name: "Test 3", DueDate: "March 3rd 2026", DueDateComp: new Date('2026-03-3'), weight: 12, completed: false, grade: 60},
+//     {course: "SOEN 287", Name: "Final", DueDate: "May 24th 2026", DueDateComp: new Date('2026-05-24'), weight: 30, completed: false, grade: 27} ,
+//     {course: "SOEN 287", Name: "Project", DueDate: "May 12th 2026", DueDateComp: new Date('2026-05-12'), weight: 20, completed: false, grade: 63}, 
+//     {course: "SOEN 228", Name: "Assignment 1", DueDate: "January 3rd 2026", DueDateComp: new Date('2026-01-3'), weight: 15, completed: false, grade: 40},
+//     {course: "SOEN 228", Name: "Quiz 1", DueDate: "January 21st 2026", DueDateComp: new Date('2026-01-21'), weight: 5, completed: true, grade: 100},
+//     {course: "SOEN 228", Name: "Lab 1", DueDate: "Febuary 26th 2026", DueDateComp: new Date('2026-02-26'), weight: 10, completed: true, grade: 90},
+//     {course: "SOEN 228", Name: "Test 1", DueDate: "Febuary 7th 2026", DueDateComp: new Date('2026-02-7'), weight: 8, completed: true, grade: 78},
+//     {course: "SOEN 228", Name: "Test 2", DueDate: "March 2nd 2026", DueDateComp: new Date('2026-03-2'), weight: 14, completed: false, grade: 57},
+//     {course: "SOEN 228", Name: "Final", DueDate: "May 2nd 2026", DueDateComp: new Date('2026-05-2'), weight: 30, completed: false, grade: 95} ,
+//     {course: "SOEN 228", Name: "Project", DueDate: "April 29th 2026", DueDateComp: new Date('2026-04-29'), weight: 18, completed: false, grade: 32}, 
+// ]
 
-assessments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //order the assesments based on date
+// assessments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //order the assesments based on date
 
 // add dummy student
-const student = {
-    id: "12345",
-    name: "Hero Kong",
-    courses: {},
+// const student = {
+//     id: "12345",
+//     name: "Hero Kong",
+//     courses: {},
+// }
+
+// Query data
+async function loadStudent() {
+    const id = sessionStorage.getItem('id');
+    const role = sessionStorage.getItem('role');
+
+    if (!id || !role !== 'student') {
+        window.location.href = '/';
+        return;
+    }
+
+    const res = await fetch(`/dashboard/student/${id}`);
+    if (!res.ok) {
+        alert('Profile not working!');
+        return
+    }
+
+    const student = await res.json();
+    render(student);
 }
+
 
 // get 2 mains document 
 const coursesDashboard = document.getElementById('courses');    // courses dashboard
@@ -104,7 +125,7 @@ function checkCourseExist(code) {
     if (!code) return false;    // if the course pass in empty
     for (const course of courses) {
         // check if the course enter is existed
-        if (course.code.toUpperCase().replace(' ', '').trim() === code.toUpperCase().replace(' ', '').trim()) {
+        if (course.code.toUpperCase().replace(/\s+/g, '').trim() === code.toUpperCase().replace(/\s+/g, '').trim()) {
             return true;
         }
     }
@@ -268,6 +289,7 @@ function logout() {
     const logoutBtn = document.getElementById('logout-btn');
     // add event listener to the button on click go to sign in page
     logoutBtn.addEventListener('click', () => {
+        sessionStorage.clear();
         window.location.href = "../Authentication/SignIn.html";
     })
 }
@@ -276,7 +298,7 @@ function logout() {
 /**
  * Render course to the dashbaord
  */
-function renderCourse() {
+function renderCourse(student) {
     // reset each time this function call
     coursesDashboard.innerHTML = '';
 
@@ -302,7 +324,7 @@ function renderCourse() {
 /**
  * Render assessments to the dashboard of the assessment
  */
-function renderAssesments() {
+function renderAssesments(student) {
     assessmentDashboard.innerHTML = ''; // clean up and reset the dashboard everytime call (EXPENSIVE on backend)
     // loop through all assessments
     for (let assessment of assessments) {
@@ -341,13 +363,13 @@ if (settingBtn != null) {
 
 
 // render all on load
-function render() {
-    logout();
-    renderCourse();
-    renderAssesments()
-    addCourse();
-    removeCourse();
+function render(student) {
+    renderCourse(student);
+    renderAssesments(student)
 }
 
-render();
+logout();
+addCourse();
+removeCourse();
+render(student);
 

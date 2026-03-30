@@ -24,6 +24,7 @@ if (!data.students) data.students = [];
 if (!data.admins) data.admins = [];
 
 const server = http.createServer((req, res) => {
+
   if (req.method === "GET" && req.url.startsWith("/get/")) {
     const type = req.url.split("/")[2];
 
@@ -35,6 +36,7 @@ const server = http.createServer((req, res) => {
     res.setHeader("Content-Type", "application/json");
     return res.end(JSON.stringify({ [type]: data[type] }));
   }
+
   if (req.method === "POST" && req.url.startsWith("/add/")) {
     const type = req.url.split("/")[2];
 
@@ -63,6 +65,7 @@ const server = http.createServer((req, res) => {
 
     return;
   }
+
   if (req.method === "POST" && req.url === "/update/course/assessments") {
     let body = "";
 
@@ -97,6 +100,19 @@ const server = http.createServer((req, res) => {
 
     return;
   }
+
+  // Dashboard Routing
+  if (req.method === "GET" && req.url.startsWith("/dashboard/student/")) {
+    const studentId = req.url.split('/')[3];
+    const student  = data.students.find( s => s.id === studentId);
+    if (!student) {
+      res.statusCode = 404;
+      return res.end('Student not found!');
+    }
+    res.setHeader("Content-Type", "application/json");
+    return res.end(JSON.stringify(student));
+  }
+
   let filePath = req.url === "/"
     ? path.join(publicDir, "pages","Authentication","SignIn.html")
     : path.join(publicDir, req.url);
@@ -118,6 +134,7 @@ const server = http.createServer((req, res) => {
     res.end(content);
   });
 });
+
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
