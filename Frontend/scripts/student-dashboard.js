@@ -76,7 +76,7 @@ async function loadStudent() {
     const id = sessionStorage.getItem('id');
     const role = sessionStorage.getItem('role');
 
-    if (!id || !role !== 'student') {
+    if (!id || role !== 'student') {
         window.location.href = '/';
         return;
     }
