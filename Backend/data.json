@@ -1,14 +1,14 @@
 {
   "courses": [
     {
-      "courseCode": "Soen287",
+      "courseCode": "SOEN 287",
       "courseName": "Web",
       "instructor": "Alice",
       "term": "Winter 2026",
       "description": "This is a course",
       "assessments": [
         {
-          "name": "project",
+          "name": "projectadsadss",
           "weight": 30
         },
         {
@@ -24,8 +24,26 @@
       "term": "Winter 2026",
       "description": "This is another course",
       "assessments": []
+    },
+    {
+      "courseCode": "COMP 249",
+      "courseName": "OOP II",
+      "instructor": "Holy Cow",
+      "term": "Winter 2026",
+      "description": "This is another course",
+      "assessments": [
+        {
+          "name": "Testing",
+          "dueDate": "2026-04-25",
+          "weight": 30,
+          "grade": {
+            "S0002" : null
+          }
+        }
+      ]
     }
   ],
+
   "students": [
     {
       "First_Name_": "a",
@@ -34,8 +52,17 @@
       "password_": "1",
       "id": "S0001",
       "coursesEnrolled": ["Soen287"]
+    },
+    {
+      "First_Name_": "Dummy",
+      "Last_Name_": "Test",
+      "Email_": "s@2",
+      "password_": "2",
+      "id": "S0002",
+      "coursesEnrolled": ["COMP 249", "SOEN 287"]
     }
   ],
+
   "admins": [
     {
       "First_Name_": "q",
@@ -50,6 +77,48 @@
       "Email_": "a@2",
       "password_": "3",
       "id": "A0002"
+    }
+  ],
+  "templates": [
+    {
+      "templateName": "adsdsadsa",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
+    },
+    {
+      "templateName": "de",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
+    },
+    {
+      "templateName": "",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
+    },
+    {
+      "templateName": "sdaads",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
     }
   ]
 }

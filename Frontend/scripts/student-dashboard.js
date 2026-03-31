@@ -3,7 +3,6 @@
 async function loadStudent() {
     const id = sessionStorage.getItem('id');
     const role = sessionStorage.getItem('role');
-    console.log(id)
     if (!id || role !== 'student') {
         window.location.href = '/';
         return;
@@ -231,6 +230,7 @@ function renderCourse(student) {
     // reset each time this function call
     coursesDashboard.innerHTML = '';
     // loop through all the courses
+    console.log(student.courses)
     for (const course of student.courses) {
             const container = document.createElement('a')
             container.classList.add('course-item', 'col', 'text-center');   // bootstrap classes
@@ -254,7 +254,6 @@ function renderCourse(student) {
 function renderAssesments(student) {
     assessmentDashboard.innerHTML = ''; // clean up and reset the dashboard everytime call (EXPENSIVE on backend)
     // loop through all assessments
-    console.log(student.courses);
     const assessments = student.courses.flatMap( course => course.assessments.map( a => ( {
         ...a,
         code : course.code
@@ -263,25 +262,24 @@ function renderAssesments(student) {
         let container = document.createElement('tr');   // create a table row for each assessment
         let StatusClass;    // css handling
         let StatusText;     // text handling
-
+        const DueDateComp = new Date(assessment.dueDate);
         // check the status of each assessment and update text and styling
-        // if (assessment.completed) {
-        //     StatusText = "Complete";
-        //     StatusClass = "complete";
-        // } else if (!assessment.completed && assessment.DueDateComp< new Date()) {
-        //     StatusText = "Late";
-        //     StatusClass = "late";
-        // } else {
-        //     StatusText = "Pending";
-        //     StatusClass = "pending";
-        // }
+        if (assessment.grade) {
+            StatusText = "Complete";
+            StatusClass = "complete";
+        } else if (!assessment.grade && DueDateComp< new Date()) {
+            StatusText = "Late";
+            StatusClass = "late";
+        } else {
+            StatusText = "Pending";
+            StatusClass = "pending";
+        }
         container.innerHTML = `
                         <td>${assessment.code}</td>
                         <td>${assessment.name}</td>
-                        <td>${assessment.weight}</td>
-                        
+                        <td>${assessment.dueDate}</td>
+                        <td><span class="assessment-status ${StatusClass}" id="assessment-status">${StatusText}</span></td>
         `;
-        //<td><span class="assessment-status ${StatusClass}" id="assessment-status">${StatusText}</span></td>
         assessmentDashboard.appendChild(container); // append it to the dashboard
     }
 }

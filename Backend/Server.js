@@ -2,8 +2,8 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const hostname = '127.0.0.1';
-const port = 3003;
+const hostname = '0.0.0.0';
+const port = process.env.PORT || 3003;//for render stuf, if doesnt work just dont env it and setup antoher entry 
 
 const dataFile = path.join(__dirname, 'data.json');
 const publicDir = path.join(__dirname, '../Frontend');
@@ -114,7 +114,12 @@ const server = http.createServer((req, res) => {
     const relevantCourses = data.courses.filter(c => enrollCourseCode.includes(c.courseCode)).map(c => ({
       code: c.courseCode,
       title: c.courseName,
-      assessments: c.assessments
+      assessments: c.assessments.map(a => ({
+        name: a.name,
+        weight: a.weight,
+        dueDate: a.dueDate || null,
+        grade: a.grades?.[studentId] ?? null
+      }))
     }));
 
     const respone = {
