@@ -169,6 +169,13 @@ body {
     background-color: var(--secondary-color);
 }
 
+.assessment-table td {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /*add scroll to the table body*/
 .assessment-table tbody {
     display: block;

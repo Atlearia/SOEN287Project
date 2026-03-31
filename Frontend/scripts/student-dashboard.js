@@ -118,7 +118,7 @@ function addCourse() {
     cancelBtn.addEventListener('click', closeForm); // form card cancel button
 
     // check if the user submit the form
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault(); // prevent from reloading the page in case nothing save for the user
 
         const code = document.getElementById('addCourseCode').value.trim(); // grab the code from the input box and remove spaces on the side
@@ -129,11 +129,35 @@ function addCourse() {
             return;
         }
 
-        // check if the course exist
-        if(checkCourseExist(code)) {
-            enrollStudent(student.id, code);
-        }else{
-            alert("Course doesn't exist!");
+        try {
+            const res = await fetch('/enroll', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    studentId: student.id,
+                    courseCode: code
+                })
+            })
+
+            if (res.status === 404) {
+                alert("Course doesn't exist!");
+                closeForm();
+                return;
+            }
+
+            if (!res.ok) {
+                alert("Something went wrong!")
+                closeForm();
+                return;
+            }
+
+            const studentRes = await fetch(`/dashboard/student/${student.id}`)
+            const updatedStudent = await studentRes.json();
+            renderCourse(updatedStudent);
+            renderAssesments(updatedStudent);
+
+        }catch(err) {
+            console.error('Enroll error', err);
         }
 
         // render dashboard again once the course is added
@@ -230,7 +254,6 @@ function renderCourse(student) {
     // reset each time this function call
     coursesDashboard.innerHTML = '';
     // loop through all the courses
-    console.log(student.courses)
     for (const course of student.courses) {
             const container = document.createElement('a')
             container.classList.add('course-item', 'col', 'text-center');   // bootstrap classes
@@ -240,9 +263,8 @@ function renderCourse(student) {
             container.innerHTML = `
                                 <h3>${course.code}</h3>
                                 <p>${course.title}</p>
-                                
+                                <span class="average">Average: ${course.average}</span>
                                 `;
-            //<span class="average">Average: ${course.students[student.id].average}</span>
             coursesDashboard.appendChild(container);    // append it to the main dashboard
         }
     
@@ -258,19 +280,24 @@ function renderAssesments(student) {
         ...a,
         code : course.code
     } )))
+    
     for (let assessment of assessments) {
         let container = document.createElement('tr');   // create a table row for each assessment
         let StatusClass;    // css handling
         let StatusText;     // text handling
-        const DueDateComp = new Date(assessment.dueDate);
+        const dueDate = assessment.dueDate;
         // check the status of each assessment and update text and styling
-        if (assessment.grade) {
+        if (assessment.grade != null) {
             StatusText = "Complete";
             StatusClass = "complete";
-        } else if (!assessment.grade && DueDateComp< new Date()) {
+        } else if (!assessment.grade && new Date(dueDate)< new Date()) {
             StatusText = "Late";
             StatusClass = "late";
-        } else {
+        } else if(!dueDate) {
+            StatusText = "No Date";
+            StatusClass = "pending";
+        } 
+        else {
             StatusText = "Pending";
             StatusClass = "pending";
         }

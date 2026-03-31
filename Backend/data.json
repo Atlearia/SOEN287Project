@@ -36,8 +36,8 @@
           "name": "Testing",
           "dueDate": "2026-04-25",
           "weight": 30,
-          "grade": {
-            "S0002" : null
+          "grades": {
+            "S0002" : 100
           }
         }
       ]

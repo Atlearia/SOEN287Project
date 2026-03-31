@@ -23,6 +23,21 @@ if (!data.courses) data.courses = [];
 if (!data.students) data.students = [];
 if (!data.admins) data.admins = [];
 
+function calculateAverage(assessments, studentID) {
+  let totalWeight = 0;
+  let totalWeightGrade = 0;
+
+  for (const assessment of assessments) {
+    const grade = assessment.grades?.[studentID];
+    if (grade == null || grade === undefined) continue;
+    totalWeightGrade += grade * assessment.weight;
+    totalWeight += assessment.weight;
+  }
+
+  if (totalWeight === 0) return null;
+  return Math.round((totalWeightGrade / totalWeight) *100) /100;
+}
+
 const server = http.createServer((req, res) => {
 
   if (req.method === "GET" && req.url.startsWith("/get/")) {
@@ -119,7 +134,8 @@ const server = http.createServer((req, res) => {
         weight: a.weight,
         dueDate: a.dueDate || null,
         grade: a.grades?.[studentId] ?? null
-      }))
+      })),
+      average: calculateAverage(c.assessments, studentId) ?? 0
     }));
 
     const respone = {
