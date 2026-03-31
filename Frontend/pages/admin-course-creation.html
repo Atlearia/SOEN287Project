@@ -25,8 +25,10 @@
                 </div>
 
                 <div class="formrow1">
-                    <label for="InstructorName">Instructor</label>
-                    <input id="InstructorName" type="text" placeholder="">
+                    <label for="template">Templates</label>
+                    <select id="template">
+                        <option value="">Select a template...</option>
+                    </select>
                 </div>
 
                 <div class="formrow1">
@@ -50,53 +52,11 @@
                     <a href="admin-dashboard.html" class="backlink clickable-box">Cancel</a>
                     <button type="submit" class="backlink mainbutton clickable-box">Create Course</button>
                 </div>
-                <script> 
-                    const form = document.getElementById("createCourseForm");
-
-                    form.addEventListener("submit", function(event){
-                        event.preventDefault(); // prevent page reload
-
-                        // Get values from inputs
-                        const courseCode = document.getElementById("courseCode").value;
-                        const courseName = document.getElementById("courseName").value;
-                        const instructor = document.getElementById("InstructorName").value;
-                        const term = document.getElementById("term").value;
-                        const description = document.getElementById("desc").value;
-                        
-                        alert("Course Created.");
-                        const newCourse = {
-                            courseCode,
-                            courseName,
-                            instructor,
-                            term,
-                            description,
-                            assessments: [] // empty array for assessments will be added to later
-                        };
-                        //save data to back end
-                        fetch("/add/courses", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(newCourse)
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log("Course saved:", data);
-                            alert("Course Created.");
-                            form.reset();
-                        })
-                        .catch(error => {
-                            console.error("Error saving course:", error);
-                        });
-
-                        form.reset(); // clear the form
-                    });
-                    
-                </script>
+                <script src="../scripts/admin-course-creation.js"></script>
             </form>
         </section>
     </main>
 </body>
 
 </html>
+

@@ -8,7 +8,7 @@
       "description": "This is a course",
       "assessments": [
         {
-          "name": "project",
+          "name": "projectadsadss",
           "weight": 30
         },
         {
@@ -50,6 +50,48 @@
       "Email_": "a@2",
       "password_": "3",
       "id": "A0002"
+    }
+  ],
+  "templates": [
+    {
+      "templateName": "adsdsadsa",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
+    },
+    {
+      "templateName": "de",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
+    },
+    {
+      "templateName": "",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
+    },
+    {
+      "templateName": "sdaads",
+      "weights": {
+        "assignments": "",
+        "quizzes": "",
+        "midterm": "",
+        "final": ""
+      },
+      "notes": ""
     }
   ]
 }
