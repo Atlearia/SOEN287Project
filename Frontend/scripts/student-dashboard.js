@@ -86,7 +86,7 @@ function unenrollStudent(studentId, courseCode) {
 /**
  * add course pop up handler
  */
-function addCourse() {
+function addCourse(student) {
     // grabs all the html tag
     const overlay   = document.getElementById('addCourseOverlay');
     const openBtn   = document.getElementById('add-course');
@@ -150,12 +150,8 @@ function addCourse() {
                 closeForm();
                 return;
             }
-
-            const studentRes = await fetch(`/dashboard/student/${student.id}`)
-            const updatedStudent = await studentRes.json();
-            renderCourse(updatedStudent);
-            renderAssesments(updatedStudent);
-
+            await loadStudent();
+            location.reload(true);
         }catch(err) {
             console.error('Enroll error', err);
         }
@@ -254,6 +250,7 @@ function renderCourse(student) {
     // reset each time this function call
     coursesDashboard.innerHTML = '';
     // loop through all the courses
+    console.log(student.courses);
     for (const course of student.courses) {
             const container = document.createElement('a')
             container.classList.add('course-item', 'col', 'text-center');   // bootstrap classes
@@ -324,10 +321,10 @@ if (settingBtn != null) {
 function render(student) {
     renderCourse(student);
     renderAssesments(student)
+    addCourse(student);
 }
 
 logout();
-addCourse();
 removeCourse();
 loadStudent();
 

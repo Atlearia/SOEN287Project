@@ -1,6 +1,7 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
+const { json } = require('node:stream/consumers');
 
 const hostname = '0.0.0.0';
 const port = process.env.PORT || 3003;//for render stuf, if doesnt work just dont env it and setup antoher entry 
@@ -146,6 +147,70 @@ const server = http.createServer((req, res) => {
     res.setHeader("Content-Type", "application/json");
     return res.end(JSON.stringify(respone));
 
+  }
+
+  if (req.method === "POST" && req.url === "/enroll") {
+    let body = "";
+    req.on("data", chuck => body += chuck);
+    req.on("end", () => {
+      try {
+        const {studentId, courseCode } = JSON.parse(body);
+
+        if (!studentId || !courseCode) {
+          res.statusCode = 400;
+          res.setHeader("Content-Type", "application/json");
+          return res.end(JSON.stringify({ error: "studentId and courseCode are required" }));
+        }
+
+        const course = data.courses.find(
+          c => c.courseCode === courseCode
+        );
+
+        if (!course) {
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "application/json");
+          return res.end(JSON.stringify({ error: "Course not found" }));
+        }
+
+        const student = data.students.find(s => s.id === studentId);
+
+        if (!student) {
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "application/json");
+          return res.end(JSON.stringify({ error: "Student not found" }));
+        }
+
+        const alreadyEnrolled = student.coursesEnrolled.some(c => c.includes(courseCode));
+        if (alreadyEnrolled) {
+          res.statusCode = 409;
+          res.setHeader("Content-Type", "application/json");
+          return res.end(JSON.stringify({ error: "Already enrolled" }));
+        }
+
+        student.coursesEnrolled.push(courseCode);
+
+        for (const assessment of course.assessments) {
+          if (!assessment.grades) assessment.grades = {};
+          assessment.grades[studentId] = null;
+        }
+
+        fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
+          if (err) {
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            return res.end(JSON.stringify({ error: "Failed to save" }));
+          }
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ success: true }));
+        })
+
+      } catch {
+        res.statusCode = 400;
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ error: "Invalid JSON" }));
+      }
+    });
+    return;
   }
   //================================================================================
 

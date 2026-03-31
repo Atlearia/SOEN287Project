@@ -18,7 +18,7 @@
       ]
     },
     {
-      "courseCode": "Soen 349",
+      "courseCode": "SOEN 349",
       "courseName": "Web2",
       "instructor": "Bob",
       "term": "Winter 2026",
@@ -37,13 +37,29 @@
           "dueDate": "2026-04-25",
           "weight": 30,
           "grades": {
-            "S0002" : 100
+            "S0002": 100
+          }
+        }
+      ]
+    },
+    {
+      "courseCode": "COMP 232",
+      "courseName": "Discret",
+      "instructor": "Holy Cow",
+      "term": "Winter 2026",
+      "description": "This is another course",
+      "assessments": [
+        {
+          "name": "Testing",
+          "dueDate": "2026-04-25",
+          "weight": 30,
+          "grades": {
+            "S0002": null
           }
         }
       ]
     }
   ],
-
   "students": [
     {
       "First_Name_": "a",
@@ -51,7 +67,9 @@
       "Email_": "s@1",
       "password_": "1",
       "id": "S0001",
-      "coursesEnrolled": ["Soen287"]
+      "coursesEnrolled": [
+        "Soen287"
+      ]
     },
     {
       "First_Name_": "Dummy",
@@ -59,10 +77,14 @@
       "Email_": "s@2",
       "password_": "2",
       "id": "S0002",
-      "coursesEnrolled": ["COMP 249", "SOEN 287"]
+      "coursesEnrolled": [
+        "COMP 249",
+        "SOEN 287",
+        "SOEN 349",
+        "COMP 232"
+      ]
     }
   ],
-
   "admins": [
     {
       "First_Name_": "q",
