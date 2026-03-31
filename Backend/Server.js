@@ -212,6 +212,72 @@ const server = http.createServer((req, res) => {
     });
     return;
   }
+
+  if (req.method === "POST" && req.url === "/unenroll") {
+    let body = "";
+    req.on("data", chunk => body += chunk);
+    req.on("end", () => {
+      try{
+        const { studentId, courseCode } = JSON.parse(body);
+
+        if (!studentId || !courseCode) {
+          res.statusCode = 400;
+          res.setHeader("Content-Type", "application/json");
+          return res.end(JSON.stringify({ error: "studentId and courseCode are required" }));
+        }
+
+        const student = data.students.find(s => s.id === studentId);
+        if (!student) {
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "application/json");
+          return res.end(JSON.stringify({ error: "Student not found" }));
+        }
+
+        const isEnrolled = student.coursesEnrolled.some(
+          c => c === courseCode
+        );
+
+        
+        if (!isEnrolled) {
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "application/json");
+          return res.end(JSON.stringify({ error: "You are not enrolled in this course" }));
+        }
+
+        student.coursesEnrolled = student.coursesEnrolled.filter(
+          c => c !== courseCode
+        );
+
+        const course = data.courses.find(
+          c => c.courseCode === courseCode
+        );
+
+        if (course) {
+          if (course.assessments){
+            for (const assessment of course.assessments) {
+              if (assessment.grades) delete assessment.grades[studentId];
+            }
+          }
+        }
+
+        fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
+          if (err) {
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            return res.end(JSON.stringify({ error: "Failed to save" }));
+          }
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ success: true }));
+        });
+
+      }catch(err) {
+        res.statusCode = 400;
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ error: "Invalid JSON" }));
+      }
+    } )
+    return;
+  }
   //================================================================================
 
   let filePath = req.url === "/"

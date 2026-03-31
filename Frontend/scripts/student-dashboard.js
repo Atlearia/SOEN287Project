@@ -86,7 +86,7 @@ function unenrollStudent(studentId, courseCode) {
 /**
  * add course pop up handler
  */
-function addCourse(student) {
+function addCourse() {
     // grabs all the html tag
     const overlay   = document.getElementById('addCourseOverlay');
     const openBtn   = document.getElementById('add-course');
@@ -122,6 +122,7 @@ function addCourse(student) {
         e.preventDefault(); // prevent from reloading the page in case nothing save for the user
 
         const code = document.getElementById('addCourseCode').value.trim(); // grab the code from the input box and remove spaces on the side
+        const studentId = sessionStorage.getItem('id');
 
         // check if user entered the code or leave it empty
         if (!code) {
@@ -134,7 +135,7 @@ function addCourse(student) {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    studentId: student.id,
+                    studentId: studentId,
                     courseCode: code
                 })
             })
@@ -151,13 +152,9 @@ function addCourse(student) {
                 return;
             }
             await loadStudent();
-            location.reload(true);
         }catch(err) {
             console.error('Enroll error', err);
         }
-
-        // render dashboard again once the course is added
-        renderCourse();
         closeForm();    // remove the form card
     });
     
@@ -190,26 +187,42 @@ function removeCourse() {
     }
 
     // add event listener to form on submit
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault(); // prevent reloading page (e is an event)
         const code = document.getElementById('removeCourseCode').value.trim();
-
+        const studentId = sessionStorage.getItem("id");
         // if code is undefined
         if (!code) {
             document.getElementById('removeCourseCode').style.borderColor = 'red';
             return;
         }
 
-        // check if course is existed for remvoe
-        if(checkCourseExist(code)) {
-            unenrollStudent(student.id, code);
-        }else{
-            alert("Course doesn't exist!");
-        }
+        try {
+            const res = await fetch('/unenroll', {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    studentId:  studentId,
+                    courseCode: code
+                })
+            })
 
-        // render dashboard
-        renderCourse();
-        removeAssessment(code); // remove course from the assessment dashboard
+            if (res.status === 404) {
+                alert("Course not found");
+                closeForm();
+                return;
+            }
+
+            if (!res.ok) {
+                alert("Something went wrong. Please try again.");
+                closeForm();
+                return;
+            }
+            await loadStudent();
+
+        }catch (err) {
+            console.error("Unenroll err: ", err);
+        }
         closeForm();    // remove form from dashboard
     })
 
@@ -250,7 +263,6 @@ function renderCourse(student) {
     // reset each time this function call
     coursesDashboard.innerHTML = '';
     // loop through all the courses
-    console.log(student.courses);
     for (const course of student.courses) {
             const container = document.createElement('a')
             container.classList.add('course-item', 'col', 'text-center');   // bootstrap classes
@@ -321,10 +333,14 @@ if (settingBtn != null) {
 function render(student) {
     renderCourse(student);
     renderAssesments(student)
-    addCourse(student);
+}
+
+function setupUI() {
+    addCourse();
+    removeCourse();
 }
 
 logout();
-removeCourse();
+setupUI();
 loadStudent();
 

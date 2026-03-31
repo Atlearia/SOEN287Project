@@ -53,9 +53,7 @@
           "name": "Testing",
           "dueDate": "2026-04-25",
           "weight": 30,
-          "grades": {
-            "S0002": null
-          }
+          "grades": {}
         }
       ]
     }
@@ -79,9 +77,7 @@
       "id": "S0002",
       "coursesEnrolled": [
         "COMP 249",
-        "SOEN 287",
-        "SOEN 349",
-        "COMP 232"
+        "SOEN 287"
       ]
     }
   ],
