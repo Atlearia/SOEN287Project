@@ -240,11 +240,11 @@ app.post('/unenroll', (req, res) => {
 });
 //================================================================================
 
-app.use(express.static(publicDir));
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(publicDir, "pages", "Authentication", "SignIn.html"));
 });
+
+app.use(express.static(publicDir));
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
