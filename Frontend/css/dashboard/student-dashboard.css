@@ -229,7 +229,14 @@ body {
     min-height: calc(100vh - 400px);
 }
 
+#passwordTab, #profileTab {
+    color: var(--text-color);
+}
 
+#passwordTab.active, #profileTab.active {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+}
 
 /* resposive area */
 /* when the screen is larger than 375px for responsiveness*/

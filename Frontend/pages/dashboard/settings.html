@@ -16,11 +16,9 @@
     </head>
     <body>
 
-    <nav class="navbar d-flex flex-row justify-content-between">
-        <div class="">
+    <nav class="navbar d-flex flex-row justify-content-between px-3">
+        <div>
             <img src="../../assets/concordia2.png" alt="Concordia Logo" id="dashboard-logo">
-            <!--Collapse button when the screen is less than medium size-->
-            
         </div>
         <div>
             <img src="../../assets/previous.png" alt="Back Button" id="setting-backbtn">
@@ -28,64 +26,86 @@
     </nav>
 
     <section class="d-flex justify-content-center align-items-center" id="form-section">
-        <form action="">
-            <div class="d-flex align-items-center gap-1 gap-md-5 shadow-lg rounded-4 p-5 flex-column flex-md-row">
+        <div class="d-flex align-items-center gap-1 gap-md-5 shadow-lg rounded-4 p-5 flex-column flex-md-row">
 
-                <div id="idProfile">
-                    <img src="../../assets/id-profile.png" alt="Profile Picture" id="idCard">
-                </div>
+            <div id="idProfile">
+                <img src="../../assets/id-profile.png" alt="Profile Picture" id="idCard">
+            </div>
 
-                <div id="formSection" class="min-w-320">
-                    <h4 class="mb-4 fw-bold">My Settings</h4>
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group mb-3">
-                                <label for="inputName">First Name</label>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="inputFirstName"
-                                placeholder="First Name"
-                                />
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="inputName">Last Name</label>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="inputLastName"
-                                placeholder="Last Name"
-                                />
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="inputEmail">Email</label>
-                                <input
-                                type="email"
-                                class="form-control"
-                                id="inputEmail"
-                                placeholder="Email"
-                                />
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="inputPassword">Password</label>
-                                <input
-                                type="password"
-                                class="form-control"
-                                id="inputPassword"
-                                placeholder="Password"
-                                />
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-secondary my-2">
-                            Update Profile
+            <div id="formSection">
+                <h4 class="mb-4 fw-bold">My Settings</h4>
+
+                <!-- ── Toggle buttons ──────────────────────────────────── -->
+                <ul class="nav nav-pills mb-4" id="settingsTabs">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="profileTab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#profilePanel"
+                            type="button">
+                            Profile Info
                         </button>
-                        <button type="button" class="btn btn-secondary my-2">
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="passwordTab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#passwordPanel"
+                            type="button">
                             Change Password
                         </button>
-                    </form>
+                    </li>
+                </ul>
+
+                <!-- ── Tab content ─────────────────────────────────────── -->
+                <div class="tab-content">
+
+                    <!-- Profile Info panel -->
+                    <div class="tab-pane fade show active" id="profilePanel">
+                        <form id="updateProfileForm">
+                            <div class="mb-3">
+                                <label for="inputFirstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="inputFirstName" placeholder="First Name"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputLastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Email"/>
+                            </div>
+                            <button type="submit" class="btn btn-secondary w-100 mt-2">
+                                Update Profile
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Change Password panel from bootstrap components -->
+                    <div class="tab-pane fade" id="passwordPanel">
+                        <form id="changePasswordForm">
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current password</label>
+                                <input type="password" class="form-control" id="currentPassword" placeholder="Current password"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New password</label>
+                                <input type="password" class="form-control" id="newPassword" placeholder="New password"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm new password</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password"/>
+                                <div id="passwordMatchError" class="text-danger mt-1 small" style="display:none;">
+                                    Passwords do not match.
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-secondary w-100 mt-2">
+                                Save new password
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
-        </form>
+        </div>
     </section>
     
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
