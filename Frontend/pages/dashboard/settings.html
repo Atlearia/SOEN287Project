@@ -28,50 +28,64 @@
     </nav>
 
     <section class="d-flex justify-content-center align-items-center" id="form-section">
-        <div class="d-flex align-items-center gap-1 gap-md-5 shadow-lg rounded-4 p-5 flex-column flex-md-row">
+        <form action="">
+            <div class="d-flex align-items-center gap-1 gap-md-5 shadow-lg rounded-4 p-5 flex-column flex-md-row">
 
-            <div id="idProfile">
-                <img src="../../assets/id-profile.png" alt="Profile Picture" id="idCard">
-            </div>
+                <div id="idProfile">
+                    <img src="../../assets/id-profile.png" alt="Profile Picture" id="idCard">
+                </div>
 
-            <div id="formSection" class="min-w-320">
-                <h4 class="mb-4 fw-bold">My Settings</h4>
-                <form>
-                    <div class="form-row">
-                        <div class="form-group mb-3">
-                            <label for="inputName">Name</label>
-                            <input
-                            type="text"
-                            class="form-control"
-                            id="inputName"
-                            placeholder="Name"
-                            />
+                <div id="formSection" class="min-w-320">
+                    <h4 class="mb-4 fw-bold">My Settings</h4>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group mb-3">
+                                <label for="inputName">First Name</label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="inputFirstName"
+                                placeholder="First Name"
+                                />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="inputName">Last Name</label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="inputLastName"
+                                placeholder="Last Name"
+                                />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="inputEmail">Email</label>
+                                <input
+                                type="email"
+                                class="form-control"
+                                id="inputEmail"
+                                placeholder="Email"
+                                />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="inputPassword">Password</label>
+                                <input
+                                type="password"
+                                class="form-control"
+                                id="inputPassword"
+                                placeholder="Password"
+                                />
+                            </div>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="inputEmail">Email</label>
-                            <input
-                            type="email"
-                            class="form-control"
-                            id="inputEmail"
-                            placeholder="Email"
-                            />
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="inputPassword">Password</label>
-                            <input
-                            type="password"
-                            class="form-control"
-                            id="inputPassword"
-                            placeholder="Password"
-                            />
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-secondary my-2">
-                        Update Profile
-                    </button>
-                </form>
+                        <button type="submit" class="btn btn-secondary my-2">
+                            Update Profile
+                        </button>
+                        <button type="button" class="btn btn-secondary my-2">
+                            Change Password
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </form>
     </section>
     
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
