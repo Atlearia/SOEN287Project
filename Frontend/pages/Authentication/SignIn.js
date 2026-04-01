@@ -337,7 +337,7 @@ form_admin_login.addEventListener("submit", async function(event){
             const identificationAdmin = validAdmin.id;
             sessionStorage.setItem("id",identificationAdmin);
             sessionStorage.setItem("role","student");
-            window.location.href = "/pages/admin-dashboard.html";
+            window.location.href = "/pages/admin/admin-dashboard.html";
         } else {
             // show invalid login
             document.getElementById('EmailAddressAdmin').setCustomValidity('Email or password is incorrect');
