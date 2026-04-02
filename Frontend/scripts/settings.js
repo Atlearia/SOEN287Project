@@ -19,7 +19,6 @@ async function loadStudent() {
 
 async function load() {
     const student = await loadStudent();
-    console.log(student)
     if (student) {
         document.getElementById("inputFirstName").value = student.firstName;
         document.getElementById("inputLastName").value = student.lastName;

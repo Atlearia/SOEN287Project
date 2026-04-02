@@ -1,7 +1,9 @@
-const http = require('node:http');
+const express = require('express');
 const fs = require('node:fs');
 const path = require('node:path');
 const { json } = require('node:stream/consumers');
+
+const app = express();
 
 const hostname = '0.0.0.0';
 const port = process.env.PORT || 3003;//for render stuf, if doesnt work just dont env it and setup antoher entry 
@@ -39,64 +41,50 @@ function calculateAverage(assessments, studentID) {
   return Math.round((totalWeightGrade / totalWeight) *100) /100;
 }
 
-const server = http.createServer((req, res) => {
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-  if (req.method === "GET" && req.url.startsWith("/get/")) {
-    const type = req.url.split("/")[2];
+app.get('/get/:type', (req, res) => {
+  const type = req.params.type;
 
-    if (!data[type]) {
-      res.statusCode = 404;
-      return res.end("Not found");
-    }
-
-    res.setHeader("Content-Type", "application/json");
-    return res.end(JSON.stringify({ [type]: data[type] }));
+  if (!data[type]) {
+    res.status(404);
+    return res.send("Not found");
   }
 
-  if (req.method === "POST" && req.url.startsWith("/add/")) {
-    const type = req.url.split("/")[2];
+  res.json({ [type]: data[type] });
+});
 
-    let body = "";
+app.post('/add/:type', (req, res) => {
+  const type = req.params.type;
 
-    req.on("data", chunk => body += chunk);
+  try {
+    const parsed = req.body;
 
-    req.on("end", () => {
-      try {
-        const parsed = JSON.parse(body);
+    if (!data[type]) data[type] = [];
 
-        if (!data[type]) data[type] = [];
+    data[type].push(parsed);
 
-        data[type].push(parsed);
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 
-        fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+    res.json({ [type]: data[type] });
 
-        res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ [type]: data[type] }));
-
-      } catch {
-        res.statusCode = 400;
-        res.end("Invalid JSON");
-      }
-    });
-
-    return;
+  } catch {
+    res.status(400);
+    res.send("Invalid JSON");
   }
+});
 
-  if (req.method === "POST" && req.url === "/update/course/assessments") {
-    let body = "";
-
-    req.on("data", chunk => body += chunk);
-
-    req.on("end", () => {
-        try {
-            const { courseCode, assessments } = JSON.parse(body);
+app.post('/update/course/assessments', (req, res) => {
+  try {
+    const { courseCode, assessments } = req.body;
 
             // find the course
             const course = data.courses.find(c => c.courseCode === courseCode);
 
             if (!course) {
-              res.statusCode = 404;
-              return res.end("Course not found");
+              res.status(404);
+              return res.send("Course not found");
             }
 
             // update assessments
@@ -105,45 +93,22 @@ const server = http.createServer((req, res) => {
             // save to file
             fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 
-            res.setHeader("Content-Type", "application/json");
-            res.end(JSON.stringify(course));
+            res.json(course);
 
         } catch (err) {
-            res.statusCode = 400;
-            res.end("Invalid JSON");
+            res.status(400);
+            res.send("Invalid JSON");
         }
-    });
+});
 
-    return;
+// Dashboard Routing
+app.get('/dashboard/student/:id', (req, res) => {
+  const studentId = req.params.id;
+  const student  = data.students.find( s => s.id === studentId);
+  if (!student) {
+    res.status(404);
+    return res.send("Student not found!");
   }
-  // Setting Routing
-  if (req.method === "GET" && req.url.startsWith("/settings/student/")) {
-    const studentId = req.url.split('/')[3];
-    const student  = data.students.find( s => s.id === studentId);
-    if (!student) {
-      res.statusCode = 404;
-      return res.end('Student not found!');
-    }
-
-    const respone = {
-      id: student.id,
-      email: student.Email_,
-      firstName: student.First_Name_,
-      lastName: student.Last_Name_,
-    };
-    res.setHeader("Content-Type", "application/json");
-    return res.end(JSON.stringify(respone));
-
-  }
-
-  // Dashboard Routing
-  if (req.method === "GET" && req.url.startsWith("/dashboard/student/")) {
-    const studentId = req.url.split('/')[3];
-    const student  = data.students.find( s => s.id === studentId);
-    if (!student) {
-      res.statusCode = 404;
-      return res.end('Student not found!');
-    }
     
     const enrollCourseCode = student.coursesEnrolled; // get all the enrollment courses
     const relevantCourses = data.courses.filter(c => enrollCourseCode.includes(c.courseCode)).map(c => ({
@@ -163,47 +128,39 @@ const server = http.createServer((req, res) => {
       email: student.Email_,
       courses: relevantCourses
     };
-    res.setHeader("Content-Type", "application/json");
-    return res.end(JSON.stringify(respone));
+    return res.json(respone);
 
-  }
+});
 
-  if (req.method === "POST" && req.url === "/enroll") {
-    let body = "";
-    req.on("data", chuck => body += chuck);
-    req.on("end", () => {
-      try {
-        const {studentId, courseCode } = JSON.parse(body);
+app.post('/enroll', (req, res) => {
+  try {
+    const {studentId, courseCode } = req.body;
 
-        if (!studentId || !courseCode) {
-          res.statusCode = 400;
-          res.setHeader("Content-Type", "application/json");
-          return res.end(JSON.stringify({ error: "studentId and courseCode are required" }));
-        }
+    if (!studentId || !courseCode) {
+      res.status(400);
+      return res.json({ error: "studentId and courseCode are required" });
+    }
 
         const course = data.courses.find(
           c => c.courseCode === courseCode
         );
 
         if (!course) {
-          res.statusCode = 404;
-          res.setHeader("Content-Type", "application/json");
-          return res.end(JSON.stringify({ error: "Course not found" }));
+          res.status(404);
+          return res.json({ error: "Course not found" });
         }
 
         const student = data.students.find(s => s.id === studentId);
 
         if (!student) {
-          res.statusCode = 404;
-          res.setHeader("Content-Type", "application/json");
-          return res.end(JSON.stringify({ error: "Student not found" }));
+          res.status(404);
+          return res.json({ error: "Student not found" });
         }
 
         const alreadyEnrolled = student.coursesEnrolled.some(c => c.includes(courseCode));
         if (alreadyEnrolled) {
-          res.statusCode = 409;
-          res.setHeader("Content-Type", "application/json");
-          return res.end(JSON.stringify({ error: "Already enrolled" }));
+          res.status(409);
+          return res.json({ error: "Already enrolled" });
         }
 
         student.coursesEnrolled.push(courseCode);
@@ -215,112 +172,80 @@ const server = http.createServer((req, res) => {
 
         fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
           if (err) {
-            res.statusCode = 500;
-            res.setHeader("Content-Type", "application/json");
-            return res.end(JSON.stringify({ error: "Failed to save" }));
+            res.status(500);
+            return res.json({ error: "Failed to save" });
           }
-          res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify({ success: true }));
+          res.json({ success: true });
         })
 
-      } catch {
-        res.statusCode = 400;
-        res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ error: "Invalid JSON" }));
-      }
-    });
-    return;
+  } catch {
+    res.status(400);
+    res.json({ error: "Invalid JSON" });
   }
-
-  if (req.method === "POST" && req.url === "/unenroll") {
-    let body = "";
-    req.on("data", chunk => body += chunk);
-    req.on("end", () => {
-      try{
-        const { studentId, courseCode } = JSON.parse(body);
-
-        if (!studentId || !courseCode) {
-          res.statusCode = 400;
-          res.setHeader("Content-Type", "application/json");
-          return res.end(JSON.stringify({ error: "studentId and courseCode are required" }));
-        }
-
-        const student = data.students.find(s => s.id === studentId);
-        if (!student) {
-          res.statusCode = 404;
-          res.setHeader("Content-Type", "application/json");
-          return res.end(JSON.stringify({ error: "Student not found" }));
-        }
-
-        const isEnrolled = student.coursesEnrolled.some(
-          c => c === courseCode
-        );
-
-        
-        if (!isEnrolled) {
-          res.statusCode = 404;
-          res.setHeader("Content-Type", "application/json");
-          return res.end(JSON.stringify({ error: "You are not enrolled in this course" }));
-        }
-
-        student.coursesEnrolled = student.coursesEnrolled.filter(
-          c => c !== courseCode
-        );
-
-        const course = data.courses.find(
-          c => c.courseCode === courseCode
-        );
-
-        if (course) {
-          if (course.assessments){
-            for (const assessment of course.assessments) {
-              if (assessment.grades) delete assessment.grades[studentId];
-            }
-          }
-        }
-
-        fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
-          if (err) {
-            res.statusCode = 500;
-            res.setHeader("Content-Type", "application/json");
-            return res.end(JSON.stringify({ error: "Failed to save" }));
-          }
-          res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify({ success: true }));
-        });
-
-      }catch(err) {
-        res.statusCode = 400;
-        res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ error: "Invalid JSON" }));
-      }
-    } )
-    return;
-  }
-  //================================================================================
-
-  let filePath = req.url === "/"
-    ? path.join(publicDir, "pages","Authentication","SignIn.html")
-    : path.join(publicDir, req.url);
-
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      res.statusCode = 404;
-      return res.end("Not Found");
-    }
-
-    if (filePath.endsWith(".js")) {
-      res.setHeader("Content-Type", "application/javascript");
-    } else if (filePath.endsWith(".html")) {
-      res.setHeader("Content-Type", "text/html");
-    } else if (filePath.endsWith(".css")) {
-      res.setHeader("Content-Type", "text/css");
-    }
-
-    res.end(content);
-  });
 });
 
-server.listen(port, hostname, () => {
+app.post('/unenroll', (req, res) => {
+  try{
+    const { studentId, courseCode } = req.body;
+
+    if (!studentId || !courseCode) {
+      res.status(400);
+      return res.json({ error: "studentId and courseCode are required" });
+    }
+
+    const student = data.students.find(s => s.id === studentId);
+    if (!student) {
+      res.status(404);
+      return res.json({ error: "Student not found" });
+    }
+
+    const isEnrolled = student.coursesEnrolled.some(
+      c => c === courseCode
+    );
+
+    
+    if (!isEnrolled) {
+      res.status(404);
+      return res.json({ error: "You are not enrolled in this course" });
+    }
+
+    student.coursesEnrolled = student.coursesEnrolled.filter(
+      c => c !== courseCode
+    );
+
+    const course = data.courses.find(
+      c => c.courseCode === courseCode
+    );
+
+    if (course) {
+      if (course.assessments){
+        for (const assessment of course.assessments) {
+          if (assessment.grades) delete assessment.grades[studentId];
+        }
+      }
+    }
+
+    fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        res.status(500);
+        return res.json({ error: "Failed to save" });
+      }
+      res.json({ success: true });
+    });
+
+  }catch(err) {
+    res.status(400);
+    res.json({ error: "Invalid JSON" });
+  }
+});
+//================================================================================
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicDir, "pages", "Authentication", "SignIn.html"));
+});
+
+app.use(express.static(publicDir));
+
+app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
