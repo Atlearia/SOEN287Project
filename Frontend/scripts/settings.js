@@ -1,7 +1,7 @@
-const id = sessionStorage.getItem('id');
-const role = sessionStorage.getItem('role');
 
 async function loadStudent() {
+    const id = sessionStorage.getItem('id');
+    const role = sessionStorage.getItem('role');
     if (!id || role !== 'student') {
         window.location.href = '/';
         return;
@@ -25,9 +25,10 @@ async function load() {
         document.getElementById("inputEmail").value = student.email;
     }
     updateProfile(student);
+    updatePassword(student);
 }
 
-function updateProfile() {
+function updateProfile(student) {
     const form = document.getElementById("updateProfileForm");
     form.addEventListener("submit", async(e) => {
         e.preventDefault();
@@ -37,16 +38,17 @@ function updateProfile() {
         const email = document.getElementById("inputEmail").value;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+        if (!firstName || !lastName || !email) {
+            alert('All fields are required.');
+            return;
+        }
+
         if (!emailRegex.test(email)) {
             document.getElementById("inputEmail").style.borderColor = 'red';
             alert("Please enter a valid email address.");
             return;
         }
-
-        if (!firstName || !lastName || !email) {
-            alert('All fields are required.');
-            return;
-        }
+        
         try {
             const res = await fetch('/settings/updateprofile', {
                 method: "POST",
@@ -71,6 +73,52 @@ function updateProfile() {
             alert("Successfully updated!");
         }catch (err) {
             console.log(err);
+        }
+    })
+}
+
+function updatePassword(student) {
+    const form = document.getElementById("changePasswordForm");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const currentPassword = document.getElementById("currentPassword").value;
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const passwordMatchError = document.getElementById("passwordMatchError");
+
+        if (newPassword !== confirmPassword) {
+            passwordMatchError.style.display = "block";
+            return;
+        }
+        passwordMatchError.style.display = "none";
+
+        try {
+            const res = await fetch("/settings/updatepassword", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    studentId: sessionStorage.getItem("id"),
+                    currentPassword,
+                    newPassword
+                })
+            })
+
+            if (res.status === 401) {
+                alert("Current password is incorrect!");
+                return;
+            }
+
+            if(!res.ok) {
+                alert("Something went wrong!")
+                return;
+            }
+
+            form.reset();
+            alert("Password updated!");
+
+        }catch(err) {
+            console.error(err);
         }
     })
 }

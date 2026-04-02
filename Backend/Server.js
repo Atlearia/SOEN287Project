@@ -175,6 +175,35 @@ app.post('/settings/updateprofile', (req, res) => {
   }
 })
 
+app.post('/settings/updatepassword', (req, res) => {
+  try {
+    const {studentId, currentPassword, newPassword} = req.body;
+    const student = data.students.find( s => s.id === studentId);
+
+    if (!studentId) {
+      res.status(404);
+      return res.json({error: "Student not found!"});
+    }
+    
+    if (student.password_ !== currentPassword) {
+      res.status(401);
+      return res.json({error: "Wrong Password!"});
+    }
+    
+    student.password_ = newPassword;
+    
+    fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        res.status(500);
+        return res.json({ error: "Failed to save" });
+      }
+      res.json({ success: true });
+    })
+  }catch(err) {
+    res.send(err);
+  }
+})
+
 app.post('/enroll', (req, res) => {
   try {
     const {studentId, courseCode } = req.body;
