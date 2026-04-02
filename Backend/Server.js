@@ -116,6 +116,25 @@ const server = http.createServer((req, res) => {
 
     return;
   }
+  // Setting Routing
+  if (req.method === "GET" && req.url.startsWith("/settings/student/")) {
+    const studentId = req.url.split('/')[3];
+    const student  = data.students.find( s => s.id === studentId);
+    if (!student) {
+      res.statusCode = 404;
+      return res.end('Student not found!');
+    }
+
+    const respone = {
+      id: student.id,
+      email: student.Email_,
+      firstName: student.First_Name_,
+      lastName: student.Last_Name_,
+    };
+    res.setHeader("Content-Type", "application/json");
+    return res.end(JSON.stringify(respone));
+
+  }
 
   // Dashboard Routing
   if (req.method === "GET" && req.url.startsWith("/dashboard/student/")) {
