@@ -1,49 +1,32 @@
 
 /* light mode color scheme */
 :root {
-    --background-color: #F2F4F7;
+    --background-color: whitesmoke;
     --primary-color: #c9c9c9;
     --secondary-color: #dddbff;
     --text-color: #0c0c12;
     --accent-color: #3E4B63;
     --item-background: white;
     --nav-item-color: #F2F4F7;
+    --pending: rgb(255, 210, 0);
+    --completed: lightgreen;
+    --late: lightcoral;
+    --tab-color: whitesmoke;
 }
 
-/* Dark mode color scheme */
-/* :root {
-    --background-color: #000000;
-    --primary-color: #3b3b3b;
-    --secondary-color: #636363;
-    --text-color: #F4F4F9;
-    --accent-color: #222222;
-    --item-background: #141414;
-    --nav-item-color: whitesmoke;
-} */
-
-
-/* @media (prefers-color-scheme: dark) {
-    :root {
-        --background-color: #020104;
-        --primary-color: #3a31d8;
-        --secondary-color: #020024;
-        --text-color: #F4F4F9;
-        --accent-color: #5c53f8;
-    }
-} */
-
-/* @media (prefers-color-scheme: light) {
-    :root {
-        --background-color: #F2F4F7;
-        --primary-color: #2f27ce;
-        --secondary-color: #dddbff;
-        --text-color: #0c0c12;
-        --accent-color: #3E4B63;
-        font-family: Inter, sans-serif, monospace;
-        font-feature-settings: 'liga' 1, 'calt' 1;
-    }
-} */
-
+body.dark {
+    --background-color: #0f1115;
+    --primary-color: #1a1d24;
+    --secondary-color: #2a2f4a;
+    --text-color: #e6e9ef;
+    --accent-color: #3E4B63;
+    --item-background: #181c23;
+    --nav-item-color: #F2F4F7;
+    --pending: #8a6d00;
+    --completed: #1f7a3e;
+    --late: #8b2c2c;
+    --tab-color: whitesmoke;
+}
 
 body {
     margin: 0px;
@@ -181,6 +164,7 @@ body {
     display: block;
     max-height: 300px;
     overflow-y: auto;
+    background-color: var(--item-background);
 }
 
 .assessment-table thead, /*keep header in place*/
@@ -203,14 +187,14 @@ body {
 }
 
 .pending {
-    background-color: rgb(255, 210, 0);;
+    background-color: var(--pending);
 }
 
 .complete {
-    background-color: lightgreen;
+    background-color: var(--completed);
 }
 .late{
-    background-color: lightcoral;
+    background-color: var(--late);
 }
 
 #idCard {
@@ -229,13 +213,17 @@ body {
     min-height: calc(100vh - 400px);
 }
 
+.formContent {
+    background-color: var(--item-background);
+}
+
 #passwordTab, #profileTab {
     color: var(--text-color);
 }
 
 #passwordTab.active, #profileTab.active {
     background-color: var(--accent-color);
-    color: var(--background-color);
+    color: var(--tab-color);
 }
 
 /* resposive area */
@@ -263,4 +251,9 @@ body {
     .assessment-table {
         font-size: 12px;
     }
+}
+
+#darkModeBtn {
+    max-width: 50px;
+    max-height: 50px;
 }

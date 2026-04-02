@@ -48,7 +48,7 @@ function updateProfile(student) {
             alert("Please enter a valid email address.");
             return;
         }
-        
+
         try {
             const res = await fetch('/settings/updateprofile', {
                 method: "POST",
@@ -127,5 +127,21 @@ const settingsBackBtn = document.getElementById('setting-backbtn');
 settingsBackBtn.addEventListener('click', () => {
     window.location.href = "./student-dashboard.html";
 })
+
+const darkModeIcon = document.getElementById('darkModeIcon');
+
+// load saved preference on page load
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+}
+darkModeIcon.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+
+    if (document.body.classList.contains('dark')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+});
 
 load();
