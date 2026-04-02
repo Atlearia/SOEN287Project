@@ -132,6 +132,49 @@ app.get('/dashboard/student/:id', (req, res) => {
 
 });
 
+app.get('/settings/student/:id', (req, res) => {
+  const studentId = req.params.id;
+  const student  = data.students.find( s => s.id === studentId);
+  if (!student) {
+    res.status(404);
+    return res.send("Student not found!");
+  }
+
+    const respone = {
+      id: student.id,
+      firstName: student.First_Name_,
+      lastName: student.Last_Name_,
+      email: student.Email_
+    };
+    return res.json(respone);
+
+});
+
+app.post('/settings/updateprofile', (req, res) => {
+  try {
+    const {studentId, firstName, lastName, email} = req.body;
+    const student = data.students.find( s => s.id === studentId);
+
+    if (!studentId || !student) {
+      res.status(404);
+      return res.json({error: "Student not found!"});
+    }
+    student.First_Name_ = firstName;
+    student.Last_Name_  = lastName;
+    student.Email_      = email;
+
+    fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        res.status(500);
+        return res.json({ error: "Failed to save" });
+      }
+      res.json({ success: true });
+    })
+  }catch(err) {
+    res.send(err);
+  }
+})
+
 app.post('/enroll', (req, res) => {
   try {
     const {studentId, courseCode } = req.body;
