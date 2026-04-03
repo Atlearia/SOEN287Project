@@ -321,3 +321,75 @@ app.use(express.static(publicDir));
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
+
+
+//================================================================================
+//Forgot Password//
+
+const nodemailer = require('nodemailer'); //allows sending email
+const crypto = require('crypto'); //allows generating random token
+const resetTokens = {};
+
+const transporter = nodemailer.createTransport({
+  service:'gmail',
+  auth:{
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+})
+app.post('/forgot-password',async (req,res)=>{
+  const {email} = req.body;
+
+  const student = data.students.find(s => s.email === email);
+
+  if (!student){
+    return res.json({message : 'If email already exists, reset link was sent.'})
+  }
+  const token = crypto.randomBytes(32).toString('hex');
+  const expiresAt = Date.now() + 1000*60*60;
+
+  resetTokens[token] = { userID: student.id,expiresAt};
+  
+  const resetUrl = 'http://${hostname}:${port}/reset-password.html?token=${token}';
+
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Password Reset Request',
+    html:`
+      <p>You requested a password reset.</p>
+      <p>If you didn't it, please do not pay attention to this email.</p>
+      <p><a href="${resetUrl}">Click here to reset your password</a></p>
+      <p>This link expires in 1 hour.</p>
+    `,
+  }
+  
+
+  )
+  res.json({ message: 'A reset link was sent.' });
+
+})
+
+
+app.post('/reset-password', async (req, res) => {
+  const { token, newPassword } = req.body;
+  const record = resetTokens[token];
+
+  if (!record || Date.now() > record.expiresAt) {
+    return res.status(400).json({ error: 'Invalid or expired token.' });
+  }
+
+  const student = data.students.find(s => s.id === record.userId);
+
+  if (!student) {
+    return res.status(400).json({ error: 'Student not found.' });
+  }
+
+  student.password = newPassword;
+  fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+
+  delete resetTokens[token];
+
+  res.json({ message: 'Password reset successfully.' });
+});
