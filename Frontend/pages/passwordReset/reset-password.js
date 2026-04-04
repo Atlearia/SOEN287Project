@@ -24,6 +24,6 @@ document.getElementById('resetForm').addEventListener('submit',async(e) =>{
     msg.textContent = data.error || data.message;
 
     if (res.ok) {
-        setTimeout(() => window.location.href = 'Frontend/pages/passwordReset/reset-password.html', 2000);
+        setTimeout(() => window.location.href = '/pages/Authentication/SignIn.html', 2000);
       }
 });

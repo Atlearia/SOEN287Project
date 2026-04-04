@@ -341,7 +341,7 @@ const transporter = nodemailer.createTransport({
 app.post('/forgot-password',async (req,res)=>{
   const {email} = req.body;
 
-  const student = data.students.find(s => s.email === email);
+  const student = data.students.find(s => s.Email_ === email);
 
   if (!student){
     return res.json({message : 'If email already exists, reset link was sent.'})
@@ -349,9 +349,9 @@ app.post('/forgot-password',async (req,res)=>{
   const token = crypto.randomBytes(32).toString('hex');
   const expiresAt = Date.now() + 1000*60*60;
 
-  resetTokens[token] = { userID: student.id,expiresAt};
+  resetTokens[token] = { userId: student.id,expiresAt};
   
-  const resetUrl = 'http://${hostname}:${port}/reset-password.html?token=${token}';
+  const resetUrl = `http://${hostname}:${port}/reset-password.html?token=${token}`;
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
@@ -386,7 +386,7 @@ app.post('/reset-password', async (req, res) => {
     return res.status(400).json({ error: 'Student not found.' });
   }
 
-  student.password = newPassword;
+  student.password_ = newPassword;
   fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
 
   delete resetTokens[token];
