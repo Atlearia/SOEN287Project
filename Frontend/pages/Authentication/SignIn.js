@@ -12,7 +12,7 @@ const createadmin=document.getElementById('createadmin');
 // it so that we can create an account and login with it without refreshing the page
 // (without back end)
 
-loginbutton.addEventListener('click', function(){
+loginbutton.addEventListener('change', function(){
     if(loginbutton.checked){
 
         document.getElementById('createstudentform').reset();
@@ -25,7 +25,7 @@ loginbutton.addEventListener('click', function(){
 
 
 
-signup.addEventListener('click', function(){
+signup.addEventListener('change', function(){
     
     if (signup.checked){
         document.getElementById('studentloginform').reset();
