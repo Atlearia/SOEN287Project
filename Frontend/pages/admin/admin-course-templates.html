@@ -13,7 +13,7 @@
             <h1 class="title1">Course Templates</h1>
             <hr class="line">
 
-            <form class="form1">
+            <form class="form1" id="templateForm">
                 <div class="formrow1" style="margin-right: 500px;">
                     <label for="templateName">Template Name</label>
                     <input id="templateName" type="text" placeholder="Standard Template">
@@ -43,14 +43,14 @@
                 </div>
 
                 <div class="formrowwide1">
-                    <label for="templateNotes">Notes</label>
+                    <label for="templateNotes" id="notes">Notes</label>
                     <textarea id="templateNotes" placeholder="Template notes..."></textarea>
                 </div>
 
                 <div class="buttonrow1">
                         <input class="button clickable-box" type="reset" value="Reset" style="margin-left:700px;">
-
-                    <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id="saved" style="min-width:14.5%; padding-right:0;">Save Template</a>
+                        <input class="button clickable-box" type="submit" value="Submit" style="min-width:14.5%; padding-right:0;">
+                    <!-- <a href="admin-dashboard.html" class="backlink mainbutton clickable-box" id="saved" style="min-width:14.5%; padding-right:0;">Save Template</a> -->
                 </div>
             </form>
         </section>

@@ -67,12 +67,37 @@
     {
       "courseCode": "ENGR 201",
       "courseName": "Engineering Ethical",
-      "instructor": "Test",
+      "instructor": "Dummy",
       "courseCredit": "1.5",
       "term": "Winter 2026",
-      "description": "Test",
+      "description": "",
       "active": true,
-      "assessments": []
+      "assessments": [
+        {
+          "name": "Assignments",
+          "weight": 10,
+          "dueDate": null,
+          "grades": {}
+        },
+        {
+          "name": "Quizzes",
+          "weight": 10,
+          "dueDate": null,
+          "grades": {}
+        },
+        {
+          "name": "Midterm",
+          "weight": 30,
+          "dueDate": null,
+          "grades": {}
+        },
+        {
+          "name": "Final",
+          "weight": 50,
+          "dueDate": null,
+          "grades": {}
+        }
+      ]
     }
   ],
   "students": [
@@ -138,24 +163,25 @@
       "notes": ""
     },
     {
-      "templateName": "",
-      "weights": {
-        "assignments": "",
-        "quizzes": "",
-        "midterm": "",
-        "final": ""
-      },
-      "notes": ""
-    },
-    {
-      "templateName": "sdaads",
-      "weights": {
-        "assignments": "",
-        "quizzes": "",
-        "midterm": "",
-        "final": ""
-      },
-      "notes": ""
+      "templateName": "Test",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "weight": 10
+        },
+        {
+          "name": "Quizzes",
+          "weight": 10
+        },
+        {
+          "name": "Midterm",
+          "weight": 30
+        },
+        {
+          "name": "Final",
+          "weight": 50
+        }
+      ]
     }
   ]
 }

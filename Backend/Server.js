@@ -56,31 +56,41 @@ app.get('/get/:type', (req, res) => {
   res.json({ [type]: data[type] });
 });
 
-// app.post('/add/:type', (req, res) => {
-//   const type = req.params.type;
+app.post('/add/template', (req, res) => {
+  try {
+    const parsed = req.body;
+    
+    if (!data["templates"]) data["templates"] = [];
+    
+    data["templates"].push(parsed);
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 
-//   try {
-//     const parsed = req.body;
+    res.json({ [type]: data[type] });
 
-//     if (!data[type]) data[type] = [];
+  } catch {
+    res.status(400);
+    res.send("Invalid JSON");
+  }
+});
 
-//     data[type].push(parsed);
 
-//     fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
-
-//     res.json({ [type]: data[type] });
-
-//   } catch {
-//     res.status(400);
-//     res.send("Invalid JSON");
-//   }
-// });
 app.post('/add/course', (req, res) => {
   const { courseCode, courseTitle, instructor, credit, term, description, templateName } = req.body;
   try {
     if (!courseCode && !courseTitle && !credit && !term && !instructor) {
       return res.status(400).json( {error: "Missing Info!"});
     }
+
+    const template = data.templates.find( t => t.templateName === templateName);
+    const templateAssignment = [];
+    template.assessments.forEach(a => {
+      templateAssignment.push({
+        "name": a.name,
+        "weight": a.weight,
+        "dueDate": null,
+        "grades": {}
+      });
+    });
 
     // check if course already existed
     const courseExist = data.courses.find( c => c.courseCode === courseCode);
@@ -96,7 +106,7 @@ app.post('/add/course', (req, res) => {
       "term": term,
       "description": description,
       "active": true,
-      "assessments": []
+      "assessments": templateAssignment
     }
 
     data.courses.push(course);

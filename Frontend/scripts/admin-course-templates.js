@@ -5,17 +5,18 @@ form.addEventListener('submit', function(e) {
 
     const templateName = document.getElementById('templateName').value;
     const notes = document.getElementById('notes').value;
-
-    const sections = form.querySelectorAll('.section1');
+    
+    const sections = form.querySelectorAll('.listrow1');
     const assessments = [];
+    
 
     for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
-        const nameInput = section.querySelector('input[type=\"text\"]');        
-        const weightInput = section.querySelector('input[type=\"number\"]');    
-
+        const nameInput = section.querySelector('.listrowtext1');        
+        const weightInput = section.querySelector('input[type=\"number\"]');
+        
         assessments.push({
-            name: nameInput.value,
+            name: nameInput.innerHTML,
             weight: parseInt(weightInput.value, 10)
         });
     }
@@ -32,7 +33,7 @@ form.addEventListener('submit', function(e) {
     // }
 
     const templateData = {
-        name: templateName,
+        templateName: templateName,
         notes: notes,
         assessments: assessments
     };
