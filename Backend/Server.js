@@ -343,7 +343,8 @@ const transporter = nodemailer.createTransport({
 app.post('/forgot-password',async (req,res)=>{
   const {email} = req.body;
 
-  const student = data.students.find(s => s.Email_ === email);
+  const student = data.students.find(s => s.Email_ === email) 
+                || data.admins.find(a => a.Email_ === email);
 
   if (!student){
     return res.json({message : 'If email already exists, reset link was sent.'})
@@ -382,7 +383,8 @@ app.post('/reset-password', async (req, res) => {
     return res.status(400).json({ error: 'Invalid or expired token.' });
   }
 
-  const student = data.students.find(s => s.id === record.userId);
+  const student = data.students.find(s => s.id === record.userId)
+             || data.admins.find(a => a.id === record.userId);
 
   if (!student) {
     return res.status(400).json({ error: 'Student not found.' });
