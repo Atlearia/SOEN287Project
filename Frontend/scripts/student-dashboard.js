@@ -146,6 +146,12 @@ function addCourse() {
                 return;
             }
 
+            if (res.status === 405) {
+                alert("Course is disabled!");
+                closeForm();
+                return;
+            }
+
             if (!res.ok) {
                 alert("Something went wrong!")
                 closeForm();
@@ -299,7 +305,7 @@ function renderAssesments(student) {
         if (assessment.grade != null) {
             StatusText = "Complete";
             StatusClass = "complete";
-        } else if (!assessment.grade && new Date(dueDate)< new Date()) {
+        } else if (!assessment.grade && new Date(dueDate ? dueDate.replace(/-/g, '\/'): null).toDateString()< new Date().toDateString()) {
             StatusText = "Late";
             StatusClass = "late";
         } else if(!dueDate) {

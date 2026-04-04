@@ -25,6 +25,7 @@ if (fs.existsSync(dataFile)) {
 if (!data.courses) data.courses = []; 
 if (!data.students) data.students = [];
 if (!data.admins) data.admins = [];
+if (!data.templates) data.templates = [];
 
 function calculateAverage(assessments, studentID) {
   let totalWeight = 0;
@@ -55,26 +56,64 @@ app.get('/get/:type', (req, res) => {
   res.json({ [type]: data[type] });
 });
 
-app.post('/add/:type', (req, res) => {
-  const type = req.params.type;
+// app.post('/add/:type', (req, res) => {
+//   const type = req.params.type;
 
+//   try {
+//     const parsed = req.body;
+
+//     if (!data[type]) data[type] = [];
+
+//     data[type].push(parsed);
+
+//     fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+//     res.json({ [type]: data[type] });
+
+//   } catch {
+//     res.status(400);
+//     res.send("Invalid JSON");
+//   }
+// });
+app.post('/add/course', (req, res) => {
+  const { courseCode, courseTitle, instructor, credit, term, description, templateName } = req.body;
   try {
-    const parsed = req.body;
-    console.log(parsed)
+    if (!courseCode && !courseTitle && !credit && !term && !instructor) {
+      return res.status(400).json( {error: "Missing Info!"});
+    }
 
-    if (!data[type]) data[type] = [];
+    // check if course already existed
+    const courseExist = data.courses.find( c => c.courseCode === courseCode);
+    if (courseExist) {
+      return res.status(400).json({error : "Course already existed with that code!"});
+    }
 
-    data[type].push(parsed);
+    const course = {
+      "courseCode": courseCode,
+      "courseName": courseTitle,
+      "instructor": instructor,
+      "courseCredit": credit,
+      "term": term,
+      "description": description,
+      "active": true,
+      "assessments": []
+    }
 
-    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+    data.courses.push(course);
+    
 
-    res.json({ [type]: data[type] });
-
-  } catch {
-    res.status(400);
-    res.send("Invalid JSON");
+    fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        res.status(500);
+        return res.json({ error: "Failed to save" });
+      }
+      res.json({ success: true });
+    })
+  }catch(err) {
+    console.log(err)
+    res.send(err);
   }
-});
+})
 
 app.post('/update/course/assessments', (req, res) => {
   try {
@@ -88,8 +127,39 @@ app.post('/update/course/assessments', (req, res) => {
               return res.send("Course not found");
             }
 
+            const students = data.students.filter( s => s.coursesEnrolled.some(c => c === courseCode)).map(s => s.id)
+            
+            assessments.forEach(a => {
+              a["grades"] = {}
+              students.forEach(s => a.grades[s] = null);
+
+            });
             // update assessments
             course.assessments = assessments;
+            // save to file
+            fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+            res.json(course);
+
+        } catch (err) {
+            res.status(400);
+            res.send("Invalid JSON");
+        }
+});
+
+app.post('/update/course/status', (req, res) => {
+  try {
+    const { courseCode, active } = req.body;
+
+            // find the course
+            const course = data.courses.find(c => c.courseCode === courseCode);
+
+            if (!course) {
+              res.status(404);
+              return res.send("Course not found");
+            }
+
+            course.active = active;
 
             // save to file
             fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
@@ -245,6 +315,11 @@ app.post('/enroll', (req, res) => {
           return res.json({ error: "Course not found" });
         }
 
+        if (!course.active) {
+          res.status(405)
+          return res.json({ error: "Course is disable!"});
+        }
+
         const student = data.students.find(s => s.id === studentId);
 
         if (!student) {
@@ -257,6 +332,7 @@ app.post('/enroll', (req, res) => {
           res.status(409);
           return res.json({ error: "Already enrolled" });
         }
+
 
         student.coursesEnrolled.push(courseCode);
 

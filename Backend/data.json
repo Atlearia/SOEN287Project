@@ -6,6 +6,7 @@
       "instructor": "Alice",
       "term": "Winter 2026",
       "description": "This is a course",
+      "active": true,
       "assessments": [
         {
           "name": "projectadsadss",
@@ -23,6 +24,7 @@
       "instructor": "Bob",
       "term": "Winter 2026",
       "description": "This is another course",
+      "active": true,
       "assessments": []
     },
     {
@@ -31,11 +33,21 @@
       "instructor": "Holy Cow",
       "term": "Winter 2026",
       "description": "This is another course",
+      "active": true,
       "assessments": [
         {
           "name": "Testing",
-          "dueDate": "2026-04-25",
           "weight": 30,
+          "dueDate": "2026-04-04",
+          "grades": {
+            "S0001": null,
+            "S0002": null
+          }
+        },
+        {
+          "name": "Quiz",
+          "weight": 2,
+          "dueDate": "2026-04-19",
           "grades": {
             "S0001": null,
             "S0002": null
@@ -49,6 +61,17 @@
       "instructor": "Holy Cow",
       "term": "Winter 2026",
       "description": "This is another course",
+      "active": true,
+      "assessments": []
+    },
+    {
+      "courseCode": "ENGR 201",
+      "courseName": "Engineering Ethical",
+      "instructor": "Test",
+      "courseCredit": "1.5",
+      "term": "Winter 2026",
+      "description": "Test",
+      "active": true,
       "assessments": []
     }
   ],

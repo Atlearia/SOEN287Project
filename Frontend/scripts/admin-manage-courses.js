@@ -18,7 +18,7 @@ function loadCourses() {
             const course = coursesData[i];
             const opt = document.createElement('option');
             opt.value = course.courseCode;
-            opt.textContent = course.courseCode + ' - ' + course.courseTitle;
+            opt.textContent = course.courseCode + ' - ' + course.courseName;
             courseSelect.appendChild(opt);
         }
     });
@@ -64,6 +64,10 @@ function renderAssessments() {
                 '<label>Weight (%)</label>' +
                 '<input name=\"assessmentPercent[]\" type=\"number\" min=\"0\" max=\"100\" class=\"manage-weight\" value=\"' + assessment.weight + '\">' +
             '</div>' +
+            '<div class=\"assessmentweightcol1\">' +
+            '<label>Due Date</label>' +
+            '<input name=\"assessmentDueDate[]\" type=\"date\" class=\"manage-duedate\" value=\"' + assessment.dueDate + '\">' +
+            '</div>' +
         '</div><br>';
 
         assessmentList.appendChild(outerDiv);
@@ -83,6 +87,10 @@ addAssessmentButton.addEventListener('click', function() {
         '<div class=\"assessmentweightcol1\">' +
             '<label>Weight (%)</label>' +
             '<input name=\"assessmentPercent[]\" type=\"number\" min=\"0\" max=\"100\" class=\"manage-weight\" value=\"0\">' +
+        '</div>' +
+        '<div class=\"assessmentweightcol1\">' +
+            '<label>Due Date</label>' +
+            '<input name=\"assessmentDueDate[]\" type=\"date\" class=\"manage-duedate\">' +
         '</div>' +
     '</div><br>';
 
@@ -104,10 +112,18 @@ manageCourseForm.addEventListener('submit', function(e) {
     for (let i = 0; i < items.length; i++) {
         const nameInput = items[i].querySelector('.manage-name');
         const weightInput = items[i].querySelector('.manage-weight');
+        let dateInput = items[i].querySelector('.manage-duedate');
+
+        if (!dateInput) {
+            dateInput = null;
+        }else {
+            dateInput = dateInput.value;
+        }
 
         updatedAssessments.push({
             name: nameInput.value,
-            weight: parseInt(weightInput.value, 10)
+            weight: parseInt(weightInput.value, 10),
+            dueDate: dateInput
         });
     }
 
