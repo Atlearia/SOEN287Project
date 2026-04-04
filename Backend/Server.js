@@ -132,19 +132,26 @@ app.get('/dashboard/student/:id', (req, res) => {
 
 });
 
-app.get('/settings/student/:id', (req, res) => {
-  const studentId = req.params.id;
-  const student  = data.students.find( s => s.id === studentId);
-  if (!student) {
+app.get('/settings/:role/:id', (req, res) => {
+  const id = req.params.id;
+  const role = req.params.role;
+  let user;
+  if (role === 'student') {
+    user  = data.students.find( s => s.id === id);
+  }else if (role === 'admin') {
+    user = data.admins.find(a => a.id === id);
+  }
+
+  if (!user) {
     res.status(404);
     return res.send("Student not found!");
   }
 
     const respone = {
-      id: student.id,
-      firstName: student.First_Name_,
-      lastName: student.Last_Name_,
-      email: student.Email_
+      id: user.id,
+      firstName: user.First_Name_,
+      lastName: user.Last_Name_,
+      email: user.Email_
     };
     return res.json(respone);
 
@@ -152,16 +159,26 @@ app.get('/settings/student/:id', (req, res) => {
 
 app.post('/settings/updateprofile', (req, res) => {
   try {
-    const {studentId, firstName, lastName, email} = req.body;
-    const student = data.students.find( s => s.id === studentId);
+    const {id, role, firstName, lastName, email} = req.body;
+    let user;
+    if (role === 'student') {
+      user = data.students.find( s => s.id === id);
+    }else if (role === 'admin') {
+      user = data.admins.find(a => a.id === id);
+    }
 
-    if (!studentId || !student) {
+    if (!id || !user) {
       res.status(404);
       return res.json({error: "Student not found!"});
     }
-    student.First_Name_ = firstName;
-    student.Last_Name_  = lastName;
-    student.Email_      = email;
+
+    if (!firstName || !lastName || !email) {
+      return res.status(400).json({ error: "All fields are required" });
+    } 
+
+    user.First_Name_ = firstName;
+    user.Last_Name_  = lastName;
+    user.Email_      = email;
 
     fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
       if (err) {
@@ -177,20 +194,25 @@ app.post('/settings/updateprofile', (req, res) => {
 
 app.post('/settings/updatepassword', (req, res) => {
   try {
-    const {studentId, currentPassword, newPassword} = req.body;
-    const student = data.students.find( s => s.id === studentId);
+    const {id, role, currentPassword, newPassword} = req.body;
+    let user;
+    if (role === 'student') {
+      user = data.students.find( s => s.id === id);
+    }else if (role === 'admin') {
+      user = data.admins.find( a => a.id === id);
+    }
 
-    if (!studentId) {
-      res.status(404);
-      return res.json({error: "Student not found!"});
+
+    if (!id || !role || !currentPassword || !newPassword) {
+      return res.status(400).json({ error: "All fields are required" });
     }
     
-    if (student.password_ !== currentPassword) {
+    if (user.password_ !== currentPassword) {
       res.status(401);
       return res.json({error: "Wrong Password!"});
     }
     
-    student.password_ = newPassword;
+    user.password_ = newPassword;
     
     fs.writeFile(dataFile, JSON.stringify(data, null, 2), (err) => {
       if (err) {

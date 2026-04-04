@@ -1,34 +1,34 @@
 
-async function loadStudent() {
+async function loadUser() {
     const id = sessionStorage.getItem('id');
     const role = sessionStorage.getItem('role');
-    if (!id || role !== 'student') {
+    if (!id || !role) {
         window.location.href = '/';
         return;
     }
-    const res = await fetch(`/settings/student/${id}`);
+    const res = await fetch(`/settings/${role}/${id}`);
     if (!res.ok) {
         alert('Profile not working!');
         return
     }
 
-    const student = await res.json();
+    const user = await res.json();
     
-    return student;
+    return user;
 }
 
 async function load() {
-    const student = await loadStudent();
-    if (student) {
-        document.getElementById("inputFirstName").value = student.firstName;
-        document.getElementById("inputLastName").value = student.lastName;
-        document.getElementById("inputEmail").value = student.email;
+    const user = await loadUser();
+    if (user) {
+        document.getElementById("inputFirstName").value = user.firstName;
+        document.getElementById("inputLastName").value = user.lastName;
+        document.getElementById("inputEmail").value = user.email;
     }
-    updateProfile(student);
-    updatePassword(student);
+    updateProfile();
+    updatePassword();
 }
 
-function updateProfile(student) {
+function updateProfile() {
     const form = document.getElementById("updateProfileForm");
     form.addEventListener("submit", async(e) => {
         e.preventDefault();
@@ -54,7 +54,8 @@ function updateProfile(student) {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    studentId: sessionStorage.getItem("id"),
+                    id: sessionStorage.getItem("id"),
+                    role: sessionStorage.getItem("role"),
                     firstName: firstName,
                     lastName: lastName,
                     email: email
@@ -62,7 +63,7 @@ function updateProfile(student) {
             })
 
             if (res.status === 404) {
-                alert("Student not found!");
+                alert("User not found!");
                 return;
             }
 
@@ -77,7 +78,7 @@ function updateProfile(student) {
     })
 }
 
-function updatePassword(student) {
+function updatePassword() {
     const form = document.getElementById("changePasswordForm");
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -98,7 +99,8 @@ function updatePassword(student) {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    studentId: sessionStorage.getItem("id"),
+                    id: sessionStorage.getItem("id"),
+                    role: sessionStorage.getItem("role"),
                     currentPassword,
                     newPassword
                 })
