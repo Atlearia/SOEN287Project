@@ -74,4 +74,3 @@ toggleSaveBtn.addEventListener('click', async function(e) {
     await Promise.all(promises);
     window.location.href = 'admin-dashboard.html';
 });
-

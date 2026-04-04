@@ -49,16 +49,7 @@
       "instructor": "Holy Cow",
       "term": "Winter 2026",
       "description": "This is another course",
-      "assessments": [
-        {
-          "name": "Testing",
-          "dueDate": "2026-04-25",
-          "weight": 30,
-          "grades": {
-            "S0002": null
-          }
-        }
-      ]
+      "assessments": []
     }
   ],
   "students": [
