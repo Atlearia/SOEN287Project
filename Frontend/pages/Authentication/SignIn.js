@@ -301,7 +301,7 @@ form_student_login.addEventListener("submit", async function(event){
             const identification = validStudent.id;
             sessionStorage.setItem("id",identification);
             sessionStorage.setItem("role","student");
-            window.location.href = "../dashboard/student-dashboard.html";
+            window.location.href = "/pages/dashboard/student-dashboard.html";
         } else {
             // show invalid login
             document.getElementById('EmailAddress').setCustomValidity('Email or password is incorrect');

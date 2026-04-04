@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -351,7 +353,7 @@ app.post('/forgot-password',async (req,res)=>{
 
   resetTokens[token] = { userId: student.id,expiresAt};
   
-  const resetUrl = `http://${hostname}:${port}/reset-password.html?token=${token}`;
+  const resetUrl = `http://localhost:${port}/pages/passwordReset/reset-password.html?token=${token}`;
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
@@ -387,7 +389,7 @@ app.post('/reset-password', async (req, res) => {
   }
 
   student.password_ = newPassword;
-  fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+  fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 
   delete resetTokens[token];
 
