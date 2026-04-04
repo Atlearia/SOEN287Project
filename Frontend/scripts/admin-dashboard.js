@@ -33,6 +33,7 @@ function loadDashboard() {
                 }
 
                 renderAssessments(foundCourse, students);
+                renderDeadline(foundCourse);
             });
 
             if (courses.length > 0) {
@@ -123,6 +124,19 @@ function renderAssessments(course, allStudents) {
 
     const overallRate = parseInt((totalCompletedAcrossAll / totalPossibleAvailable) * 100, 10);
     overallCompletionBox.textContent = (overallRate ? overallRate : 0) + '%';
+}
+
+function renderDeadline(course) {
+    const upcomingBox = document.getElementById('upcoming');
+    upcomingBox.innerHTML = "";
+    course.assessments.forEach(a => {
+        if (a) {
+            const date = new Date(a.dueDate);
+            upcomingBox.innerHTML += `
+                <div class="us-deadline-BOX">&#x1F5D3; ${date.toLocaleString('default', {month: 'long'})} ${date.getDay()} - ${a.name}</div>
+            `;
+        }
+    });
 }
 
 loadDashboard();
