@@ -12,7 +12,7 @@ const createadmin=document.getElementById('createadmin');
 // it so that we can create an account and login with it without refreshing the page
 // (without back end)
 
-loginbutton.addEventListener('change', function(){
+loginbutton.addEventListener('click', function(){
     if(loginbutton.checked){
 
         document.getElementById('createstudentform').reset();
@@ -25,7 +25,7 @@ loginbutton.addEventListener('change', function(){
 
 
 
-signup.addEventListener('change', function(){
+signup.addEventListener('click', function(){
     
     if (signup.checked){
         document.getElementById('studentloginform').reset();
@@ -301,7 +301,7 @@ form_student_login.addEventListener("submit", async function(event){
             const identification = validStudent.id;
             sessionStorage.setItem("id",identification);
             sessionStorage.setItem("role","student");
-            window.location.href = "/pages/dashboard/student-dashboard.html";
+            window.location.href = "../dashboard/student-dashboard.html";
         } else {
             // show invalid login
             document.getElementById('EmailAddress').setCustomValidity('Email or password is incorrect');
