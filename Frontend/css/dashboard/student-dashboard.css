@@ -234,6 +234,11 @@ body {
         margin: 10px 10px 10px 10px;
     }
 
+    #darkModeBtn {
+        max-width: 50px;
+        max-height: 50px;
+    }
+
     .assessment-table {
         max-width: 100%;
         width: 98%;
@@ -250,10 +255,11 @@ body {
 
     .assessment-table {
         font-size: 12px;
+    
+    }
+    #darkModeBtn {
+        width: 95%;
+        max-height: 50px;
     }
 }
 
-#darkModeBtn {
-    max-width: 50px;
-    max-height: 50px;
-}

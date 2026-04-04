@@ -37,8 +37,8 @@
           "dueDate": "2026-04-25",
           "weight": 30,
           "grades": {
-            "S0002": 100,
-            "S0001": null
+            "S0001": null,
+            "S0002": null
           }
         }
       ]
@@ -71,9 +71,9 @@
       "password_": "1",
       "id": "S0002",
       "coursesEnrolled": [
-        "COMP 249",
         "SOEN 287",
-        "COMP 232"
+        "COMP 232",
+        "COMP 249"
       ]
     }
   ],
