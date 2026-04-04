@@ -60,6 +60,7 @@ app.post('/add/:type', (req, res) => {
 
   try {
     const parsed = req.body;
+    console.log(parsed)
 
     if (!data[type]) data[type] = [];
 

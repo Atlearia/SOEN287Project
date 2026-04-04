@@ -1,4 +1,4 @@
-const templateDropdown = document.getElementById('templateDropdown');
+const templateDropdown = document.getElementById('template');
 const form = document.getElementById('createCourseForm');
 
 function loadTemplates() {///ascyn
@@ -7,11 +7,12 @@ function loadTemplates() {///ascyn
     }).then(function(data) {
         const templates = data.templates;
         templateDropdown.innerHTML = '<option value=\"\" disabled selected>Select an assessment template</option>';
+        console.log(templates);
         for (let i = 0; i < templates.length; i++) {
             const template = templates[i];
             const opt = document.createElement('option');
-            opt.value = template.name;
-            opt.textContent = template.name;
+            opt.value = template.templateName;
+            opt.textContent = template.templateName;
             templateDropdown.appendChild(opt);
         }
     }).catch(function() {
@@ -22,11 +23,11 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const courseCode = document.getElementById('courseCode').value;
-    const courseTitle = document.getElementById('courseTitle').value;
+    const courseTitle = document.getElementById('courseName').value;
     const term = document.getElementById('term').value;
     const templateName = templateDropdown.value;
 //wed have to Render or Cloudfare? we could also github but theres no good backend 
-    fetch('/add/course', {
+    fetch('/add/courses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -122,7 +122,7 @@ function renderAssessments(course, allStudents) {
     }
 
     const overallRate = parseInt((totalCompletedAcrossAll / totalPossibleAvailable) * 100, 10);
-    overallCompletionBox.textContent = overallRate + '%';
+    overallCompletionBox.textContent = (overallRate ? overallRate : 0) + '%';
 }
 
 loadDashboard();
