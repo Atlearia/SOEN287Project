@@ -1,6 +1,7 @@
 const selection = document.getElementById('selection');
 const barsBlock = document.querySelector('.us-bars-block');
 const overallCompletionBox = document.getElementById('big-aah-number');
+const warningsContainer = document.getElementById("warning");
 
 function loadDashboard() {
     fetch('/get/courses').then(function(coursesRes) {
@@ -13,13 +14,15 @@ function loadDashboard() {
         }).then(function(studentsData) {
             const students = studentsData.students;
 
-            selection.innerHTML = '<option value=\"\">Select a course</option>';
+            selection.innerHTML = '<option value=\"\" selected disabled>Select a course</option>';
             for (let i = 0; i < courses.length; i++) {
                 const course = courses[i];
-                const option = document.createElement('option');
-                option.value = course.courseCode;
-                option.textContent = course.courseCode;
-                selection.appendChild(option);
+                if(sessionStorage.getItem('id')===course.AdminId){
+                    const option = document.createElement('option');
+                    option.value = course.courseCode;
+                    option.textContent = course.courseCode;
+                    selection.appendChild(option);
+                }
             }
 
             selection.addEventListener('change', function(e) {
@@ -32,74 +35,55 @@ function loadDashboard() {
                     }
                 }
 
-                renderAssessments(foundCourse, students);
+                renderAssessments(foundCourse);
             });
-
+            /*
             if (courses.length > 0) {
                 selection.value = courses[0].courseCode;
                 selection.dispatchEvent(new Event('change'));
-            }
+            }*/
         });
     });
 }
 
-function renderAssessments(course, allStudents) {
+function renderAssessments(course) {
     barsBlock.innerHTML = '';
-    
+    warningsContainer.innerHTML = ''; //clear at risk section
 
-    const enrolledStudents = [];
-    for (let i = 0; i < allStudents.length; i++) {
-        const s = allStudents[i];
-        if (s.coursesEnrolled) {
-            let found = false;
-            for (let j = 0; j < s.coursesEnrolled.length; j++) {
-                const ce = s.coursesEnrolled[j];
-                if (ce.courseCode === course.courseCode) {
-                    found = true;
-                    break;
-                }
-            }
-            if (found) {
-                enrolledStudents.push(s);
-            }
-        }
-    }
+    let Totalgained=0;
+    let Total=0;
     
-    let totalPossibleAvailable = 0;
-    let totalCompletedAcrossAll = 0;
 
     for (let i = 0; i < course.assessments.length; i++) {
         const assessment = course.assessments[i];
-        let completionRate = 0;
+        let AVg = 0;
+        let numstudents=0;
+        let numstudentsmiss=0;
+        let studentGain=0;
         let displayText = '0%';
         let barClass = '';
 
-        if (enrolledStudents.length > 0) {
-            let studentsCompleted = 0;
-            for (let j = 0; j < enrolledStudents.length; j++) {
-                const s = enrolledStudents[j];
-                let enrolledCourse = null;
-                for (let k = 0; k < s.coursesEnrolled.length; k++) {
-                    const ce = s.coursesEnrolled[k];
-                    if (ce.courseCode === course.courseCode) {
-                        enrolledCourse = ce;
-                        break;
-                    }
-                }
-                if (enrolledCourse && enrolledCourse.assessmentsCompleted && enrolledCourse.assessmentsCompleted.includes(assessment.name)) {
-                    studentsCompleted++;
-                }
+        const grades = Object.values(assessment.grades || {});
+        grades.forEach(g =>{
+            numstudents++;
+            if(g != null){
+                studentGain+=g;
             }
-            completionRate = parseInt((studentsCompleted / enrolledStudents.length) * 100, 10);
-            displayText = completionRate + '%';
-        }
+            if(g == null){
+                numstudentsmiss++;
+            }
+        })
+            
         
-        if (completionRate > 0) {
+        AVg = numstudents>0 ? studentGain/numstudents:0; //make sure no divide by zero happens
+        displayText = AVg+"%";
+        
+        if (AVg > 0) {
             barClass = 'us-bar-fill-green';
         }
 
-        totalPossibleAvailable += 100;
-        totalCompletedAcrossAll += completionRate;
+        Total += 100*assessment.weight;
+        Totalgained += AVg*assessment.weight;
 
         const row = document.createElement('div');
         row.className = 'us-bar-row';
@@ -108,8 +92,8 @@ function renderAssessments(course, allStudents) {
         }
 
         let widthStr = '';
-        if (completionRate > 0) {
-            widthStr = completionRate + '%';
+        if (AVg >= 0) {
+            widthStr = AVg + '%';
         }
         
         row.innerHTML = '<span class=\"us-bar-name\">' + assessment.name + '</span>' +
@@ -119,10 +103,31 @@ function renderAssessments(course, allStudents) {
             '<span class=\"stats-letter\">' + displayText + '</span>';
 
         barsBlock.appendChild(row);
+        
+        if(new Date(assessment.DueDateComp)< new Date()){
+            if (AVg < 60 && numstudents > 0) {
+                const warn = document.createElement("div");
+                warn.className = "us-warn-item";
+                warn.innerHTML = `
+                    <span class="DANGER-icon">&#9888;</span>
+                    ${assessment.name} average below 60%
+                `;
+                warningsContainer.appendChild(warn);
+            }
+            if(numstudentsmiss>0 && numstudents>0){
+                const warn = document.createElement("div");
+                warn.className = "us-warn-item";
+                warn.innerHTML = `
+                    <span class="DANGER-icon">&#9888;</span>
+                    ${numstudentsmiss} student(s) with ${assessment.name} 1 overdue
+                `;
+                warningsContainer.appendChild(warn);
+            }
+        }
     }
 
-    const overallRate = parseInt((totalCompletedAcrossAll / totalPossibleAvailable) * 100, 10);
-    overallCompletionBox.textContent = overallRate + '%';
+    const overallAVG = parseInt((Totalgained / Total) * 100, 10);
+    overallCompletionBox.textContent = overallAVG + '%';
 }
 
 loadDashboard();

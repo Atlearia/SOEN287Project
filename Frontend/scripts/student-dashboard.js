@@ -266,7 +266,7 @@ function renderCourse(student) {
     for (const course of student.courses) {
             const container = document.createElement('a')
             container.classList.add('course-item', 'col', 'text-center');   // bootstrap classes
-            //container.setAttribute('href', (`../Courses/${course.code.replace(' ', '')}.html`)) // set href to each course page (Hardcoded initially)
+            container.addEventListener('click', () => Go(course.code));
             
             // create like a template for each course card
             container.innerHTML = `
@@ -278,12 +278,17 @@ function renderCourse(student) {
         }
     
 }
-
+function Go(a){
+sessionStorage.setItem("courseCode",a);
+window.location.href=`../Courses/COMP249.html`;
+}
 /**
  * Render assessments to the dashboard of the assessment
  */
 function renderAssesments(student) {
     assessmentDashboard.innerHTML = ''; // clean up and reset the dashboard everytime call (EXPENSIVE on backend)
+    
+    const studentId = sessionStorage.getItem('id');//get student id
     // loop through all assessments
     const assessments = student.courses.flatMap( course => course.assessments.map( a => ( {
         ...a,
@@ -294,12 +299,15 @@ function renderAssesments(student) {
         let container = document.createElement('tr');   // create a table row for each assessment
         let StatusClass;    // css handling
         let StatusText;     // text handling
-        const dueDate = assessment.dueDate;
+
+        const grade = assessment.grades ? assessment.grades[studentId] : null;
+        const dueDate = new Date(assessment.DueDateComp);
+        const displayDate = dueDate.toLocaleDateString('en-US', { timeZone:'UTC',month: 'long', day: 'numeric', year: 'numeric' });
         // check the status of each assessment and update text and styling
-        if (assessment.grade != null) {
+        if (grade != null) {
             StatusText = "Complete";
             StatusClass = "complete";
-        } else if (!assessment.grade && new Date(dueDate)< new Date()) {
+        } else if (!grade && dueDate< new Date()) {
             StatusText = "Late";
             StatusClass = "late";
         } else if(!dueDate) {
@@ -313,7 +321,7 @@ function renderAssesments(student) {
         container.innerHTML = `
                         <td>${assessment.code}</td>
                         <td>${assessment.name}</td>
-                        <td>${assessment.dueDate}</td>
+                        <td>${displayDate}</td>
                         <td><span class="assessment-status ${StatusClass}" id="assessment-status">${StatusText}</span></td>
         `;
         assessmentDashboard.appendChild(container); // append it to the dashboard

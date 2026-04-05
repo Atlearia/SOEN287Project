@@ -9,13 +9,22 @@
       "assessments": [
         {
           "name": "projectadsadss",
-          "weight": 30
+          "weight": 35
         },
         {
           "name": "test",
           "weight": 10
+        },
+        {
+          "name": "e",
+          "weight": 25
+        },
+        {
+          "name": "r",
+          "weight": 63
         }
-      ]
+      ],
+      "active": true
     },
     {
       "courseCode": "SOEN 349",
@@ -23,7 +32,8 @@
       "instructor": "Bob",
       "term": "Winter 2026",
       "description": "This is another course",
-      "assessments": []
+      "assessments": [],
+      "active": true
     },
     {
       "courseCode": "COMP 249",
@@ -41,7 +51,8 @@
             "S0001": null
           }
         }
-      ]
+      ],
+      "active": true
     },
     {
       "courseCode": "COMP 232",
@@ -58,7 +69,118 @@
             "S0002": null
           }
         }
-      ]
+      ],
+      "active": true
+    },
+    {
+      "courseCode": "pol",
+      "courseName": "polo",
+      "instructor": "q q",
+      "term": "Winter 2026",
+      "description": "",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "DueDate": "January 29, 2026",
+          "DueDateComp": "2026-01-29T00:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": 98,
+            "S0006": 78
+          }
+        },
+        {
+          "name": "Quizzes",
+          "DueDate": "February 27, 2026",
+          "DueDateComp": "2026-02-27T00:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": null,
+            "S0006": null
+          }
+        },
+        {
+          "name": "Midterm",
+          "DueDate": "April 14, 2026",
+          "DueDateComp": "2026-04-14T00:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": null,
+            "S0006": null
+          }
+        },
+        {
+          "name": "Final",
+          "DueDate": "June 2, 2026",
+          "DueDateComp": "2026-06-02T00:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": 6,
+            "S0006": null
+          }
+        },
+        {
+          "name": "Project",
+          "weight": 8,
+          "DueDate": "May 11, 2026",
+          "DueDateComp": "2026-05-11T00:00:00.000Z",
+          "grades": {
+            "S0005": 5,
+            "S0006": null
+          }
+        }
+      ],
+      "active": false,
+      "credit": "2",
+      "AdminId": "A0001"
+    },
+    {
+      "courseCode": "2",
+      "courseName": "Web",
+      "instructor": "q q",
+      "term": "Fall 2027",
+      "description": "ds",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": null
+          }
+        },
+        {
+          "name": "Quizzes",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": null
+          }
+        },
+        {
+          "name": "Midterm",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": null
+          }
+        },
+        {
+          "name": "Final",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23,
+          "grades": {
+            "S0005": 42
+          }
+        }
+      ],
+      "active": true,
+      "credit": "1",
+      "AdminId": "A0001"
     }
   ],
   "students": [
@@ -84,64 +206,96 @@
         "SOEN 287",
         "COMP 232"
       ]
+    },
+    {
+      "First_Name_": "t",
+      "Last_Name_": "t",
+      "Email_": "t@t",
+      "password_": "u",
+      "id": "S0003",
+      "coursesEnrolled": []
+    },
+    {
+      "First_Name_": "w",
+      "Last_Name_": "w",
+      "Email_": "w@w",
+      "password_": "w",
+      "id": "S0004",
+      "coursesEnrolled": []
+    },
+    {
+      "First_Name_": "s",
+      "Last_Name_": "s",
+      "Email_": "s@s",
+      "password_": "s",
+      "id": "S0005",
+      "coursesEnrolled": [
+        "pol",
+        "2"
+      ]
+    },
+    {
+      "First_Name_": "d",
+      "Last_Name_": "d",
+      "Email_": "d@d",
+      "password_": "d",
+      "id": "S0006",
+      "coursesEnrolled": [
+        "pol"
+      ]
     }
   ],
   "admins": [
     {
       "First_Name_": "q",
       "Last_Name_": "q",
-      "Email_": "a@3",
-      "password_": "2",
-      "id": "A0001"
+      "Email_": "q@q",
+      "password_": "q",
+      "id": "A0001",
+      "courseCreated": [],
+      "courseTemplates": []
     },
     {
-      "First_Name_": "r",
-      "Last_Name_": "r",
-      "Email_": "a@2",
-      "password_": "3",
-      "id": "A0002"
+      "First_Name_": "w",
+      "Last_Name_": "w",
+      "Email_": "w@w",
+      "password_": "w",
+      "id": "A0002",
+      "courseCreated": [],
+      "courseTemplates": []
     }
   ],
   "templates": [
     {
-      "templateName": "adsdsadsa",
-      "weights": {
-        "assignments": "",
-        "quizzes": "",
-        "midterm": "",
-        "final": ""
-      },
-      "notes": ""
-    },
-    {
-      "templateName": "de",
-      "weights": {
-        "assignments": "",
-        "quizzes": "",
-        "midterm": "",
-        "final": ""
-      },
-      "notes": ""
-    },
-    {
-      "templateName": "",
-      "weights": {
-        "assignments": "",
-        "quizzes": "",
-        "midterm": "",
-        "final": ""
-      },
-      "notes": ""
-    },
-    {
-      "templateName": "sdaads",
-      "weights": {
-        "assignments": "",
-        "quizzes": "",
-        "midterm": "",
-        "final": ""
-      },
-      "notes": ""
+      "TemplateName": "po",
+      "notes": "",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23
+        },
+        {
+          "name": "Quizzes",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23
+        },
+        {
+          "name": "Midterm",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23
+        },
+        {
+          "name": "Final",
+          "DueDate": "January 1, 2026",
+          "DueDateComp": "2026-01-01T05:00:00.000Z",
+          "weight": 23
+        }
+      ],
+      "adminId": "A0001"
     }
   ]
 }

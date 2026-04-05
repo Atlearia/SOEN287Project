@@ -138,6 +138,8 @@ class Admin_login{
         this.Email_ = Email;
         this.password_ = password;
         this.id =id;
+        this.courseCreated =[]; //store which courses the admin created and therefore see
+        this.courseTemplates=[]; //store templates created by admin
     }
     
 }
@@ -336,7 +338,7 @@ form_admin_login.addEventListener("submit", async function(event){
             //stores the id and the type of user
             const identificationAdmin = validAdmin.id;
             sessionStorage.setItem("id",identificationAdmin);
-            sessionStorage.setItem("role","student");
+            sessionStorage.setItem("role","admin");
             window.location.href = "/pages/admin/admin-dashboard.html";
         } else {
             // show invalid login

@@ -16,7 +16,7 @@
             <form class="form1" id="manageCourseForm">
                 <div class="formrowwide1">
                     <label for="selectedCourse">Course</label>
-                    <select id="selectedCourse" class="bigcourseselect1">
+                    <select id="selectedCourse" class="bigcourseselect1" required>
                     
                     </select>
                 </div>
@@ -135,13 +135,14 @@
                 <div class="buttonrow1">
                     <button type="button" class="button clickable-box" id="addAssessmentButton">Add Assessment</button>
                     <button type="button" class="button clickable-box" id="removeAssessmentButton">Delete Assessment</button>
-                    <button type="submit" class="backlink mainbutton clickable-box">Save</button>
+                    <a href="admin-dashboard.html" class="backlink clickable-box">Cancel</a>
+                    <button type="submit" id ="edited" class="backlink mainbutton clickable-box">Save</button>
                 </div>
                 
                 </form>
         </section>
     </main>
-    <script src="../scripts/admin-manage-courses.js"></script>
+    <script src="../../scripts/admin-manage-courses.js"></script>
 </body>
 
 </html>

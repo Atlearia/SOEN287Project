@@ -6,7 +6,7 @@ async function loadCourses() {// IDK why it works 1/2, sometimes load sometimes 
     const response = await fetch('/get/courses');
     const data = await response.json();
         coursesData = data.courses || [];
-        
+        console.log(coursesData);
         simpleList.innerHTML = '';
 
         for (let i = 0; i < coursesData.length; i++) {
@@ -21,7 +21,7 @@ async function loadCourses() {// IDK why it works 1/2, sometimes load sometimes 
             
             const span = document.createElement('span');
             span.className = 'listrowtext1';
-            span.textContent = course.courseCode + ' - ' + course.courseTitle;
+            span.textContent = course.courseCode + ' - ' + course.courseName;
             
             const select = document.createElement('select');
             select.className = 'statusselect1';
@@ -75,3 +75,4 @@ toggleSaveBtn.addEventListener('click', async function(e) {
     window.location.href = 'admin-dashboard.html';
 });
 
+loadCourses()

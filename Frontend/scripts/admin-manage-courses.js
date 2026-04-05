@@ -1,3 +1,4 @@
+
 const courseSelect = document.getElementById('selectedCourse');
 const assessmentList = document.getElementById('assessmentList');
 const addAssessmentButton = document.getElementById('addAssessmentButton');
@@ -16,10 +17,12 @@ function loadCourses() {
         courseSelect.innerHTML = '<option value=\"\" disabled selected>Select Course</option>';
         for (let i = 0; i < coursesData.length; i++) {
             const course = coursesData[i];
-            const opt = document.createElement('option');
-            opt.value = course.courseCode;
-            opt.textContent = course.courseCode + ' - ' + course.courseTitle;
-            courseSelect.appendChild(opt);
+            if(String(course.AdminId) === sessionStorage.getItem('id')){
+                const opt = document.createElement('option');
+                opt.value = course.courseCode;
+                opt.textContent = course.courseCode + ' - ' + course.courseName;
+                courseSelect.appendChild(opt);
+            }
         }
     });
 }
@@ -51,7 +54,7 @@ function renderAssessments() {
 
     for (let i = 0; i < currentCourse.assessments.length; i++) {
         const assessment = currentCourse.assessments[i];
-        
+        const YMD = assessment.DueDateComp.split('T')[0];
         const outerDiv = document.createElement('div');
         outerDiv.className = 'assessment-item';
         
@@ -63,6 +66,10 @@ function renderAssessments() {
             '<div class=\"assessmentweightcol1\">' +
                 '<label>Weight (%)</label>' +
                 '<input name=\"assessmentPercent[]\" type=\"number\" min=\"0\" max=\"100\" class=\"manage-weight\" value=\"' + assessment.weight + '\">' +
+            '</div>' +
+            '<div class=\"assessmentDatecol1\">' +
+                '<label>Due Date</label>' +
+                '<input name=\"assessmentDate[]\" type=\"date\" class=\"manage-Date\" value=\"' + YMD + '\" required>' +
             '</div>' +
         '</div><br>';
 
@@ -84,6 +91,10 @@ addAssessmentButton.addEventListener('click', function() {
             '<label>Weight (%)</label>' +
             '<input name=\"assessmentPercent[]\" type=\"number\" min=\"0\" max=\"100\" class=\"manage-weight\" value=\"0\">' +
         '</div>' +
+        '<div class=\"assessmentDatecol1\">' +
+            '<label>Due Date</label>' +
+            '<input name=\"assessmentDate[]\" type=\"date\" class=\"manage-Date\" value=\"2026-01-01\" required>' +
+        '</div>' +
     '</div><br>';
 
     assessmentList.appendChild(outerDiv);
@@ -104,10 +115,14 @@ manageCourseForm.addEventListener('submit', function(e) {
     for (let i = 0; i < items.length; i++) {
         const nameInput = items[i].querySelector('.manage-name');
         const weightInput = items[i].querySelector('.manage-weight');
+        const dateInput = items[i].querySelector('.manage-Date');
 
         updatedAssessments.push({
             name: nameInput.value,
-            weight: parseInt(weightInput.value, 10)
+            weight: parseInt(weightInput.value, 10),
+            DueDateComp: new Date (dateInput.value).toISOString(),
+            DueDate: new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date (dateInput.value))
+            
         });
     }
 

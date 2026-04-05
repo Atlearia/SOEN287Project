@@ -16,17 +16,22 @@
             <form class="form1" id="createCourseForm">
                 <div class="formrow1">
                     <label for="courseCode">Course Code</label>
-                    <input id="courseCode" type="text" placeholder="Ex: SOEN 287">
+                    <input id="courseCode" type="text" placeholder="Ex: SOEN 287" required>
                 </div>
 
                 <div class="formrow1">
                     <label for="courseName">Course Name</label>
-                    <input id="courseName" type="text" placeholder="">
+                    <input id="courseName" type="text" placeholder="" required>
+                </div>
+
+                <div class="formrow1">
+                    <label for="courseName">Course Credit</label>
+                    <input id="courseCredit" type="number" min="0" step="0.5" placeholder="" required>
                 </div>
 
                 <div class="formrow1">
                     <label for="template">Templates</label>
-                    <select id="template">
+                    <select id="templateDropdown">
                         <option value="">Select a template...</option>
                     </select>
                 </div>
@@ -52,7 +57,7 @@
                     <a href="admin-dashboard.html" class="backlink clickable-box">Cancel</a>
                     <button type="submit" class="backlink mainbutton clickable-box">Create Course</button>
                 </div>
-                <script src="../scripts/admin-course-creation.js"></script>
+                <script src="../../scripts/admin-course-creation.js"></script>
             </form>
         </section>
     </main>

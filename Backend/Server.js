@@ -5,7 +5,7 @@ const { json } = require('node:stream/consumers');
 
 const app = express();
 
-const hostname = '0.0.0.0';
+const hostname = '127.0.0.1';
 const port = process.env.PORT || 3003;//for render stuf, if doesnt work just dont env it and setup antoher entry 
 
 const dataFile = path.join(__dirname, 'data.json');
@@ -55,6 +55,29 @@ app.get('/get/:type', (req, res) => {
   res.json({ [type]: data[type] });
 });
 
+/*
+app.post('/add/templates', (req, res) => {
+  try{
+    const { TemplateName, notes, assessments, adminId } = req.body;
+    const admin = data.admins.find(a=> a.id.trim() === String(adminId).trim()); //get theadmin that created it
+    if (!admin) {
+      return res.status(404).json({ error: "Admin not found" });
+    }
+    
+    if (!data.templates) data.templates = [];
+    data.templates.push({ TemplateName, notes, assessments, adminId });
+    
+    if (!admin.courseTemplates) admin.courseTemplates = [];
+    admin.courseTemplates.push(TemplateName);
+    
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+    res.json({ success: true });
+  }catch (err) {
+    console.error("Error saving template:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});*/
 app.post('/add/:type', (req, res) => {
   const type = req.params.type;
 
@@ -75,6 +98,30 @@ app.post('/add/:type', (req, res) => {
   }
 });
 
+app.post('/update/course/status', (req, res) => {
+  try {
+    const { courseCode, active } = req.body;
+
+            // find the course
+            const course = data.courses.find(c => c.courseCode === courseCode);
+
+            if (!course) {
+              res.status(404);
+              return res.send("Course not found");
+            }
+
+            course.active = active;
+
+            // save to file
+            fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+            res.json(course);
+
+        } catch (err) {
+            res.status(400);
+            res.send("Invalid JSON");
+        }
+});
 app.post('/update/course/assessments', (req, res) => {
   try {
     const { courseCode, assessments } = req.body;
@@ -87,8 +134,27 @@ app.post('/update/course/assessments', (req, res) => {
               return res.send("Course not found");
             }
 
-            // update assessments
-            course.assessments = assessments;
+            // update assessments that already exist
+            course.assessments.forEach((oA, index) => {
+              if (assessments[index]) {
+                oA.name = assessments[index].name;
+                oA.weight = assessments[index].weight;
+                oA.DueDateComp = assessments[index].DueDateComp;
+                oA.DueDate = assessments[index].DueDate;
+                
+              }
+            });
+
+            //add new assesments if it exceeds the current size
+            for (let i = course.assessments.length; i < assessments.length; i++) {
+              course.assessments.push({
+                name: assessments[i].name,
+                weight: assessments[i].weight,
+                DueDate: assessments[i].DueDate,
+                DueDateComp: assessments[i].DueDateComp,
+                
+              });
+            }
 
             // save to file
             fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
@@ -100,6 +166,26 @@ app.post('/update/course/assessments', (req, res) => {
             res.send("Invalid JSON");
         }
 });
+
+app.post('/course/updateGrade', (req, res) => {
+  
+  const {studentId, courseCode, assessmentName, grade} = req.body;
+  try{
+    const course = data.courses.find(c => c.courseCode === courseCode);
+    if (!course) {
+      res.status(404);
+      return res.send("Course not found");
+    }
+
+    course.assessments.find(a => a.name === assessmentName).grades[studentId] = grade;
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+    res.json(course);
+  }catch(err) {
+    res.status(400);
+    res.send("Invalid JSON");
+  }
+});
+
 
 // Dashboard Routing
 app.get('/dashboard/student/:id', (req, res) => {
