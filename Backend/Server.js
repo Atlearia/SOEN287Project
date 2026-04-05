@@ -335,7 +335,7 @@ app.post('/enroll', (req, res) => {
           return res.json({ error: "Student not found" });
         }
 
-        const alreadyEnrolled = student.coursesEnrolled.some(c => c.includes(courseCode));
+        const alreadyEnrolled = student.coursesEnrolled.some(c => c.includes(courseCode) && c.active);
         if (alreadyEnrolled) {
           res.status(409);
           return res.json({ error: "Already enrolled" });

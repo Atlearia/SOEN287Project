@@ -86,7 +86,8 @@
           "weight": 15,
           "grades": {
             "S0005": 98,
-            "S0006": 78
+            "S0006": 78,
+            "S0007": 0
           }
         },
         {
@@ -96,7 +97,8 @@
           "weight": 23,
           "grades": {
             "S0005": null,
-            "S0006": null
+            "S0006": null,
+            "S0007": null
           }
         },
         {
@@ -106,7 +108,8 @@
           "weight": 23,
           "grades": {
             "S0005": 100,
-            "S0006": null
+            "S0006": null,
+            "S0007": null
           }
         },
         {
@@ -116,7 +119,8 @@
           "weight": 23,
           "grades": {
             "S0005": null,
-            "S0006": null
+            "S0006": null,
+            "S0007": null
           }
         },
         {
@@ -126,7 +130,8 @@
           "DueDateComp": "2026-05-11T00:00:00.000Z",
           "grades": {
             "S0005": 5,
-            "S0006": null
+            "S0006": null,
+            "S0007": null
           }
         }
       ],
@@ -174,7 +179,7 @@
           "DueDateComp": "2026-01-01T05:00:00.000Z",
           "weight": 23,
           "grades": {
-            "S0005": null
+            "S0005": 0
           }
         }
       ],
@@ -240,6 +245,16 @@
       "Email_": "d@d",
       "password_": "d",
       "id": "S0006",
+      "coursesEnrolled": [
+        "pol"
+      ]
+    },
+    {
+      "First_Name_": "e",
+      "Last_Name_": "e",
+      "Email_": "e@e",
+      "password_": "e",
+      "id": "S0007",
       "coursesEnrolled": [
         "pol"
       ]
