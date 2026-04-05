@@ -1,5 +1,7 @@
 
 // Query data
+let currentStudentData = null; // global exportation
+
 async function loadStudent() {
     const id = sessionStorage.getItem('id');
     const role = sessionStorage.getItem('role');
@@ -15,7 +17,7 @@ async function loadStudent() {
     }
 
     const student = await res.json();
-    
+    currentStudentData = student; //
     
     render(student);
 }
@@ -243,6 +245,62 @@ function removeAssessment(courseCode) {
     renderAssesments(); // re-render to show only stuffs that ain't remove
 }
 
+
+function exportGrades() {
+    const exportBtn = document.getElementById('export-grades');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+            const offcanvas = document.getElementById('navbarScroll');
+            if (offcanvas) {
+                const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+                if (bsOffcanvas) bsOffcanvas.hide();
+            }
+
+
+
+
+
+
+
+
+            if (!currentStudentData) return;
+            const container = document.createElement('div');
+            container.style.padding = '20px';
+            container.style.fontFamily = 'monospace';
+            container.style.color = '#000000'; 
+            container.style.backgroundColor = '#ffffff';
+            
+            let html = `<h2>Student Grades: ${currentStudentData.email}</h2>`;
+            
+            for (const course of currentStudentData.courses) {
+                html += `<h3>${course.code} - ${course.title} | Average: ${course.average.toFixed(2)}%</h3>`;
+                html += `<ul>`;
+                if (!course.assessments || course.assessments.length === 0) {
+                    html += `<li>No assessments</li>`;
+                } else {
+                    for (const assessment of course.assessments) {
+                        const gradeVal = assessment.grade !== null ? assessment.grade + '%' : 'N/A';
+                        html += `<li>${assessment.name} (Weight: ${assessment.weight}%): ${gradeVal}</li>`;
+                    }
+                }
+                html += `</ul><hr>`;
+            }
+            container.innerHTML = html;
+            
+            //2pdf
+            const opt = {
+                margin:       10,
+                filename:     'Student_Grades.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(container).save();
+        });
+    } ///pdf stuff 👉👈 pls work
+}
+
 /**
  * Just return to the main sign in page.
  * TODO: To be implemented in backend
@@ -371,6 +429,7 @@ function render(student) {
 function setupUI() {
     addCourse();
     removeCourse();
+    exportGrades();
 }
 
 logout();
