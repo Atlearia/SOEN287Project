@@ -11,7 +11,7 @@
         {
           "name": "Quiz",
           "weight": 15,
-          "dueDate": "2026-04-17",
+          "dueDate": "2026-07-17",
           "grades": {
             "S0002": 50
           }
@@ -61,7 +61,7 @@
       "instructor": "Holy Cow",
       "term": "Winter 2026",
       "description": "This is another course",
-      "active": true,
+      "active": false,
       "assessments": []
     },
     {
@@ -76,31 +76,36 @@
         {
           "name": "Assignments",
           "weight": 10,
-          "dueDate": null,
+          "dueDate": "2026-04-03",
           "grades": {
-            "S0002": 30
+            "S0002": null,
+            "S0003": null
           }
         },
         {
           "name": "Quizzes",
           "weight": 10,
-          "dueDate": null,
+          "dueDate": "2026-04-24",
           "grades": {
-            "S0002": null
+            "S0002": null,
+            "S0003": null
           }
-        },
+        }
+      ]
+    },
+    {
+      "courseCode": "COMP 228",
+      "courseName": "System Hardware",
+      "instructor": "Hawkeye Oliver",
+      "courseCredit": "3",
+      "term": "Winter 2026",
+      "description": "Introduction to System Hardwares",
+      "active": true,
+      "assessments": [
         {
-          "name": "Midterm",
-          "weight": 30,
-          "dueDate": null,
-          "grades": {
-            "S0002": null
-          }
-        },
-        {
-          "name": "Final",
-          "weight": 50,
-          "dueDate": null,
+          "name": "Quiz",
+          "weight": 1,
+          "dueDate": "2026-04-07",
           "grades": {
             "S0002": null
           }
@@ -130,7 +135,18 @@
         "SOEN 287",
         "COMP 249",
         "ENGR 201",
-        "COMP 232"
+        "COMP 232",
+        "COMP 228"
+      ]
+    },
+    {
+      "First_Name_": "Hero",
+      "Last_Name_": "Kong",
+      "Email_": "hk@gmail.com",
+      "password_": "123",
+      "id": "S0003",
+      "coursesEnrolled": [
+        "ENGR 201"
       ]
     }
   ],
@@ -151,6 +167,47 @@
     }
   ],
   "templates": [
-    
+    {
+      "templateName": "Engineering",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "weight": 10
+        },
+        {
+          "name": "Quizzes",
+          "weight": 10
+        },
+        {
+          "name": "Midterm",
+          "weight": 30
+        },
+        {
+          "name": "Final",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "templateName": "Math",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "weight": 5
+        },
+        {
+          "name": "Quizzes",
+          "weight": 10
+        },
+        {
+          "name": "Midterm",
+          "weight": 30
+        },
+        {
+          "name": "Final",
+          "weight": 55
+        }
+      ]
+    }
   ]
 }

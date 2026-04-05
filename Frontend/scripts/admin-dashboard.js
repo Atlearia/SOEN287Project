@@ -16,6 +16,9 @@ function loadDashboard() {
             selection.innerHTML = '<option value=\"\">Select a course</option>';
             for (let i = 0; i < courses.length; i++) {
                 const course = courses[i];
+                if(!course.active) {
+                    continue;
+                }
                 const option = document.createElement('option');
                 option.value = course.courseCode;
                 option.textContent = course.courseCode;
@@ -135,7 +138,7 @@ function renderDeadline(course) {
         if (a) {
             const date = new Date(a.dueDate);
             upcomingBox.innerHTML += `
-                <div class="us-deadline-BOX">&#x1F5D3; ${date.toLocaleString('default', {month: 'long'})} ${date.getDay()} - ${a.name}</div>
+                <div class="us-deadline-BOX">&#x1F5D3; ${date.toLocaleString('default', {month: 'long'})} ${date.getDate() + 1} - ${a.name}</div>
             `;
         }
     });

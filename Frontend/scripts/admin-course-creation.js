@@ -29,7 +29,7 @@ form.addEventListener('submit', function(e) {
     const description = document.getElementById('desc').value;
     const courseInstructor = document.getElementById('courseInstructor').value;
 //wed have to Render or Cloudfare? we could also github but theres no good backend 
-    fetch('/add/course', {
+    fetch('/admin/add/course', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

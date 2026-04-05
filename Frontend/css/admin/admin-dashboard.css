@@ -311,6 +311,7 @@ hr {
 }
 
 .us-bars-block {
+    max-width: 217px;
     flex: 1 1 220px;
 }
 

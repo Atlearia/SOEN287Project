@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -58,10 +57,34 @@ app.get('/get/:type', (req, res) => {
   res.json({ [type]: data[type] });
 });
 
-app.post('/add/template', (req, res) => {
+app.post('/add/:type', (req, res) => {
+  const type = req.params.type;
+
   try {
     const parsed = req.body;
-    
+
+    if (!data[type]) data[type] = [];
+
+    data[type].push(parsed);
+
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+    res.json({ [type]: data[type] });
+
+  } catch {
+    res.status(400);
+    res.send("Invalid JSON");
+  }
+});
+
+app.post('/admin/add/template', (req, res) => {
+  try {
+    const parsed = req.body;
+    if(!parsed.templateName) {
+      return res.status(405).json({error : "Invalid Data!"})
+    }
+
+
     if (!data["templates"]) data["templates"] = [];
     
     data["templates"].push(parsed);
@@ -105,26 +128,27 @@ app.get('/get/:courseId/:id', (req, res) => {
 })
 
 
-app.post('/add/course', (req, res) => {
+app.post('/admin/add/course', (req, res) => {
   const { courseCode, courseTitle, instructor, credit, term, description, templateName } = req.body;
   try {
     if (!courseCode || !courseTitle || !credit || !term || !instructor) {
       return res.status(400).json( {error: "Missing Info!"});
     }
-
-    const template = data.templates.find( t => t.templateName === templateName);
-    if (template){
-      const templateAssignment = [];
-      template.assessments.forEach(a => {
-        templateAssignment.push({
-          "name": a.name,
-          "weight": a.weight,
-          "dueDate": null,
-          "grades": {}
+    let templateAssignment;
+    if (templateName){
+      const template = data.templates.find( t => t.templateName === templateName);
+      if (template){
+        templateAssignment = [];
+        template.assessments.forEach(a => {
+          templateAssignment.push({
+            "name": a.name,
+            "weight": a.weight ? a.weight: 0,
+            "dueDate": null,
+            "grades": {}
+          });
         });
-      });
+      }
     }
-
     // check if course already existed
     const courseExist = data.courses.find( c => c.courseCode === courseCode);
     if (courseExist) {
@@ -139,7 +163,7 @@ app.post('/add/course', (req, res) => {
       "term": term,
       "description": description,
       "active": true,
-      "assessments": templateAssignment || null
+      "assessments": templateAssignment || []
     }
 
     data.courses.push(course);
@@ -192,7 +216,6 @@ app.post('/update/course/assessments', (req, res) => {
 
 app.post('/course/updateGrade', (req, res) => {
   const {studentId, courseCode, assessmentName, grade} = req.body;
-  console.log(req.body)
   try{
     const course = data.courses.find(c => c.courseCode === courseCode);
     if (!course) {
@@ -244,7 +267,7 @@ app.get('/dashboard/student/:id', (req, res) => {
   }
     
     const enrollCourseCode = student.coursesEnrolled; // get all the enrollment courses
-    const relevantCourses = data.courses.filter(c => enrollCourseCode.includes(c.courseCode)).map(c => ({
+    const relevantCourses = data.courses.filter(c => enrollCourseCode.includes(c.courseCode) && c.active).map(c => ({
       code: c.courseCode,
       title: c.courseName,
       assessments: c.assessments.map(a => ({

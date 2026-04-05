@@ -38,7 +38,7 @@ form.addEventListener('submit', function(e) {
         assessments: assessments
     };
 
-    fetch('/add/template', {
+    fetch('/admin/add/template', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(templateData)

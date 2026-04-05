@@ -322,7 +322,7 @@ function renderAssesments(student) {
         container.innerHTML = `
                         <td>${assessment.code}</td>
                         <td>${assessment.name}</td>
-                        <td>${assessment.dueDate}</td>
+                        <td>${assessment.dueDate ? assessment.dueDate: "N/A"}</td>
                         <td><span class="assessment-status ${StatusClass}" id="assessment-status">${StatusText}</span></td>
         `;
         assessmentDashboard.appendChild(container); // append it to the dashboard
