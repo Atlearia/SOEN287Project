@@ -207,7 +207,7 @@ form.addEventListener('submit', async function(event){
         // Switch to login view
         document.getElementById('createAccount').style.display = "none";
         document.getElementById('signin').style.display = "block";
-        form_admin.reset();
+        form.reset();
 
     } catch (error) {
         console.error("Error saving student:", error);
