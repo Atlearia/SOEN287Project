@@ -86,6 +86,11 @@ app.post('/admin/add/template', (req, res) => {
 
 
     if (!data["templates"]) data["templates"] = [];
+
+    if (data["templates"].find(t => t.templateName === parsed.templateName)) {
+      res.status(404);
+      return res.send("Template Exist");
+    }
     
     data["templates"].push(parsed);
     fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
