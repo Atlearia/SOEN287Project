@@ -2,6 +2,7 @@ const selection = document.getElementById('selection');
 const barsBlock = document.querySelector('.us-bars-block');
 const overallCompletionBox = document.getElementById('big-aah-number');
 const warningsContainer = document.getElementById("warning");
+const DeadlineContainer = document.getElementById("Deadline");
 
 function loadDashboard() {
     fetch('/get/courses').then(function(coursesRes) {
@@ -49,6 +50,9 @@ function loadDashboard() {
 function renderAssessments(course) {
     barsBlock.innerHTML = '';
     warningsContainer.innerHTML = ''; //clear at risk section
+    DeadlineContainer.innerHTML =''; //clear deadline section
+
+    const dateArray = [];
 
     let Totalgained=0;
     let Total=0;
@@ -104,7 +108,7 @@ function renderAssessments(course) {
 
         barsBlock.appendChild(row);
         
-        if(new Date(assessment.DueDateComp)< new Date()){
+        if(new Date(assessment.DueDateComp)< new Date()){ //if due date passed
             if (AVg < 60 && numstudents > 0) {
                 const warn = document.createElement("div");
                 warn.className = "us-warn-item";
@@ -123,8 +127,21 @@ function renderAssessments(course) {
                 `;
                 warningsContainer.appendChild(warn);
             }
+        } else if(new Date(assessment.DueDateComp)> new Date()){ //if due date is upcoming
+            dateArray.push(assessment);
         }
     }
+
+    dateArray.sort((a,b)=> new Date(a.DueDateComp) - new Date(b.DueDateComp)); //order the assesments based on date
+    dateArray.forEach(a=>{
+        const upcomming = document.createElement("div");
+            upcomming.className = "us-deadline-BOX";
+            upcomming.innerHTML = `
+                &#x1F5D3; ${a.DueDate} - ${a.name}
+            `;
+            DeadlineContainer.appendChild(upcomming);
+
+    })
 
     const overallAVG = parseInt((Totalgained / Total) * 100, 10);
     overallCompletionBox.textContent = overallAVG + '%';
