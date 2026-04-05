@@ -83,7 +83,7 @@
           "name": "Assignments",
           "DueDate": "January 29, 2026",
           "DueDateComp": "2026-01-29T00:00:00.000Z",
-          "weight": 23,
+          "weight": 15,
           "grades": {
             "S0005": 98,
             "S0006": 78
@@ -101,11 +101,11 @@
         },
         {
           "name": "Midterm",
-          "DueDate": "April 14, 2026",
-          "DueDateComp": "2026-04-14T00:00:00.000Z",
+          "DueDate": "April 1, 2026",
+          "DueDateComp": "2026-04-01T00:00:00.000Z",
           "weight": 23,
           "grades": {
-            "S0005": null,
+            "S0005": 100,
             "S0006": null
           }
         },
@@ -121,7 +121,7 @@
         },
         {
           "name": "Project",
-          "weight": 8,
+          "weight": 16,
           "DueDate": "May 11, 2026",
           "DueDateComp": "2026-05-11T00:00:00.000Z",
           "grades": {
