@@ -8,7 +8,14 @@
       "description": "This is a course",
       "active": true,
       "assessments": [
-    
+        {
+          "name": "Quiz",
+          "weight": 15,
+          "dueDate": "2026-04-17",
+          "grades": {
+            "S0002": 50
+          }
+        }
       ]
     },
     {
@@ -34,7 +41,7 @@
           "dueDate": "2026-04-04",
           "grades": {
             "S0001": 50,
-            "S0002": 100
+            "S0002": null
           }
         },
         {
@@ -43,7 +50,7 @@
           "dueDate": "2026-04-19",
           "grades": {
             "S0001": 90,
-            "S0002": null
+            "S0002": 100
           }
         }
       ]
@@ -70,25 +77,33 @@
           "name": "Assignments",
           "weight": 10,
           "dueDate": null,
-          "grades": {}
+          "grades": {
+            "S0002": 30
+          }
         },
         {
           "name": "Quizzes",
           "weight": 10,
           "dueDate": null,
-          "grades": {}
+          "grades": {
+            "S0002": null
+          }
         },
         {
           "name": "Midterm",
           "weight": 30,
           "dueDate": null,
-          "grades": {}
+          "grades": {
+            "S0002": null
+          }
         },
         {
           "name": "Final",
           "weight": 50,
           "dueDate": null,
-          "grades": {}
+          "grades": {
+            "S0002": null
+          }
         }
       ]
     }
@@ -106,15 +121,16 @@
       ]
     },
     {
-      "First_Name_": "Dummy",
-      "Last_Name_": "Test",
+      "First_Name_": "Hero",
+      "Last_Name_": "Kong",
       "Email_": "test@gmail.com",
       "password_": "1",
       "id": "S0002",
       "coursesEnrolled": [
         "SOEN 287",
-        "COMP 232",
-        "COMP 249"
+        "COMP 249",
+        "ENGR 201",
+        "COMP 232"
       ]
     }
   ],
@@ -173,6 +189,69 @@
         {
           "name": "Final",
           "weight": 50
+        }
+      ]
+    },
+    {
+      "templateName": "",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "weight": null
+        },
+        {
+          "name": "Quizzes",
+          "weight": null
+        },
+        {
+          "name": "Midterm",
+          "weight": null
+        },
+        {
+          "name": "Final",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "templateName": "",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "weight": null
+        },
+        {
+          "name": "Quizzes",
+          "weight": null
+        },
+        {
+          "name": "Midterm",
+          "weight": null
+        },
+        {
+          "name": "Final",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "templateName": "",
+      "assessments": [
+        {
+          "name": "Assignments",
+          "weight": null
+        },
+        {
+          "name": "Quizzes",
+          "weight": null
+        },
+        {
+          "name": "Midterm",
+          "weight": null
+        },
+        {
+          "name": "Final",
+          "weight": null
         }
       ]
     }

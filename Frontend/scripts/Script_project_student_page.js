@@ -1,63 +1,64 @@
+const params = new URLSearchParams(window.location.search);
+document.title = params.get('code');
 
-
-
-
-const originalAssesments = [];
+document.getElementById('courseTitle').innerHTML = params.get('code');
 let Coursedata;
-if(document.title==="COMP 249"){ //Assesments for COMP 249
-    const As1 ={Name: "Assignment 1", DueDate: "January 1st 2026", DueDateComp: new Date('2026-01-1'), weight: 10, completed: false, grade: 0}
-    const As2 ={Name: "Assignment 2", DueDate: "January 11th 2026", DueDateComp: new Date('2026-01-11'), weight: 5, completed: true, grade: 100}
-    const As3 ={Name: "Test 2", DueDate: "Febuary 22nd 2026", DueDateComp: new Date('2026-02-22'), weight: 20, completed: false, grade: 0}
-    const As4 ={Name: "Test 1", DueDate: "Febuary 2nd 2026", DueDateComp: new Date('2026-02-2'), weight: 10, completed: true, grade: 80}
-    const As5 ={Name: "Test 3", DueDate: "March 4th 2026", DueDateComp: new Date('2026-03-4'), weight: 15, completed: true, grade: 100}
-    const As6 ={Name: "Final", DueDate: "June 24th 2026", DueDateComp: new Date('2026-06-24'), weight: 40, completed: false, grade: 10} 
+let originalAssesments;
+let Assesments
+// Query data
+
+async function data() {
+    const id = sessionStorage.getItem('id');
+    const role = sessionStorage.getItem('role');
+    const courseId = params.get('code');
+
+    if (!id || role !== 'student' || !courseId) {
+        window.location.href = '/';
+        return;
+    }
+
+    const res = await fetch(`/get/${courseId}/${id}`)
+    if (!res.ok) {
+        alert('Profile not working!');
+        return
+    }
+    return res.json();
     
-    originalAssesments.push(As1,As2,As3,As4,As5,As6); //store assesments in the Assesments array
-
-    //class info
-    Coursedata={code:"COMP 249", name:"Object Oriented Programming II", instructor: "John Smith", Term:"Winter 2026",
-        description:"In this class we will gain further understanding on how object oriented programs work."
-    };
 }
 
-if(document.title==="SOEN 287"){ //Assesments for SOEN 287
-    const As1 ={Name: "Assignment 1", DueDate: "January 2nd 2026", DueDateComp: new Date('2026-01-2'), weight: 13, completed: false, grade: 90}
-    const As2 ={Name: "Quiz 1", DueDate: "January 29th 2026", DueDateComp: new Date('2026-01-29'), weight: 7, completed: true, grade: 100}
-    const As3 ={Name: "Test 2", DueDate: "Febuary 13th 2026", DueDateComp: new Date('2026-02-13'), weight: 8, completed: false, grade: 7}
-    const As4 ={Name: "Test 1", DueDate: "Febuary 3rd 2026", DueDateComp: new Date('2026-02-3'), weight: 10, completed: true, grade: 80}
-    const As5 ={Name: "Test 3", DueDate: "March 3rd 2026", DueDateComp: new Date('2026-03-3'), weight: 12, completed: false, grade: 60}
-    const As6 ={Name: "Final", DueDate: "May 24th 2026", DueDateComp: new Date('2026-05-24'), weight: 30, completed: false, grade: 27} 
-    const As7 ={Name: "Project", DueDate: "May 12th 2026", DueDateComp: new Date('2026-05-12'), weight: 20, completed: false, grade: 63} 
-    originalAssesments.push(As1,As2,As3,As4,As5,As6,As7); //store assesments in the Assesments array
+async function main() {
+    const course = await data();
+    if (!course) return;
 
-    //class info
-    Coursedata={code:"SOEN 287", name:"Web Programming", instructor: "Jason Evans", Term:"Winter 2026",
-        description:"In this class we will learn the basics of Web programming."
+    originalAssesments = course.assessments;
+    originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //order the assesments based on date
+    Assesments = structuredClone(originalAssesments); //used so that when changing order of which assesment is written first, it doesn't affect the orignal array
+
+    Coursedata = {
+        code: course.code,
+        name: course.name,
+        instructor: course.instructor,
+        Term: course.term,
+        description: course.description
     };
+
+    renderAll();   
 }
 
-if(document.title==="SOEN 228"){ //Assesments for SOEN 228
-    const As1 ={Name: "Assignment 1", DueDate: "January 3rd 2026", DueDateComp: new Date('2026-01-3'), weight: 15, completed: false, grade: 40}
-    const As2 ={Name: "Quiz 1", DueDate: "January 21st 2026", DueDateComp: new Date('2026-01-21'), weight: 5, completed: true, grade: 100}
-    const As3 ={Name: "Lab 1", DueDate: "Febuary 26th 2026", DueDateComp: new Date('2026-02-26'), weight: 10, completed: true, grade: 90}
-    const As4 ={Name: "Test 1", DueDate: "Febuary 7th 2026", DueDateComp: new Date('2026-02-7'), weight: 8, completed: true, grade: 78}
-    const As5 ={Name: "Test 2", DueDate: "March 2nd 2026", DueDateComp: new Date('2026-03-2'), weight: 14, completed: false, grade: 57}
-    const As6 ={Name: "Final", DueDate: "May 2nd 2026", DueDateComp: new Date('2026-05-2'), weight: 30, completed: false, grade: 95} 
-    const As7 ={Name: "Project", DueDate: "April 29th 2026", DueDateComp: new Date('2026-04-29'), weight: 18, completed: false, grade: 32} 
-    originalAssesments.push(As1,As2,As3,As4,As5,As6,As7); //store assesments in the Assesments array
-
-    //class info
-    Coursedata={code:"SOEN 228", name:"System Hardware", instructor: "Elizabeth Brown", Term:"Winter 2026",
-        description:"In this class we will understand how the hardware found inside of computers work."
-    };
+function renderAll() {
+    renderCourseInfo();
+    renderAssesments();
+    renderGrades();
+    renderGradeChangerPrompt();
+    renderGradeChanger();
+    DrawGraph();
 }
 
-originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //order the assesments based on date
 
-let Assesments = structuredClone(originalAssesments); //used so that when changing order of which assesment is written first, it doesn't affect the orignal array
 
 //render course info
 function renderCourseInfo(){
+    console.log(Coursedata)
     const classInfo = document.getElementById("ClassInfo");
 
     classInfo.innerHTML="";//clear it if it ever needs to be called again
@@ -84,7 +85,6 @@ function renderCourseInfo(){
         </div>
     `
 }
-renderCourseInfo()//render the first time when page is loaded
 
 
 const checkboxCompleted = document.getElementById("showCompleted");
@@ -101,8 +101,7 @@ function renderAssesments(){
     if(checkboxWeight.checked){
         originalAssesments.sort((a,b)=>b.weight - a.weight);
         Assesments=structuredClone(originalAssesments); //used due to graph
-    }
-    else{
+    }else{
         originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp);
         Assesments=structuredClone(originalAssesments); //used due to graph
     }
@@ -136,9 +135,23 @@ function renderAssesments(){
     //add listener to the checkboxes for completed assesmnts
     const completedAssesmentCheckBoxes = document.querySelectorAll(".completed");
     completedAssesmentCheckBoxes.forEach(c=>{
-        c.addEventListener("click",function(){
+        c.addEventListener("click",async function(){
             let index = this.dataset.index;
             originalAssesments[index].completed= !originalAssesments[index].completed; //make an assesment the oppposite of current status
+            try{
+                const res = await fetch('/course/updateGrade', {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        studentId: sessionStorage.getItem('id'),
+                        courseCode: params.get('code'),
+                        assessmentName: originalAssesments[index].Name,
+                        grade: (originalAssesments[index].completed ? originalAssesments[index].grade : null)
+                    })
+                })
+            }catch(err) {
+                alert("Couldn't update the score");
+            }
             renderAssesments();
             renderGrades();
             renderGradeChangerPrompt();
@@ -146,14 +159,7 @@ function renderAssesments(){
             DrawGraph();
         })
     })
-    
-    
-    
-    
-    
-    
 }
-renderAssesments(); //render the assesments the first time the page is loaded
 
 
 const outputTotalPercentage = document.getElementById("TP");
@@ -193,7 +199,6 @@ function renderGrades(){
     }
     Fbar.style.width = FbarPer+"%";
 }
-renderGrades(); //render the grades the first time the page is loaded
 
 
 const GradeInputs = document.getElementById("GradeInputs");
@@ -205,13 +210,12 @@ function renderGradeChangerPrompt(){
         GradeInputs.innerHTML +=`
         <label>
         Assesment: ${a.Name}, what grade did you receive</label>
-            <input type='number' data-index='${i}' class='UserGradeInput' placeholder="Enter Grade Received" min='0' max='100' step='0.01' style='width: 150px'>
+            <input type='number' data-index='${i}' class='UserGradeInput' placeholder="${(a.grade ? a.grade: "Enter Grade Received")}" min='0' max='100' step='0.01' style='width: 150px'>
         <button data-index='${i}' class='submitGradeChange'>Change Grade</button><br> `
         }//make button larger with css maybe add it in the seperate css file
     });
     
 }
-renderGradeChangerPrompt()
 
 
 
@@ -219,7 +223,7 @@ function renderGradeChanger(){
     //add listener to the checkboxes for completed assesmnts
     const UserGradesChangeButton = document.querySelectorAll(".submitGradeChange");
     UserGradesChangeButton.forEach(b=>{
-        b.addEventListener("click",function(){
+        b.addEventListener("click",async function(){
             let index = this.dataset.index;
             let value = parseFloat(document.querySelector(`.UserGradeInput[data-index='${index}']`).value);
             if(value<0) value=0;
@@ -227,16 +231,28 @@ function renderGradeChanger(){
             if(!isNaN(value)){
                 originalAssesments[index].grade= value; //make grade of assesment = inputed grade
                 Assesments=structuredClone(originalAssesments);
+                try{
+                    const res = await fetch('/course/updateGrade', {
+                        method: "POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            studentId: sessionStorage.getItem('id'),
+                            courseCode: params.get('code'),
+                            assessmentName: originalAssesments[index].Name,
+                            grade: originalAssesments[index].grade
+                        })
+                    })
+                }catch(err) {
+                    alert("Couldn't update the score");
+                }
                 renderGrades();
                 DrawGraph();
             }
-            
             renderGradeChangerPrompt();
             renderGradeChanger();
         })
     })
 }
-renderGradeChanger();
 
 //draw graph portion
 const Canvas = document.getElementById('gradesChart');
@@ -244,7 +260,6 @@ const Context = Canvas.getContext('2d');
 const GradestobeDrawn=[];
 const AstobeDrawn=[]; //Assesments that need to be drawn
 
-DrawGraph();
 function DrawGraph(){
     
     Canvas.width=window.innerWidth*0.9; //make width of graph and canvas dynamic with the users device
@@ -252,11 +267,10 @@ function DrawGraph(){
     let Cheight=Canvas.height;
     GradestobeDrawn.length=0; //clear the array
     AstobeDrawn.length=0; //clear the array
-
     originalAssesments.sort((a,b)=>a.DueDateComp - b.DueDateComp); //make sure the graph is always in chronological order
     originalAssesments.forEach(a=>{
         if(a.completed==true){
-            GradestobeDrawn.push(a.grade.toFixed(2));
+            GradestobeDrawn.push((a.grade ? a.grade : 0).toFixed(2));
             AstobeDrawn.push(a.Name);
         }
     })
@@ -311,3 +325,4 @@ function DrawGraph(){
     }
 }
 
+main()

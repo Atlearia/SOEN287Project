@@ -43,6 +43,7 @@ form.addEventListener('submit', function(e) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(templateData)
     }).then(function(res) {
+        window.location.href = "admin-dashboard.html";
         return res.json();
     }).then(function(data) {//io
         alert('Template saved successfully!');

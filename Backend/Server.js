@@ -73,24 +73,55 @@ app.post('/add/template', (req, res) => {
   }
 });
 
+app.get('/get/:courseId/:id', (req, res) => {
+  const courseId = req.params.courseId;
+  const studentId = req.params.id;
+  const course = data.courses.find(c => c.courseCode === courseId);
+  if (!course) {
+    res.status(404);
+    return res.send("Not found");
+  }
+  
+  const assessment = course.assessments.map(a => ({
+    Name: a.name,
+    weight: a.weight,
+    DueDate: new Date(a.dueDate).toDateString(),
+    DueDateComp: new Date(a.dueDate),
+    completed: a.grades[studentId] ? true : false,
+    grade: a.grades[studentId]
+  }))
+  
+  const respone = {
+    code: course.courseCode,
+    name: course.courseName,
+    isntructor: course.instructor,
+    term: course.term,
+    description: course.description,
+    assessments: assessment
+  }
+  return res.json(respone);
+})
+
 
 app.post('/add/course', (req, res) => {
   const { courseCode, courseTitle, instructor, credit, term, description, templateName } = req.body;
   try {
-    if (!courseCode && !courseTitle && !credit && !term && !instructor) {
+    if (!courseCode || !courseTitle || !credit || !term || !instructor) {
       return res.status(400).json( {error: "Missing Info!"});
     }
 
     const template = data.templates.find( t => t.templateName === templateName);
-    const templateAssignment = [];
-    template.assessments.forEach(a => {
-      templateAssignment.push({
-        "name": a.name,
-        "weight": a.weight,
-        "dueDate": null,
-        "grades": {}
+    if (template){
+      const templateAssignment = [];
+      template.assessments.forEach(a => {
+        templateAssignment.push({
+          "name": a.name,
+          "weight": a.weight,
+          "dueDate": null,
+          "grades": {}
+        });
       });
-    });
+    }
 
     // check if course already existed
     const courseExist = data.courses.find( c => c.courseCode === courseCode);
@@ -106,7 +137,7 @@ app.post('/add/course', (req, res) => {
       "term": term,
       "description": description,
       "active": true,
-      "assessments": templateAssignment
+      "assessments": templateAssignment || null
     }
 
     data.courses.push(course);
@@ -156,6 +187,25 @@ app.post('/update/course/assessments', (req, res) => {
             res.send("Invalid JSON");
         }
 });
+
+app.post('/course/updateGrade', (req, res) => {
+  const {studentId, courseCode, assessmentName, grade} = req.body;
+  console.log(req.body)
+  try{
+    const course = data.courses.find(c => c.courseCode === courseCode);
+    if (!course) {
+      res.status(404);
+      return res.send("Course not found");
+    }
+
+    course.assessments.find(a => a.name === assessmentName).grades[studentId] = grade;
+    fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+    res.json(course);
+  }catch(err) {
+    res.status(400);
+    res.send("Invalid JSON");
+  }
+})
 
 app.post('/update/course/status', (req, res) => {
   try {

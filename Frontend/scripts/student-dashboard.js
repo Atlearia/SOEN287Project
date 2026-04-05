@@ -272,15 +272,18 @@ function renderCourse(student) {
     for (const course of student.courses) {
             const container = document.createElement('a')
             container.classList.add('course-item', 'col', 'text-center');   // bootstrap classes
-            //container.setAttribute('href', (`../Courses/${course.code.replace(' ', '')}.html`)) // set href to each course page (Hardcoded initially)
             
             // create like a template for each course card
             container.innerHTML = `
-                                <h3>${course.code}</h3>
-                                <p>${course.title}</p>
-                                <span class="average">Average: ${course.average}</span>
-                                `;
+            <h3>${course.code}</h3>
+            <p>${course.title}</p>
+            <span class="average">Average: ${course.average}</span>
+            `;
             coursesDashboard.appendChild(container);    // append it to the main dashboard
+            container.setAttribute(
+                'href',
+                `../Courses/course.html?code=${encodeURIComponent(course.code)}`
+            );
         }
     
 }
