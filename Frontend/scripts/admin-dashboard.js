@@ -46,7 +46,6 @@ function loadDashboard() {
 
 function renderAssessments(course, allStudents) {
     barsBlock.innerHTML = '';
-    
 
     const enrolledStudents = [];
     for (let i = 0; i < allStudents.length; i++) {
@@ -55,7 +54,8 @@ function renderAssessments(course, allStudents) {
             let found = false;
             for (let j = 0; j < s.coursesEnrolled.length; j++) {
                 const ce = s.coursesEnrolled[j];
-                if (ce.courseCode === course.courseCode) {
+
+                if (ce === course.courseCode) {
                     found = true;
                     break;
                 }
@@ -82,12 +82,14 @@ function renderAssessments(course, allStudents) {
                 let enrolledCourse = null;
                 for (let k = 0; k < s.coursesEnrolled.length; k++) {
                     const ce = s.coursesEnrolled[k];
-                    if (ce.courseCode === course.courseCode) {
+                    if (ce === course.courseCode) {
                         enrolledCourse = ce;
                         break;
                     }
                 }
-                if (enrolledCourse && enrolledCourse.assessmentsCompleted && enrolledCourse.assessmentsCompleted.includes(assessment.name)) {
+                let assessmentsCompleted = assessment.grades[s.id] ? true: false;
+
+                if (enrolledCourse && assessmentsCompleted) {
                     studentsCompleted++;
                 }
             }
