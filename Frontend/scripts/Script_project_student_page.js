@@ -186,7 +186,7 @@ function renderGrades(){
     outputTotalPercentage.innerHTML +=""+gradeTP.toFixed(2)+"% with "+TotalWeight.toFixed(2)+"% of the class completed.";
 
     
-    const outBar = document.getElementById("outlineProgressbar")
+    
     const Pbar = document.getElementById("Progressbar")
     Pbar.style.width = gradeTP+"%";
     const Fbar = document.getElementById("Failbar")
