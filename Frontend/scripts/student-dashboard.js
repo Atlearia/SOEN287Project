@@ -16,6 +16,7 @@ async function loadStudent() {
 
     const student = await res.json();
     
+    
     render(student);
 }
 
@@ -272,7 +273,7 @@ function renderCourse(student) {
             container.innerHTML = `
                                 <h3>${course.code}</h3>
                                 <p>${course.title}</p>
-                                <span class="average">Average: ${course.average}</span>
+                                <span class="average">Average: ${course.average.toFixed(2)}</span>
                                 `;
             coursesDashboard.appendChild(container);    // append it to the main dashboard
         }
@@ -294,8 +295,13 @@ function renderAssesments(student) {
         ...a,
         code : course.code
     } )))
+
+    assessments.sort((a,b)=> new Date(a.DueDateComp) - new Date(b.DueDateComp));
     
     for (let assessment of assessments) {
+        console.log(assessment);
+        console.log("DueDateComp:", assessment.DueDateComp);
+
         let container = document.createElement('tr');   // create a table row for each assessment
         let StatusClass;    // css handling
         let StatusText;     // text handling

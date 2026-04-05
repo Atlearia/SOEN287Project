@@ -201,10 +201,8 @@ app.get('/dashboard/student/:id', (req, res) => {
       code: c.courseCode,
       title: c.courseName,
       assessments: c.assessments.map(a => ({
-        name: a.name,
-        weight: a.weight,
-        dueDate: a.dueDate || null,
-        grade: a.grades?.[studentId] ?? null
+          ...a,
+          grade: a.grades?.[studentId] ?? null
       })),
       average: calculateAverage(c.assessments, studentId) ?? 0
     }));
