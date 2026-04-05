@@ -149,6 +149,12 @@ function addCourse() {
                 return;
             }
 
+            if (res.status === 405) {
+                alert("Course is disabled");
+                closeForm();
+                return
+            }
+
             if (!res.ok) {
                 alert("Something went wrong!")
                 closeForm();

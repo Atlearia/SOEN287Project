@@ -80,7 +80,7 @@ function renderAssessments(course) {
             
         
         AVg = numstudents>0 ? studentGain/numstudents:0; //make sure no divide by zero happens
-        displayText = AVg+"%";
+        displayText = AVg.toFixed(2)+"%";
         
         if (AVg > 0) {
             barClass = 'us-bar-fill-green';

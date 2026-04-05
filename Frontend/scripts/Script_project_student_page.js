@@ -114,27 +114,42 @@ function renderAssesments(){
         Assesments=structuredClone(originalAssesments); //used due to graph
     }
     
+    const tableHeader = document.createElement("tr");
+    tableHeader.innerHTML = `
+        <th>Assessment</th>
+        <th>Due Date</th>
+        <th>Weight</th>
+        <th>Status</th>
+        <th>Toggle Completion</th>
+    `;
+    outputAssesment.appendChild(tableHeader);
+
     Assesments.forEach((a,i)=>{
         if(a.completed==false||checkboxCompleted.checked){ //check if assesment has not been completed and if its completed status matches the checkbox status (used to add the completed assignments)
-            let lateMessage="" //used to add a late message
-            let statusClass="x" //used to change the background color of each assesment and 'x' is used as default
-            if(a.DueDateComp< new Date() && a.completed==false){//check if Assesment is late
-                lateMessage=`<p style="color: darkred; font-size:20px; font-weight:bold">Late</p>`
-                statusClass="Late"
+            const container = document.createElement("tr");
+
+            // Determine status of assesment
+            let StatusText = "Pending";
+            let StatusClass = "pending";
+            const now = new Date();
+            if (a.completed) {
+                StatusText = "Complete";
+                StatusClass = "complete";
+            } else if (a.DueDateComp < now) {
+                StatusText = "Late";
+                StatusClass = "late";
             }
-            if(a.completed==true){ //used for statusclass when the "Show completed Assignments" checkbox is clicked
-                statusClass="Complete"
-            }
+
+            container.innerHTML=`
+                <td>${a.Name}</td>
+                <td>${a.DueDate}</td>
+                <td>${a.weight.toFixed(2)}%</td>
+                <td><span class="assessment-status ${StatusClass}">${StatusText}</span></td>
+                <td><button class="completed" data-index="${i}">Toggle</button></td>
+            `;
             
-            //id is used for late status since in Css id takes priority over class
-            outputAssesment.innerHTML +=`
-            <div class="AsOut" id="${statusClass}">
-            <p>
-            Assesment: ${a.Name} <br>Due Date:  ${a.DueDate}<br> Weight: ${a.weight.toFixed(2)}%</p>
-            ${lateMessage}
-            <button data-index='${i}' class='completed'>Change Completion Status</button>
-            <p></p>
-            </div>`
+            outputAssesment.appendChild(container);
+            
             
         }
     }); 
