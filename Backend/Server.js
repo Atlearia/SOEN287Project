@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -479,4 +481,78 @@ app.use(express.static(publicDir));
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+
+
+//================================================================================
+//Forgot Password//
+
+const nodemailer = require('nodemailer'); //allows sending email
+const crypto = require('crypto'); //allows generating random token
+const resetTokens = {};
+
+const transporter = nodemailer.createTransport({
+  service:'gmail',
+  auth:{
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+})
+app.post('/forgot-password',async (req,res)=>{
+  const {email} = req.body;
+
+  const student = data.students.find(s => s.Email_ === email) 
+                || data.admins.find(a => a.Email_ === email);
+
+  if (!student){
+    return res.json({message : 'If email already exists, reset link was sent.'})
+  }
+  const token = crypto.randomBytes(32).toString('hex');
+  const expiresAt = Date.now() + 1000*60*60;
+
+  resetTokens[token] = { userId: student.id,expiresAt};
+  
+  const resetUrl = `http://localhost:${port}/pages/passwordReset/reset-password.html?token=${token}`;
+
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Password Reset Request',
+    html:`
+      <p>You requested a password reset.</p>
+      <p>If you didn't it, please do not pay attention to this email.</p>
+      <p><a href="${resetUrl}">Click here to reset your password</a></p>
+      <p>This link expires in 1 hour.</p>
+    `,
+  }
+  
+
+  )
+  res.json({ message: 'A reset link was sent.' });
+
+})
+
+
+app.post('/reset-password', async (req, res) => {
+  const { token, newPassword } = req.body;
+  const record = resetTokens[token];
+
+  if (!record || Date.now() > record.expiresAt) {
+    return res.status(400).json({ error: 'Invalid or expired token.' });
+  }
+
+  const student = data.students.find(s => s.id === record.userId)
+             || data.admins.find(a => a.id === record.userId);
+
+  if (!student) {
+    return res.status(400).json({ error: 'Student not found.' });
+  }
+
+  student.password_ = newPassword;
+  fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
+
+  delete resetTokens[token];
+
+  res.json({ message: 'Password reset successfully.' });
 });
