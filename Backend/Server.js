@@ -197,7 +197,7 @@ app.get('/dashboard/student/:id', (req, res) => {
   }
     
     const enrollCourseCode = student.coursesEnrolled; // get all the enrollment courses
-    const relevantCourses = data.courses.filter(c => enrollCourseCode.includes(c.courseCode)).map(c => ({
+    const relevantCourses = data.courses.filter(c => enrollCourseCode.includes(c.courseCode)&&c.active).map(c => ({
       code: c.courseCode,
       title: c.courseName,
       assessments: c.assessments.map(a => ({
@@ -336,6 +336,10 @@ app.post('/enroll', (req, res) => {
         }
 
         const alreadyEnrolled = student.coursesEnrolled.some(c => c.includes(courseCode) && c.active);
+        if (!course.active) {
+          res.status(405)
+          return res.json({ error: "Course is disable!"});
+        }
         if (alreadyEnrolled) {
           res.status(409);
           return res.json({ error: "Already enrolled" });
