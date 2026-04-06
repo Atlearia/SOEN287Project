@@ -252,6 +252,48 @@ function removeAssessment(courseCode) {
 }
 
 
+
+function showGpaPopup() {
+    const overlay = document.getElementById('gpagrades');
+    const closeBtn = document.getElementById('closeGpaPopup');
+    const cancelBtn = document.getElementById('cancelGpaPopup');
+    const gpaContent = document.getElementById('gpaContent');
+
+    // Calculate GPA
+    if (!currentStudentData) return;
+
+    let totalWeight = 0;
+    let weightedSum = 0;
+
+    for (const course of currentStudentData.courses) {
+        weightedSum+=course.average*Number(course.credit);
+        totalWeight+=100*Number(course.credit);
+    }
+
+    const gpa = totalWeight > 0 ? (weightedSum / totalWeight) : 0;
+    gpaContent.innerHTML = `<p>Your GPA is: <strong>${gpa.toFixed(2)}</strong></p>`;
+
+    //make pop up appear
+    overlay.classList.add('active');
+
+    // Close the pop up
+    function closePopup() {
+        overlay.classList.remove('active');
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+    cancelBtn.addEventListener('click', closePopup);
+}
+
+// Attach to GPA button
+const gpaBtn = document.getElementById('GPA');
+if (gpaBtn) {
+    gpaBtn.addEventListener('click', showGpaPopup);
+}
+
+
+
+
 function exportGrades() {
     const exportBtn = document.getElementById('export-grades');
     if (exportBtn) {

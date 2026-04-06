@@ -10,7 +10,12 @@
 <body>
     <div id="CourseHeader">
         <img src="../../assets/concordia2.png" alt="Concordia Logo" id="dashboard-logo">
-        <a href="../dashboard/student-dashboard.html" class="headerButton">Student Dashboard</a>
+        <div>
+            <a href="../dashboard/student-dashboard.html" class="headerButton">Student Dashboard</a>
+            <button id="darkModeBtn" class="headerButton" onclick="toggleDarkMode()">
+                <img id="darkModeIcon" src="../../assets/contrast.png" alt="Dark Mode" width="20" height="20">
+            </button>
+        </div>
         <h1 id="headerCode"></h1>
 
     </div>

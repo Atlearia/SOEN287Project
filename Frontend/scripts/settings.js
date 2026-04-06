@@ -127,7 +127,12 @@ function updatePassword() {
 
 const settingsBackBtn = document.getElementById('setting-backbtn');
 settingsBackBtn.addEventListener('click', () => {
-    window.location.href = "./student-dashboard.html";
+    const role = sessionStorage.getItem('role');
+    if (role === 'student') {
+        window.location.href = "./student-dashboard.html";
+    }else if(role === 'admin') {
+        window.location.href = "../admin/admin-dashboard.html";
+    }
 })
 
 const darkModeIcon = document.getElementById('darkModeIcon');

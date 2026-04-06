@@ -58,3 +58,6 @@ form.addEventListener('submit', function(e) {
 
     
 });
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+}
