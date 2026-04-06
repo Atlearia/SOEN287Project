@@ -87,7 +87,8 @@
           "grades": {
             "S0005": null,
             "S0006": null,
-            "S0007": null
+            "S0007": null,
+            "S0008": null
           }
         },
         {
@@ -98,7 +99,8 @@
           "grades": {
             "S0005": null,
             "S0006": null,
-            "S0007": null
+            "S0007": null,
+            "S0008": null
           }
         },
         {
@@ -107,9 +109,10 @@
           "DueDateComp": "2026-04-01T00:00:00.000Z",
           "weight": 23,
           "grades": {
-            "S0005": null,
+            "S0005": 4,
             "S0006": null,
-            "S0007": null
+            "S0007": null,
+            "S0008": null
           }
         },
         {
@@ -120,7 +123,8 @@
           "grades": {
             "S0005": null,
             "S0006": null,
-            "S0007": null
+            "S0007": null,
+            "S0008": null
           }
         },
         {
@@ -129,9 +133,10 @@
           "DueDate": "May 11, 2026",
           "DueDateComp": "2026-05-11T00:00:00.000Z",
           "grades": {
-            "S0005": 0,
+            "S0005": 45,
             "S0006": null,
-            "S0007": null
+            "S0007": null,
+            "S0008": 50
           }
         },
         {
@@ -142,7 +147,8 @@
           "grades": {
             "S0005": null,
             "S0006": null,
-            "S0007": null
+            "S0007": null,
+            "S0008": null
           }
         },
         {
@@ -153,7 +159,8 @@
           "grades": {
             "S0005": null,
             "S0006": null,
-            "S0007": null
+            "S0007": null,
+            "S0008": null
           }
         }
       ],
@@ -296,7 +303,9 @@
       "Email_": "r@r",
       "password_": "r",
       "id": "S0008",
-      "coursesEnrolled": []
+      "coursesEnrolled": [
+        "pol"
+      ]
     }
   ],
   "admins": [

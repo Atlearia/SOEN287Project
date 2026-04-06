@@ -11,9 +11,17 @@
     <form action="" method="" class="dashboard-form">
         <header>
             <img class="adjust" src="/assets/concordia2.png" alt="Concordia Logo">
-            <a href="/pages/Authentication/SignIn.html" class="adjust" style ="margin-left:auto; text-decoration:none;">
-                <p class="adjust clickable-box" id="logout-button" style ="margin-left:auto;">Log Out</p>
-            </a>
+            <div style ="margin-left:auto; text-decoration:none; display:flex; gap:10px;">
+                <a href="/pages/Authentication/SignIn.html" class="adjust" style="text-decoration:none;">
+                    <p class="adjust clickable-box" id="logout-button" style ="margin-left:auto;">Log Out</p>
+                </a>
+                <a href="../../pages/dashboard/settings.html" class="adjust" style="text-decoration:none;">
+                    <p class="adjust clickable-box" id="logout-button" style ="margin-left:auto;">Setting</p>
+                </a>
+                <button id="darkModeBtn" class="headerButton" onclick="toggleDarkMode()">
+                    <img id="darkModeIcon" src="../../assets/contrast.png" alt="Dark Mode" width="20" height="20">
+                </button>
+            </div>
         </header>
         <div id="body-container">
             <h2 class="page-title">Admin Dashboard</h2>

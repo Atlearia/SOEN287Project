@@ -77,3 +77,6 @@ toggleSaveBtn.addEventListener('click', async function(e) {
 });
 
 loadCourses()
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+}

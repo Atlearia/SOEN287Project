@@ -318,11 +318,18 @@ function DrawGraph(){
     Context.lineTo(30,Cheight-30)//space to write the labels on the x-axis
 
     Context.lineTo(Cwidth,Cheight-30); //draw x-axis with enough space to put label assignments
-    Context.strokeStyle="black";
+    
     Context.lineWidth = 2;
 
-    Context.fillStyle="black";
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        Context.strokeStyle="white";
+        Context.fillStyle="white";
+    }else{
+        Context.strokeStyle="black";
+        Context.fillStyle="black";
+    }
     Context.font="10px Arial";
+    
     //y-axis labels
     for(let i=0; i<=100; i+=20){ //grade labels of 0,20,40,60,80,100
         let y=Cheight-30-i*2;//used for height scaling
@@ -363,4 +370,23 @@ function DrawGraph(){
         Assesments=structuredClone(originalAssesments);
     }
 }
+//dark mode
+const darkModeBtn  = document.getElementById('darkModeBtn');
+const darkModeIcon = document.getElementById('darkModeIcon');
+
+// load saved preference on page load
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+}
+
+darkModeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    
+    if (document.body.classList.contains('dark')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+    DrawGraph();
+});
 

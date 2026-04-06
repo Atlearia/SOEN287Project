@@ -11,22 +11,37 @@
     --late: lightcoral;
     --tab-color: whitesmoke;
 }
+
+body.dark {
+    --background-color: #0f1115;
+    --primary-color: #1a1d24;
+    --secondary-color: #2a2f4a;
+    --text-color: #e6e9ef;
+    --accent-color: #3E4B63;
+    --item-background: #181c23;
+    --nav-item-color: #F2F4F7;
+    --pending: #8a6d00;
+    --completed: #1f7a3e;
+    --late: #8b2c2c;
+    --tab-color: whitesmoke;
+}
+
 p{
-    color: black;
+    color: var(--text-color);
 }
 body{
-    background-color: #f2f4f7;
+    background-color: var(--background-color);
     margin-left:0px; /*needed so that the blue banner covers the screen properly*/
     margin-right:8px; /*needed so that the blue banner covers the screen properly*/
     margin-top: 0px; /*needed so that the blue banner covers the screen properly*/
-    
+    color: var(--text-color);
 }
 #CourseHeader{
     position: relative;
-    color: white;
-    background-color: rgb(62,75,99);
+    color: var(--item-background);
+    background-color: var(--accent-color);
 
-    border: 4px solid rgb(62,75,99);
+    border: 4px solid var(--accent-color);
     height: 160px;
     width: 100%;
 
@@ -39,21 +54,26 @@ body{
     margin: 0px;
     
 }
-.headerButton {
+#CourseHeader > div {
     position: absolute;
-    bottom: 3px;      
+    bottom: 8px;
     left: 7px;
-
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 10;
+}
+.headerButton {
     padding: 6px 12px;
-    
-    background-color: white;
-    color: rgb(62,75,99);
+    background-color: var(--item-background);
+    color: var(--text-color);
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
 }
+
 .headerButton:hover {
-    background-color: #dfe2e3;
+    background-color: var(--item-background);
 }
 #dashboard-logo {
     width: 200px;
@@ -68,7 +88,7 @@ body{
     display:flex;
 }
 #PGained{
-    background-color: lightgreen;
+    background-color: var(--completed);
     width:10px;
     margin-left: 4px; /* margin used for better spacing on the web page*/
     margin-right: 8px;
@@ -76,7 +96,7 @@ body{
     border-width: 2px;
 }
 #PLost{
-    background-color: lightcoral;
+    background-color: var(--late);
     width:10px;
     margin-left: 4px; /* margin used for better spacing on the web page*/
     margin-right: 8px;
@@ -84,7 +104,7 @@ body{
     border-width: 2px;
 }
 #PRemain{
-    background-color: rgb(255, 210, 0);
+    background-color: var(--pending);
     width:10px;
     margin-left: 4px; /*only need left side margin*/
     border-style: solid;
@@ -93,7 +113,7 @@ body{
 
 #ClassInfo{
     margin-left:8px; /*needed so that the blue banner covers the screen properly*/
-    background-color: white;
+    background-color: var(--item-background);
     padding-left: 8px;/*so text isn't against the wall*/
     
 }
@@ -123,19 +143,18 @@ body{
     margin-left:8px; /*needed so that the blue banner covers the screen properly*/
 }
 
-
 .AsOut{
     border-style:solid;
     text-align: center;
-    background-color: rgb(255,210,0);
+    background-color: var(--pending);
     
     
 }
 #Late{
-    background-color: lightcoral;
+    background-color: var(--late);
 }
 #Complete{
-    background-color: lightgreen;
+    background-color: var(--completed);
 }
 #gradesChart{
     margin-left: 8px;
@@ -143,6 +162,7 @@ body{
 #History{
     margin-left: 8px;
 }
+
 #outputAssesment{
     border-style:solid;
     background-color: var(--background-color);
@@ -179,7 +199,6 @@ body{
     display: table;
     width: 100%;
     table-layout: fixed;
-    text-align: center;
 }
 
 .assessment-status {

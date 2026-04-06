@@ -90,3 +90,6 @@ form.addEventListener('submit', async function(e) {
 });
 
 loadTemplates();
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+}

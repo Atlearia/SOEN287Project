@@ -1,20 +1,51 @@
+:root {
+    --background-color: #f2f4f7;
+    --primary-color: #c9c9c9;
+    --secondary-color: #d8dee8;
+    --text-color: #3E4B63;
+    --accent-color: #3E4B63;
+    --item-background: #ffffff;
+    --nav-item-color: #e8eaf0;
+    --pending: rgb(255, 210, 0);
+    --completed: lightgreen;
+    --late: lightcoral;
+    --tab-color: #8892a4;
+    --border-color: #e8eaf0;
+}
+
+body.dark {
+    --background-color: #12151a;
+    --primary-color: #1e2229;
+    --secondary-color: #252c38;
+    --text-color: #e8eaf0;
+    --accent-color: #3E4B63;
+    --item-background: #1a1f28;
+    --nav-item-color: #2a3040;
+    --pending: #8a6d00;
+    --completed: #1f7a3e;
+    --late: #8b2c2c;
+    --tab-color: #3a4455;
+    --border-color: #2a3040;
+}
+
 * {
     /*Please if yorue editing admin PLEASE add this, otherwise everythng will break*/
     box-sizing: border-box;
-    color: #3e4b63 !important;
+    color: var(--text-color) !important;
 }
 
 html {
     height: 100%;
     border-radius: 15px;
-    background: #f2f4f7;
+    background: var(--background-color);
     font-family: sans-serif;
-    color: #3e4b63;
+    color: var(--accent-color);
 }
 
 body {
     margin: 0;
     height: 100%;
+    background-color: var(--background-color);
 }
 
 .dashboard-form {
@@ -28,7 +59,7 @@ header {
     padding: 14px;
     display: flex;
     align-items: center;
-    background: #3e4b63;
+    background: var(--accent-color);
 }
 
 .adjust {
@@ -40,8 +71,8 @@ header {
     margin-left: auto;
     padding: 8px 16px;
     border-radius: 4px;
-    background: #ffffff;
-    color: #3e4b63;
+    background: var(--item-background);
+    color: var(--accent-color);
     font-weight: 600;
     line-height: 1;
 }
@@ -53,7 +84,7 @@ header {
 
 p {
     margin: 0;
-    color: #3e4b63;
+    color: var(--accent-color);
     font-size: 14px;
 }
 
@@ -75,7 +106,7 @@ hr {
     margin: 0;
     border: none;
     height: 2px;
-    background: #cfced3;
+    background: var(--primary-color);
 }
 
 .section {
@@ -91,7 +122,7 @@ hr {
 
 .card-link {
     flex: 1 1 260px;
-    border: 2px solid rgb(244, 243, 243);
+    border: 2px solid var(--border-color);
     text-decoration: none;
 }
 
@@ -103,7 +134,7 @@ hr {
     gap: 12px;
     padding: 12px 14px;
     border-radius: 4px;
-    background: #ffffff;
+    background: var(--item-background);
     box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -165,9 +196,9 @@ hr {
 
 #selection {
     padding: 6px 12px;
-    border: 1px solid #c7cedb;
+    border: 1px solid var(--border-color);
     border-radius: 7px;
-    background: #ffffff;
+    background: var(--item-background);
     color: #3e4b63;
     font-size: 14px;
     font-weight: 600;
@@ -190,12 +221,12 @@ hr {
     flex-direction: column;
     padding: 14px 16px 16px;
     border-radius: 4px;
-    background: #ffffff;
+    background: var(--item-background);
     box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.08);
 }
 
 .us-card-assessment {
-    border: 1px solid #e4e8f0;
+    border: 1px solid var(--nav-item-color);
 }
 
 .us-card-assessment 
@@ -208,7 +239,7 @@ hr {
     flex: 0 0 160px;
     padding: 12px 14px;
     border-radius: 10px;
-    background: #f6f8fc;
+    background: var(--background-color);
 }
 
 .us-card-assessment 
@@ -225,8 +256,8 @@ hr {
     margin-top: 8px;
     padding: 4px 10px;
     border-radius: 999px;
-    background: #eaf7ee;
-    color: #2b7a45;
+    background: var(--nav-item-color);
+    color: var(--completed);
     font-size: 12px;
     font-weight: 700;
 }
@@ -234,7 +265,7 @@ hr {
 .us-card-assessment 
 .us-bar-name {
     width: 96px;
-    color: #425472;
+    color: var(--accent-color);
     font-weight: 600;
 }
 
@@ -246,7 +277,7 @@ hr {
 .us-card-assessment 
 .us-bar-container-of-colour {
     height: 14px;
-    background: #e4e9f2;
+    background: var(--nav-item-color);
 }
 
 .us-card-assessment /*one comma almost screwed me earlier careful*/
@@ -255,7 +286,7 @@ hr {
 .stats-letter
 {
     width: 40px;
-    color: #425472;
+    color: var(--accent-color);
     font-weight: 700;
 }
 
@@ -277,14 +308,14 @@ hr {
 }
 
 .us-card-title {
-    color: #3e4b63;
+    color: var(--accent-color);
     font-size: 14px;
     font-weight: 800;
 }
 
 .us-side-label {
     margin-left: auto;
-    color: #8892a4;
+    color: var(--tab-color);
     font-size: 11px;
     line-height: 1;
 }
@@ -316,7 +347,7 @@ hr {
 
 #big-aah-number,
 .us-big-pct {
-    color: #3e4b63;
+    color: var(--accent-color);
     font-size: 56px;
     font-weight: 800;
     line-height: 1;
@@ -329,7 +360,7 @@ hr {
 .us-warn-item,
 .us-deadline-BOX,
 .us-deadline-item {
-    color: #4f5e78;
+    color: var(--accent-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.25;
@@ -359,21 +390,21 @@ hr {
     margin-right: 8px;
     border-radius: 20px;
     overflow: hidden;
-    background: #e8eaf0;
+    background: var(--nav-item-color);
 }
 
 .us-bar-fill-green {
     height: 100%;
     min-width: 12px;
     border-radius: 20px;
-    background: rgb(21, 214, 21);
+    background: var(--completed);
 }
 
 .us-bar-fill-yellow {
     height: 100%;
     min-width: 12px;
     border-radius: 20px;
-    background: #f5c518;
+    background: var(--pending);
 }
 
 .stats-letter,
@@ -394,12 +425,12 @@ hr {
     padding: 10px 2px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e8eaf0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .DANGER-icon {
     margin-right: 8px;
-    color: #f5a623 !important;
+    color: var(--pending) !important;
     font-size: 16px;
 }
 

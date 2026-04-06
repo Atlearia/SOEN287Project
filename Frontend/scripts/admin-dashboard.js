@@ -148,3 +148,21 @@ function renderAssessments(course) {
 }
 
 loadDashboard();
+//dark mode
+const darkModeBtn  = document.getElementById('darkModeBtn');
+const darkModeIcon = document.getElementById('darkModeIcon');
+
+// load saved preference on page load
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+}
+
+darkModeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+
+    if (document.body.classList.contains('dark')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+});
