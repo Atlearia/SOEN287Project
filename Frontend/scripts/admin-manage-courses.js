@@ -113,6 +113,7 @@ manageCourseForm.addEventListener('submit', function(e) {
     const updatedAssessments = [];
 
     for (let i = 0; i < items.length; i++) {
+        const old = currentCourse.assessments[i];
         const nameInput = items[i].querySelector('.manage-name');
         const weightInput = items[i].querySelector('.manage-weight');
         const dateInput = items[i].querySelector('.manage-Date');
@@ -121,8 +122,8 @@ manageCourseForm.addEventListener('submit', function(e) {
             name: nameInput.value,
             weight: parseInt(weightInput.value, 10),
             DueDateComp: new Date (dateInput.value).toISOString(),
-            DueDate: new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date (dateInput.value))
-            
+            DueDate: new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date (dateInput.value)),
+            grades: old?.grades || {}
         });
     }
 

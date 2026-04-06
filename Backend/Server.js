@@ -122,6 +122,7 @@ app.post('/update/course/status', (req, res) => {
             res.send("Invalid JSON");
         }
 });
+/*
 app.post('/update/course/assessments', (req, res) => {
   try {
     const { courseCode, assessments } = req.body;
@@ -145,6 +146,9 @@ app.post('/update/course/assessments', (req, res) => {
               }
             });
 
+
+            const students = data.students.filter( s => s.coursesEnrolled.some(c => c === courseCode)).map(s => s.id)
+            course.assessments = assessments;
             //add new assesments if it exceeds the current size
             for (let i = course.assessments.length; i < assessments.length; i++) {
               course.assessments.push({
@@ -153,9 +157,50 @@ app.post('/update/course/assessments', (req, res) => {
                 DueDate: assessments[i].DueDate,
                 DueDateComp: assessments[i].DueDateComp,
                 
+            
+                grades:assessments.forEach(a => {
+                  a["grades"] = {}
+                  students.forEach(s => a.grades[s] = null);
+
+                })
+
               });
             }
+            
+            // save to file
+            fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 
+            res.json(course);
+
+        } catch (err) {
+            res.status(400);
+            res.send("Invalid JSON");
+        }
+});
+*/
+app.post('/update/course/assessments', (req, res) => {
+  try {
+    const { courseCode, assessments } = req.body;
+
+            // find the course
+            const course = data.courses.find(c => c.courseCode === courseCode);
+
+            if (!course) {
+              res.status(404);
+              return res.send("Course not found");
+            }
+
+            const students = data.students.filter( s => s.coursesEnrolled.some(c => c === courseCode)).map(s => s.id)
+            
+            assessments.forEach(a => {
+              const existingGrades = a.grades ?? {};
+              a.grades = {}
+              students.forEach(s => {
+                a.grades[s] = existingGrades[s] ?? null;
+              });
+            });
+            // update assessments
+            course.assessments = assessments;
             // save to file
             fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 

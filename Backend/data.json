@@ -80,14 +80,14 @@
       "description": "",
       "assessments": [
         {
-          "name": "BAssignments",
+          "name": "CAssignments",
           "DueDate": "January 29, 2026",
           "DueDateComp": "2026-01-29T00:00:00.000Z",
           "weight": 15,
           "grades": {
-            "S0005": 98,
-            "S0006": 78,
-            "S0007": 0
+            "S0005": null,
+            "S0006": null,
+            "S0007": null
           }
         },
         {
@@ -107,7 +107,7 @@
           "DueDateComp": "2026-04-01T00:00:00.000Z",
           "weight": 23,
           "grades": {
-            "S0005": 100,
+            "S0005": null,
             "S0006": null,
             "S0007": null
           }
@@ -129,7 +129,7 @@
           "DueDate": "May 11, 2026",
           "DueDateComp": "2026-05-11T00:00:00.000Z",
           "grades": {
-            "S0005": 5,
+            "S0005": null,
             "S0006": null,
             "S0007": null
           }
@@ -138,7 +138,23 @@
           "name": "Project",
           "weight": 10,
           "DueDate": "January 24, 2026",
-          "DueDateComp": "2026-01-24T00:00:00.000Z"
+          "DueDateComp": "2026-01-24T00:00:00.000Z",
+          "grades": {
+            "S0005": null,
+            "S0006": null,
+            "S0007": null
+          }
+        },
+        {
+          "name": "BAssignments",
+          "weight": 65,
+          "DueDate": "January 27, 2026",
+          "DueDateComp": "2026-01-27T00:00:00.000Z",
+          "grades": {
+            "S0005": null,
+            "S0006": null,
+            "S0007": null
+          }
         }
       ],
       "active": true,
@@ -154,38 +170,47 @@
       "assessments": [
         {
           "name": "Assignments",
-          "DueDate": "January 1, 2026",
-          "DueDateComp": "2026-01-01T05:00:00.000Z",
           "weight": 23,
+          "DueDateComp": "2026-01-01T00:00:00.000Z",
+          "DueDate": "January 1, 2026",
           "grades": {
-            "S0005": 0
+            "S0005": 65
           }
         },
         {
           "name": "Quizzes",
-          "DueDate": "January 1, 2026",
-          "DueDateComp": "2026-01-01T05:00:00.000Z",
           "weight": 23,
+          "DueDateComp": "2026-01-01T00:00:00.000Z",
+          "DueDate": "January 1, 2026",
           "grades": {
-            "S0005": 3
+            "S0005": 45
           }
         },
         {
           "name": "Midterm",
-          "DueDate": "January 1, 2026",
-          "DueDateComp": "2026-01-01T05:00:00.000Z",
           "weight": 23,
+          "DueDateComp": "2026-01-01T00:00:00.000Z",
+          "DueDate": "January 1, 2026",
           "grades": {
-            "S0005": 0
+            "S0005": 76
           }
         },
         {
           "name": "Final",
-          "DueDate": "January 1, 2026",
-          "DueDateComp": "2026-01-01T05:00:00.000Z",
           "weight": 23,
+          "DueDateComp": "2026-01-01T00:00:00.000Z",
+          "DueDate": "January 1, 2026",
           "grades": {
-            "S0005": 0
+            "S0005": null
+          }
+        },
+        {
+          "name": "BAssignments",
+          "weight": 2,
+          "DueDateComp": "2026-01-01T00:00:00.000Z",
+          "DueDate": "January 1, 2026",
+          "grades": {
+            "S0005": null
           }
         }
       ],

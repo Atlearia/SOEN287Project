@@ -138,8 +138,7 @@ class Admin_login{
         this.Email_ = Email;
         this.password_ = password;
         this.id =id;
-        this.courseCreated =[]; //store which courses the admin created and therefore see
-        this.courseTemplates=[]; //store templates created by admin
+        
     }
     
 }
