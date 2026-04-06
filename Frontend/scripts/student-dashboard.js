@@ -349,6 +349,62 @@ function exportGrades() {
     } ///pdf stuff 👉👈 pls work
 }
 
+const GRADE_SCALE = [
+    { min: 90, gp: 4.30 },
+    { min: 85, gp: 4.00 },
+    { min: 80, gp: 3.70 },
+    { min: 77, gp: 3.30 },
+    { min: 73, gp: 3.00 },
+    { min: 70, gp: 2.70 },
+    { min: 67, gp: 2.30 },
+    { min: 63, gp: 2.00 },
+    { min: 60, gp: 1.70 },
+    { min: 57, gp: 1.30 },
+    { min: 53, gp: 1.00 },
+    { min: 50, gp: 0.70 },
+    { min: 0,  gp: 0.00 }
+];
+
+function getGradePoint(average) {
+    if (average == null || isNaN(average)) return 0.00;
+    for (const grade of GRADE_SCALE) {
+        if (average >= grade.min) return grade.gp;
+    }
+    return 0.00;
+}
+
+function showGpaPopup() {
+    const overlay = document.getElementById('gpagrades');
+    const closeBtn = document.getElementById('closeGpaPopup');
+    const cancelBtn = document.getElementById('cancelGpaPopup');
+    const gpaContent = document.getElementById('gpaContent');
+
+    // Calculate GPA
+    if (!currentStudentData) return;
+
+    let sum = 0;
+    let count = 0;
+
+    for (const course of currentStudentData.courses) {
+        sum += getGradePoint(course.average);
+        count++;
+    }
+
+    const gpa = count > 0 ? (sum / count) : 0;
+    gpaContent.innerHTML = `<p>Your GPA is: <strong>${gpa.toFixed(2)} / 4.30</strong></p>`;
+
+    //make pop up appear
+    overlay.classList.add('active');
+
+    // Close the pop up
+    function closePopup() {
+        overlay.classList.remove('active');
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+    cancelBtn.addEventListener('click', closePopup);
+}
+
 /**
  * Just return to the main sign in page.
  * TODO: To be implemented in backend
@@ -478,6 +534,12 @@ function setupUI() {
     addCourse();
     removeCourse();
     exportGrades();
+    
+    // buton
+    const gpaBtn = document.getElementById('GPA');
+    if (gpaBtn) {
+        gpaBtn.addEventListener('click', showGpaPopup);
+    }
 }
 
 logout();

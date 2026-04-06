@@ -5,7 +5,7 @@ const { json } = require('node:stream/consumers');
 
 const app = express();
 
-const hostname = '127.0.0.1';
+const hostname = '0.0.0.0';
 const port = process.env.PORT || 3003;//for render stuf, if doesnt work just dont env it and setup antoher entry 
 
 const dataFile = path.join(__dirname, 'data.json');
