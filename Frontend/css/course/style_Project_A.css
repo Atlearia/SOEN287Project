@@ -1,3 +1,16 @@
+:root {
+    --background-color: whitesmoke;
+    --primary-color: #c9c9c9;
+    --secondary-color: #dddbff;
+    --text-color: #0c0c12;
+    --accent-color: #3E4B63;
+    --item-background: white;
+    --nav-item-color: #F2F4F7;
+    --pending: rgb(255, 210, 0);
+    --completed: lightgreen;
+    --late: lightcoral;
+    --tab-color: whitesmoke;
+}
 p{
     color: black;
 }
@@ -110,10 +123,7 @@ body{
     margin-left:8px; /*needed so that the blue banner covers the screen properly*/
 }
 
-#outputAssesment{
-    border-style:solid;
-    
-}
+
 .AsOut{
     border-style:solid;
     text-align: center;
@@ -132,4 +142,68 @@ body{
 }
 #History{
     margin-left: 8px;
+}
+#outputAssesment{
+    border-style:solid;
+    background-color: var(--background-color);
+}
+
+#outputAssesment th,
+#outputAssesment tr,
+#outputAssesment td {
+    padding: 10px;
+}
+
+#outputAssesment thead {
+    background-color: var(--secondary-color);
+}
+
+#outputAssesment td {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*add scroll to the table body*/
+#outputAssesment tbody {
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--item-background);
+}
+
+#outputAssesment thead, /*keep header in place*/
+#outputAssesment tbody > tr { /* fix spacing of body content so that it alligns properly*/
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+}
+
+.assessment-status {
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.pending {
+    background-color: var(--pending);
+}
+
+.complete {
+    background-color: var(--completed);
+}
+.late{
+    background-color: var(--late);
+}
+
+.toggleButton {
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 10px;
 }

@@ -114,19 +114,21 @@ function renderAssesments(){
         Assesments=structuredClone(originalAssesments); //used due to graph
     }
     
-    const tableHeader = document.createElement("tr");
+    const tableHeader = document.createElement("thead");
     tableHeader.innerHTML = `
-        <th>Assessment</th>
-        <th>Due Date</th>
-        <th>Weight</th>
-        <th>Status</th>
-        <th>Toggle Completion</th>
+        <tr>
+            <th>Assessment</th>
+            <th>Due Date</th>
+            <th>Weight</th>
+            <th>Status</th>
+            <th>Toggle Completion</th>
+        </tr>
     `;
     outputAssesment.appendChild(tableHeader);
 
     Assesments.forEach((a,i)=>{
         if(a.completed==false||checkboxCompleted.checked){ //check if assesment has not been completed and if its completed status matches the checkbox status (used to add the completed assignments)
-            const container = document.createElement("tr");
+            const container = document.createElement("tbody");
 
             // Determine status of assesment
             let StatusText = "Pending";
@@ -141,11 +143,13 @@ function renderAssesments(){
             }
 
             container.innerHTML=`
-                <td>${a.Name}</td>
-                <td>${a.DueDate}</td>
-                <td>${a.weight.toFixed(2)}%</td>
-                <td><span class="assessment-status ${StatusClass}">${StatusText}</span></td>
-                <td><button class="completed" data-index="${i}">Toggle</button></td>
+                <tr>
+                    <td>${a.Name}</td>
+                    <td>${a.DueDate}</td>
+                    <td>${a.weight.toFixed(2)}%</td>
+                    <td><span class="assessment-status ${StatusClass}">${StatusText}</span></td>
+                    <td><button class="completed toggleButton" data-index="${i}">Toggle</button></td>
+                </tr>
             `;
             
             outputAssesment.appendChild(container);

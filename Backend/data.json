@@ -129,7 +129,7 @@
           "DueDate": "May 11, 2026",
           "DueDateComp": "2026-05-11T00:00:00.000Z",
           "grades": {
-            "S0005": null,
+            "S0005": 0,
             "S0006": null,
             "S0007": null
           }
