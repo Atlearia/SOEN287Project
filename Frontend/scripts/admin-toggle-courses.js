@@ -11,42 +11,43 @@ async function loadCourses() {// IDK why it works 1/2, sometimes load sometimes 
 
         for (let i = 0; i < coursesData.length; i++) {
             const course = coursesData[i];
-            
-            const div = document.createElement('div');
-            div.className = 'listrow1';
-            
-            if (i === coursesData.length - 1) {
-                div.className += ' listrowlast1';
+            if(sessionStorage.getItem('id')===course.AdminId){
+                const div = document.createElement('div');
+                div.className = 'listrow1';
+                
+                if (i === coursesData.length - 1) {
+                    div.className += ' listrowlast1';
+                }
+                
+                const span = document.createElement('span');
+                span.className = 'listrowtext1';
+                span.textContent = course.courseCode + ' - ' + course.courseName;
+                
+                const select = document.createElement('select');
+                select.className = 'statusselect1';
+                select.dataset.courseCode = course.courseCode;
+                
+                const optEnabled = document.createElement('option');
+                optEnabled.value = 'enabled';
+                optEnabled.textContent = 'Enabled';
+                
+                const optDisabled = document.createElement('option');
+                optDisabled.value = 'disabled';
+                optDisabled.textContent = 'Disabled';
+                
+                if (course.active === false) {
+                    optDisabled.selected = true;
+                } else {
+                    optEnabled.selected = true;
+                }
+                
+                select.appendChild(optEnabled);
+                select.appendChild(optDisabled);
+                
+                div.appendChild(span);
+                div.appendChild(select);
+                simpleList.appendChild(div);
             }
-            
-            const span = document.createElement('span');
-            span.className = 'listrowtext1';
-            span.textContent = course.courseCode + ' - ' + course.courseName;
-            
-            const select = document.createElement('select');
-            select.className = 'statusselect1';
-            select.dataset.courseCode = course.courseCode;
-            
-            const optEnabled = document.createElement('option');
-            optEnabled.value = 'enabled';
-            optEnabled.textContent = 'Enabled';
-            
-            const optDisabled = document.createElement('option');
-            optDisabled.value = 'disabled';
-            optDisabled.textContent = 'Disabled';
-            
-            if (course.active === false) {
-                optDisabled.selected = true;
-            } else {
-                optEnabled.selected = true;
-            }
-            
-            select.appendChild(optEnabled);
-            select.appendChild(optDisabled);
-            
-            div.appendChild(span);
-            div.appendChild(select);
-            simpleList.appendChild(div);
         }
 }
 

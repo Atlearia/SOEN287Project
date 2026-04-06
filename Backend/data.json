@@ -80,7 +80,7 @@
       "description": "",
       "assessments": [
         {
-          "name": "Assignments",
+          "name": "BAssignments",
           "DueDate": "January 29, 2026",
           "DueDateComp": "2026-01-29T00:00:00.000Z",
           "weight": 15,
@@ -133,9 +133,15 @@
             "S0006": null,
             "S0007": null
           }
+        },
+        {
+          "name": "Project",
+          "weight": 10,
+          "DueDate": "January 24, 2026",
+          "DueDateComp": "2026-01-24T00:00:00.000Z"
         }
       ],
-      "active": false,
+      "active": true,
       "credit": "2",
       "AdminId": "A0001"
     },
