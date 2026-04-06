@@ -1,4 +1,3 @@
-
 /* light mode color scheme */
 :root {
     --background-color: whitesmoke;
@@ -65,7 +64,7 @@ body {
     background-color: var(--accent-color);
     font-weight: bold;
     border: 1px solid;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .offcanvas {
@@ -90,7 +89,7 @@ body {
     width: 95%;
     margin: 10px 10px 10px 10px;
     padding: 10px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .modal-overlay {
@@ -103,13 +102,13 @@ body {
     align-items: center;
     z-index: 1000;
     opacity: 0;
-    pointer-events: none;        
+    pointer-events: none;
     transition: opacity 0.25s ease;
 }
 
 .modal-overlay.active {
-    opacity: 1;                  
-    pointer-events: all;         
+    opacity: 1;
+    pointer-events: all;
 }
 
 .popup-card {
@@ -118,7 +117,7 @@ body {
     width: 100%;
     max-width: 440px;
     margin: 1rem;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     transform: translateY(20px);
     transition: transform 0.3s ease, opacity 0.25s ease;
     opacity: 0;
@@ -139,12 +138,14 @@ body {
 
 
 /* Assessment section styls */
-.assessment-table {    
+.assessment-table {
     background-color: var(--item-background);
     margin: 10px 10px 10px 10px;
 }
 
-.assessment-table th, tr, td {
+.assessment-table th,
+tr,
+td {
     padding: 10px;
 }
 
@@ -167,8 +168,10 @@ body {
     background-color: var(--item-background);
 }
 
-.assessment-table thead, /*keep header in place*/
-.assessment-table tbody > tr { /* fix spacing of body content so that it alligns properly*/
+.assessment-table thead,
+/*keep header in place*/
+.assessment-table tbody>tr {
+    /* fix spacing of body content so that it alligns properly*/
     display: table;
     width: 100%;
     table-layout: fixed;
@@ -193,7 +196,8 @@ body {
 .complete {
     background-color: var(--completed);
 }
-.late{
+
+.late {
     background-color: var(--late);
 }
 
@@ -209,7 +213,7 @@ body {
     padding: 5px;
 }
 
-#form-section{
+#form-section {
     min-height: calc(100vh - 400px);
 }
 
@@ -217,11 +221,13 @@ body {
     background-color: var(--item-background);
 }
 
-#passwordTab, #profileTab {
+#passwordTab,
+#profileTab {
     color: var(--text-color);
 }
 
-#passwordTab.active, #profileTab.active {
+#passwordTab.active,
+#profileTab.active {
     background-color: var(--accent-color);
     color: var(--tab-color);
 }
@@ -257,3 +263,45 @@ body {
     max-width: 50px;
     max-height: 50px;
 }
+
+/*pdf stuff*/
+@media print {
+
+    nav,
+    .course-card,
+    .offcanvas,
+    .modal-overlay,
+    #darkModeBtn {
+        display: none !important;
+    }
+
+    body.dark,
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .assessment-table {
+        box-shadow: none !important;
+        min-width: 100% !important;
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .assessment-table tbody {
+        max-height: none !important;
+        overflow: visible !important;
+        background-color: white !important;
+    }
+
+    .assessment-table th {
+        background-color: #f2f2f2 !important;
+        color: black !important;
+    }
+
+    .assessment-title {
+        color: black !important;
+    }
+}
+
+/* dont mind all the importtat, its very important*/
