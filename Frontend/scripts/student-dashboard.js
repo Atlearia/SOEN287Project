@@ -307,6 +307,38 @@ function exportGrades() {
     } ///pdf stuff 👉👈 pls work
 }
 
+function showGpaPopup() {
+    const overlay = document.getElementById('gpagrades');
+    const closeBtn = document.getElementById('closeGpaPopup');
+    const cancelBtn = document.getElementById('cancelGpaPopup');
+    const gpaContent = document.getElementById('gpaContent');
+
+    // Calculate GPA
+    if (!currentStudentData) return;
+
+    let sum = 0;
+    let count = 0;
+
+    for (const course of currentStudentData.courses) {
+        sum += course.average;
+        count++;
+    }
+
+    const gpa = count > 0 ? (sum / count) : 0;
+    gpaContent.innerHTML = `<p>Your GPA is: <strong>${gpa.toFixed(2)}</strong></p>`;
+
+    //make pop up appear
+    overlay.classList.add('active');
+
+    // Close the pop up
+    function closePopup() {
+        overlay.classList.remove('active');
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+    cancelBtn.addEventListener('click', closePopup);
+}
+
 /**
  * Just return to the main sign in page.
  * TODO: To be implemented in backend
@@ -436,6 +468,12 @@ function setupUI() {
     addCourse();
     removeCourse();
     exportGrades();
+    
+    // buton
+    const gpaBtn = document.getElementById('GPA');
+    if (gpaBtn) {
+        gpaBtn.addEventListener('click', showGpaPopup);
+    }
 }
 
 logout();
